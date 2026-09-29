@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Atkinson_Hyperlegible_Next, Bricolage_Grotesque } from "next/font/google";
+import { Atkinson_Hyperlegible_Next, Nunito } from "next/font/google";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { SiteHeader } from "@/components/site-header";
@@ -14,7 +14,8 @@ const body = Atkinson_Hyperlegible_Next({
   fallback: ["system-ui", "sans-serif"],
   adjustFontFallback: false,
 });
-const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display", weight: ["600", "800"] });
+// Nunito, redondeada y cercana, solo para títulos.
+const display = Nunito({ subsets: ["latin"], variable: "--font-display", weight: ["700", "800"] });
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));

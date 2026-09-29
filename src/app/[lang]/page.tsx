@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -12,12 +13,17 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       <p className="text-sm font-semibold uppercase tracking-widest text-accent">{home.eyebrow}</p>
       <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">{home.title}</h1>
       <p className="mt-6 max-w-2xl text-lg text-muted">{home.lead}</p>
-      <a
-        href="#contacte"
-        className="mt-8 inline-flex min-h-11 items-center rounded-md bg-accent px-5 font-semibold text-accent-contrast hover:opacity-90"
-      >
-        {home.contactCta}
-      </a>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <Link
+          href={`/${lang}/registre`}
+          className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 font-semibold text-accent-contrast hover:opacity-90"
+        >
+          {home.registerCta}
+        </Link>
+        <a href="#contacte" className="inline-flex min-h-11 items-center rounded-md border border-line px-5 font-semibold hover:border-accent">
+          {home.contactCta}
+        </a>
+      </div>
     </section>
   );
 }
