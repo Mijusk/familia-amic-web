@@ -44,6 +44,6 @@ según el RGPD. Por eso:
 0. Base: Next.js, Supabase, Vercel, idiomas, diseño visual.
 1. Cuentas: registro, verificación, login, recuperar contraseña, familia, participantes, ficha de socio.
 2. Actividades: listado, detalle, inscripción, cola, baja, emails.
-3. Panel: actividades, inscritos, cola, familias, activar socios, voluntarios, admins con 2FA.
+3. Panel: actividades, inscritos, cola, familias, activar socios, admins con 2FA, registro de acciones.
 4. Recibos: generar los del mes y exportar Excel.
-5. Contenido: portada, Associació, noticias, recursos, contacto, voluntariado, legales, migración.
+5. Contenido: portada, Associació, noticias, recursos, contacto, voluntariado (formulario y su lista en el panel), fotos de actividades, legales, migración.

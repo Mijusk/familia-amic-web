@@ -86,10 +86,28 @@ update public.profiles set account_type = 'admin'
 where id in (select id from auth.users where email = 'correo@ejemplo.com');
 ```
 
+A partir de ahí, un admin puede nombrar a otros desde el panel (Panell → Administradors). Nadie puede quitar
+a otro admin desde la web: eso se hace en el SQL Editor, cambiando `account_type` a `'familia'`.
+
+### Panel de administración y verificación en dos pasos
+
+El panel está en `/ca/admin`. La primera vez pide activar la verificación en dos pasos con una app de
+códigos (Google Authenticator, Microsoft Authenticator…) y, después, un código cada vez que se entra.
+La base de datos solo trata a alguien como admin si ha entrado con ese código: con la contraseña sola,
+una cuenta admin no ve datos de nadie.
+
+En Supabase, Authentication → Multi-Factor debe tener **TOTP** activado (lo está por defecto). Si un admin
+pierde el móvil, otro puede borrarle el factor en Authentication → Users → (la persona) → MFA, y la
+próxima vez que entre volverá a escanear el QR.
+
+Desde el panel se crean y editan actividades, se ve quién está inscrito (con sus datos de salud y el
+contacto de la familia), se da plaza a la lista de espera, se validan las fichas de socio y se consultan
+los datos de cada familia. Todo queda en Panell → Registre.
+
 ### Actividades de prueba
 
-Hasta que llegue el panel de administración (fase 3), las actividades se crean en Supabase → Table Editor →
-`activities`. `supabase/seed.sql` tiene ejemplos (solo se cargan en la base de datos local).
+Las actividades se crean desde el panel. `supabase/seed.sql` tiene ejemplos que solo se cargan en la base
+de datos local.
 
 ### Supabase en local (opcional)
 
@@ -116,6 +134,7 @@ src/
   app/[lang]/        Páginas; [lang] es ca o es
     activitats/      Listado y detalle de actividades, con la inscripción
     compte/          Cuenta: resumen, participantes, inscripciones, ficha de socio
+    admin/           Panel de administración (solo admins con verificación en dos pasos)
   components/        Cabecera, pie, formularios…
   config/site.ts     Datos de contacto de la entidad
   i18n/              Idiomas y textos (dictionaries/ca.json, es.json)
