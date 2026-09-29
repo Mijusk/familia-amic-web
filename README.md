@@ -104,6 +104,23 @@ Desde el panel se crean y editan actividades, se ve quién está inscrito (con s
 contacto de la familia), se da plaza a la lista de espera, se validan las fichas de socio y se consultan
 los datos de cada familia. Todo queda en Panell → Registre.
 
+### Recibos
+
+No hay pago online. Cada mes, en Panell → Rebuts:
+
+1. Pon la cuota de socio y el descuento por varias actividades en «Preus» (una sola vez, o cuando cambien).
+2. Pulsa «Calcular els rebuts». Entran las familias socias **activas**: la cuota anual el mes en que se dieron
+   de alta, y cada actividad con «rebut mensual» en la que un participante ha tenido plaza algún día del mes
+   (mes completo; las pruebas no se cobran). El panel avisa de las familias con la ficha pendiente, que no
+   entran hasta que se activan.
+3. Copia cada recibo en CaixaBank (titular, IBAN, importe, concepto y referencia del mandato tienen botón de
+   copiar) o descarga el Excel.
+4. Cuando el banco los haya pasado, «Marcar tots els pendents com a cobrats». Un recibo devuelto se marca
+   como «Retornat» y la familia lo ve así en su cuenta.
+
+Volver a calcular un mes solo rehace los recibos pendientes. Cada familia ve sus recibos en El meu compte →
+Rebuts, sin el IBAN completo.
+
 ### Actividades de prueba
 
 Las actividades se crean desde el panel. `supabase/seed.sql` tiene ejemplos que solo se cargan en la base

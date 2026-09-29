@@ -2,7 +2,9 @@ import { redirect } from "next/navigation";
 import { format, formatDate } from "@/i18n/format";
 import { loadPage } from "@/i18n/page";
 import { requireUser } from "@/lib/auth";
+import { formatPrice } from "@/lib/activity-format";
 import { getMembership, maskedDni } from "@/lib/data";
+import { getBillingSettings } from "@/lib/receipts";
 import { maskIban } from "@/lib/validation";
 import { PageHeader } from "@/components/page-header";
 import { MembershipForm } from "@/components/account/membership-form";
@@ -12,12 +14,15 @@ export default async function MembershipPage({ params }: PageProps<"/[lang]/comp
   const user = await requireUser(lang, `/${lang}/compte/soci`);
   if (user.profile.account_type !== "familia") redirect(`/${lang}/compte`);
   const t = dict.membership;
-  const membership = await getMembership(user.id);
+  const [membership, billing] = await Promise.all([getMembership(user.id), getBillingSettings()]);
   const status = membership?.status ?? "none";
 
   return (
     <div className="space-y-8">
       <PageHeader title={t.title} lead={t.lead} />
+      {billing.membership_fee_cents != null && billing.membership_fee_cents > 0 && (
+        <p className="-mt-4 font-semibold">{format(t.feeAmount, { price: formatPrice(lang, billing.membership_fee_cents) })}</p>
+      )}
 
       <section className="max-w-2xl rounded-lg border border-line bg-surface p-5">
         <h2 className="text-sm font-semibold uppercase tracking-widest text-muted">{t.statusTitle}</h2>

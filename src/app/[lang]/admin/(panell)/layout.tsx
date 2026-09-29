@@ -12,6 +12,7 @@ export default async function AdminLayout({ children, params }: LayoutProps<"/[l
     { href: `/${lang}/admin`, label: t.nav.home },
     { href: `/${lang}/admin/activitats`, label: t.nav.activities },
     { href: `/${lang}/admin/families`, label: t.nav.families },
+    { href: `/${lang}/admin/rebuts`, label: t.nav.receipts },
     { href: `/${lang}/admin/administradors`, label: t.nav.admins },
     { href: `/${lang}/admin/registre`, label: t.nav.log },
   ];
