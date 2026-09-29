@@ -73,7 +73,9 @@
     "slugTaken": "Ya hay una actividad con esta dirección. Cámbiala.",
     "noAccount": "No hay ninguna cuenta confirmada con este correo. Primero tiene que registrarse y confirmarlo.",
     "invalidTime": "La hora de final tiene que ser posterior a la de inicio.",
-    "reviewForm": "Revisa los campos marcados en rojo."
+    "reviewForm": "Revisa los campos marcados en rojo.",
+    "invalidPrice": "Escribe un importe en euros, por ejemplo 50 o 12,50.",
+    "invalidPercent": "Escribe un porcentaje entre 0 y 100."
   },
   "auth": {
     "login": {
@@ -115,6 +117,11 @@
       "password": "Contraseña nueva",
       "confirm": "Repite la contraseña",
       "submit": "Cambiar la contraseña"
+    },
+    "resend": {
+      "lead": "Si el enlace era para confirmar la cuenta, te enviamos un correo nuevo:",
+      "submit": "Enviar un nuevo correo de confirmación",
+      "sent": "Si la cuenta está pendiente de confirmar, recibirás un correo nuevo en unos minutos. Abre solo el más reciente: los anteriores ya no funcionan."
     }
   },
   "account": {
@@ -124,7 +131,8 @@
       "summary": "Resumen",
       "family": "Participantes",
       "membership": "Socio",
-      "enrollments": "Inscripciones"
+      "enrollments": "Inscripciones",
+      "receipts": "Recibos"
     },
     "myData": {
       "title": "Mis datos",
@@ -214,7 +222,8 @@
     "sepaReference": "Referencia del mandato SEPA: {ref}",
     "submit": "Enviar solicitud de socio",
     "update": "Guardar cambios",
-    "sent": "Solicitud enviada. Te contactaremos cuando esté confirmada."
+    "sent": "Solicitud enviada. Te contactaremos cuando esté confirmada.",
+    "feeAmount": "Cuota actual: {price} al año por familia."
   },
   "activities": {
     "title": "Actividades",
@@ -323,6 +332,26 @@
     "promotedSubject": "Ya tenéis plaza en {activity}",
     "promotedBody": "{name} ya tiene plaza confirmada en {activity}. Estaba en la lista de espera y la asociación le ha dado plaza."
   },
+  "receipts": {
+    "title": "Recibos",
+    "lead": "Los recibos que la asociación pasa por el banco cada mes: la cuota de socio (el mes del alta) y las actividades con pago mensual.",
+    "empty": "Todavía no tenéis ningún recibo.",
+    "total": "Total",
+    "account": "Cuenta acabada en {last4}",
+    "status": {
+      "pendent": "Pendiente de cobro",
+      "cobrat": "Cobrado",
+      "retornat": "Devuelto por el banco",
+      "anullat": "Anulado"
+    },
+    "lines": {
+      "quota": "Cuota anual de socio",
+      "activitat": "{activity} · {name}",
+      "descompte": "Descuento {pct}% por varias actividades · {name}"
+    },
+    "returnedHelp": "El banco ha devuelto este recibo. Ponte en contacto con la asociación para resolverlo.",
+    "questions": "Si algo no cuadra, escribe a la asociación antes de que se cobre."
+  },
   "admin": {
     "title": "Panel de administración",
     "nav": {
@@ -330,7 +359,8 @@
       "activities": "Actividades",
       "families": "Familias y socios",
       "admins": "Administradores",
-      "log": "Registro"
+      "log": "Registro",
+      "receipts": "Recibos"
     },
     "mfa": {
       "enrollTitle": "Activa la verificación en dos pasos",
@@ -349,7 +379,8 @@
       "queued": "Personas en listas de espera",
       "published": "Actividades publicadas",
       "families": "Cuentas registradas",
-      "see": "Ver"
+      "see": "Ver",
+      "pendingReceipts": "Recibos de este mes por cobrar"
     },
     "status": {
       "esborrany": "Borrador",
@@ -510,8 +541,56 @@
         "admin_grant": "Nuevo administrador",
         "activity_create": "Actividad creada",
         "activity_update": "Actividad editada",
-        "family_view": "Consulta de datos de una familia"
+        "family_view": "Consulta de datos de una familia",
+        "receipts_generate": "Recibos calculados",
+        "receipt_status": "Estado de un recibo",
+        "receipts_paid": "Recibos marcados como cobrados",
+        "receipts_view": "Consulta de la lista de recibos",
+        "receipts_export": "Excel de recibos descargado",
+        "billing_settings": "Precios cambiados"
       }
+    },
+    "receipts": {
+      "title": "Recibos",
+      "lead": "Calcula los recibos del mes, cópialos en CaixaBank y márcalos como cobrados cuando el banco los haya pasado.",
+      "prev": "Mes anterior",
+      "next": "Mes siguiente",
+      "generate": "Calcular los recibos de {month}",
+      "regenerate": "Volver a calcular los pendientes",
+      "generateHelp": "Entran las familias socias activas: la cuota el mes del alta y cada actividad con recibo en la que el participante ha tenido plaza algún día del mes. Volver a calcular solo rehace los pendientes; los cobrados, devueltos y anulados no se tocan.",
+      "generated": "Hecho: {n} recibos calculados.",
+      "generatedKept": "Hecho: {n} recibos calculados. {k} familias ya tenían un recibo cobrado, devuelto o anulado este mes y no se han tocado.",
+      "paidDone": "{n} recibos marcados como cobrados.",
+      "statusDone": "Estado del recibo cambiado.",
+      "empty": "Todavía no hay recibos calculados para este mes.",
+      "feeMissing": "La cuota de socio todavía no tiene importe, así que no se incluye en ningún recibo. Ponla en «Precios».",
+      "pendingFamilies": "Estas familias tienen actividades de pago este mes pero la ficha de socio sigue pendiente, y no entran en los recibos hasta que la actives:",
+      "summary": "{count} recibos · {total}",
+      "summaryPending": "Por cobrar: {count} recibos · {total}",
+      "sensitiveNote": "Esta lista muestra el IBAN completo y la consulta queda registrada. No la dejes abierta en un ordenador compartido.",
+      "colHolder": "Titular",
+      "colIban": "IBAN",
+      "colAmount": "Importe",
+      "colConcept": "Concepto",
+      "colMandate": "Mandato SEPA",
+      "colStatus": "Estado",
+      "colDetail": "Detalle",
+      "mandateDate": "firmado el {date}",
+      "copy": "Copiar",
+      "copied": "Copiado",
+      "markPaid": "Marcar todos los pendientes como cobrados",
+      "markPaidConfirm": "Marcarás como cobrados todos los recibos pendientes de {month}. Hazlo cuando el banco ya los haya pasado.",
+      "confirm": "Sí, marcarlos",
+      "setStatus": "Cambiar a:",
+      "excel": "Descargar Excel",
+      "settingsTitle": "Precios",
+      "settingsLead": "Los importes que usan los recibos nuevos. Cambiarlos no modifica los recibos ya calculados.",
+      "fee": "Cuota anual de socio (€)",
+      "feeHint": "Por familia. Déjalo en blanco mientras la junta no la fije.",
+      "discount": "Descuento por varias actividades (%)",
+      "discountHint": "Por participante, en cada actividad a partir de la segunda; la más cara va a precio completo. 0 = sin descuento.",
+      "save": "Guardar precios",
+      "saved": "Precios guardados."
     }
   }
 }

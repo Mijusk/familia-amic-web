@@ -109,6 +109,26 @@ export async function requestPasswordReset(_prev: FormState, formData: FormData)
   return { status: "success" };
 }
 
+/** Vuelve a enviar el correo para confirmar la cuenta (el enlace anterior caduca o se ha usado). */
+export async function resendConfirmation(_prev: FormState, formData: FormData): Promise<FormState> {
+  const values = formValues(formData);
+  if (!getSupabaseEnv()) return { status: "error", error: "notConfigured", values };
+  const lang = langOf(formData);
+  // El campo se llama resend_email para no chocar con el del formulario de entrar en la misma página.
+  const parsed = z.object({ email: z.email("invalidEmail") }).safeParse({ email: formData.get("resend_email") });
+  if (!parsed.success) return { status: "error", fieldErrors: fieldErrors(parsed.error), values };
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resend({
+    type: "signup",
+    email: parsed.data.email,
+    options: { emailRedirectTo: `${await siteOrigin()}/${lang}/auth/confirm?next=/${lang}/compte` },
+  });
+  // Igual que al recuperar la contraseña: no decimos si el correo existe o ya está confirmado.
+  if (error && authError(error.code) === "rateLimited") return { status: "error", error: "rateLimited", values };
+  return { status: "success" };
+}
+
 const resetSchema = z
   .object({ password, confirm: z.string() })
   .refine((d) => d.password === d.confirm, { message: "passwordMismatch", path: ["confirm"] });

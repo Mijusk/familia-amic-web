@@ -45,5 +45,5 @@ según el RGPD. Por eso:
 1. Cuentas: registro, verificación, login, recuperar contraseña, familia, participantes, ficha de socio.
 2. Actividades: listado, detalle, inscripción, cola, baja, emails.
 3. Panel: actividades, inscritos, cola, familias, activar socios, admins con 2FA, registro de acciones.
-4. Recibos: generar los del mes y exportar Excel.
+4. Recibos: precios editables, calcular los del mes (cuota el mes del alta, actividades con plaza ese mes, descuento por participante), lista para CaixaBank, Excel, estados cobrado/devuelto y recibos en la cuenta de la familia.
 5. Contenido: portada, Associació, noticias, recursos, contacto, voluntariado (formulario y su lista en el panel), fotos de actividades, legales, migración.

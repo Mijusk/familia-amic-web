@@ -73,7 +73,9 @@
     "slugTaken": "Ja hi ha una activitat amb aquesta adreça. Canvia-la.",
     "noAccount": "No hi ha cap compte confirmat amb aquest correu. Primer s'ha de registrar i confirmar-lo.",
     "invalidTime": "L'hora de final ha de ser posterior a la d'inici.",
-    "reviewForm": "Revisa els camps marcats en vermell."
+    "reviewForm": "Revisa els camps marcats en vermell.",
+    "invalidPrice": "Escriu un import en euros, per exemple 50 o 12,50.",
+    "invalidPercent": "Escriu un percentatge entre 0 i 100."
   },
   "auth": {
     "login": {
@@ -115,6 +117,11 @@
       "password": "Contrasenya nova",
       "confirm": "Repeteix la contrasenya",
       "submit": "Canviar la contrasenya"
+    },
+    "resend": {
+      "lead": "Si l'enllaç era per confirmar el compte, t'enviem un correu nou:",
+      "submit": "Enviar un nou correu de confirmació",
+      "sent": "Si el compte està pendent de confirmar, rebràs un correu nou en uns minuts. Obre només el més recent: els anteriors ja no funcionen."
     }
   },
   "account": {
@@ -124,7 +131,8 @@
       "summary": "Resum",
       "family": "Participants",
       "membership": "Soci",
-      "enrollments": "Inscripcions"
+      "enrollments": "Inscripcions",
+      "receipts": "Rebuts"
     },
     "myData": {
       "title": "Les meves dades",
@@ -214,7 +222,8 @@
     "sepaReference": "Referència del mandat SEPA: {ref}",
     "submit": "Enviar sol·licitud de soci",
     "update": "Desar canvis",
-    "sent": "Sol·licitud enviada. Et contactarem quan estigui confirmada."
+    "sent": "Sol·licitud enviada. Et contactarem quan estigui confirmada.",
+    "feeAmount": "Quota actual: {price} l'any per família."
   },
   "activities": {
     "title": "Activitats",
@@ -323,6 +332,26 @@
     "promotedSubject": "Ja teniu plaça a {activity}",
     "promotedBody": "{name} ja té plaça confirmada a {activity}. Era a la llista d'espera i l'associació li ha donat plaça."
   },
+  "receipts": {
+    "title": "Rebuts",
+    "lead": "Els rebuts que l'associació passa pel banc cada mes: la quota de soci (el mes de l'alta) i les activitats amb pagament mensual.",
+    "empty": "Encara no teniu cap rebut.",
+    "total": "Total",
+    "account": "Compte acabat en {last4}",
+    "status": {
+      "pendent": "Pendent de cobrar",
+      "cobrat": "Cobrat",
+      "retornat": "Retornat pel banc",
+      "anullat": "Anul·lat"
+    },
+    "lines": {
+      "quota": "Quota anual de soci",
+      "activitat": "{activity} · {name}",
+      "descompte": "Descompte {pct}% per diverses activitats · {name}"
+    },
+    "returnedHelp": "El banc ha retornat aquest rebut. Posa't en contacte amb l'associació per resoldre-ho.",
+    "questions": "Si alguna cosa no quadra, escriu a l'associació abans que es cobri."
+  },
   "admin": {
     "title": "Panell d'administració",
     "nav": {
@@ -330,7 +359,8 @@
       "activities": "Activitats",
       "families": "Famílies i socis",
       "admins": "Administradors",
-      "log": "Registre"
+      "log": "Registre",
+      "receipts": "Rebuts"
     },
     "mfa": {
       "enrollTitle": "Activa la verificació en dos passos",
@@ -349,7 +379,8 @@
       "queued": "Persones en llistes d'espera",
       "published": "Activitats publicades",
       "families": "Comptes registrats",
-      "see": "Veure"
+      "see": "Veure",
+      "pendingReceipts": "Rebuts d'aquest mes per cobrar"
     },
     "status": {
       "esborrany": "Esborrany",
@@ -510,8 +541,56 @@
         "admin_grant": "Nou administrador",
         "activity_create": "Activitat creada",
         "activity_update": "Activitat editada",
-        "family_view": "Consulta de dades d'una família"
+        "family_view": "Consulta de dades d'una família",
+        "receipts_generate": "Rebuts calculats",
+        "receipt_status": "Estat d'un rebut",
+        "receipts_paid": "Rebuts marcats com a cobrats",
+        "receipts_view": "Consulta de la llista de rebuts",
+        "receipts_export": "Excel de rebuts descarregat",
+        "billing_settings": "Preus canviats"
       }
+    },
+    "receipts": {
+      "title": "Rebuts",
+      "lead": "Calcula els rebuts del mes, copia'ls a CaixaBank i marca'ls com a cobrats quan el banc els hagi passat.",
+      "prev": "Mes anterior",
+      "next": "Mes següent",
+      "generate": "Calcular els rebuts de {month}",
+      "regenerate": "Tornar a calcular els pendents",
+      "generateHelp": "Entren les famílies sòcies actives: la quota el mes de l'alta i cada activitat amb rebut en què el participant ha tingut plaça algun dia del mes. Tornar a calcular només refà els pendents; els cobrats, retornats i anul·lats no es toquen.",
+      "generated": "Fet: {n} rebuts calculats.",
+      "generatedKept": "Fet: {n} rebuts calculats. {k} famílies ja tenien un rebut cobrat, retornat o anul·lat aquest mes i no s'han tocat.",
+      "paidDone": "{n} rebuts marcats com a cobrats.",
+      "statusDone": "Estat del rebut canviat.",
+      "empty": "Encara no hi ha rebuts calculats per a aquest mes.",
+      "feeMissing": "La quota de soci encara no té import, així que no s'inclou a cap rebut. Posa-la a «Preus».",
+      "pendingFamilies": "Aquestes famílies tenen activitats de pagament aquest mes però la fitxa de soci encara està pendent, i no entren als rebuts fins que l'activis:",
+      "summary": "{count} rebuts · {total}",
+      "summaryPending": "Per cobrar: {count} rebuts · {total}",
+      "sensitiveNote": "Aquesta llista mostra l'IBAN complet i la consulta queda registrada. No la deixis oberta en un ordinador compartit.",
+      "colHolder": "Titular",
+      "colIban": "IBAN",
+      "colAmount": "Import",
+      "colConcept": "Concepte",
+      "colMandate": "Mandat SEPA",
+      "colStatus": "Estat",
+      "colDetail": "Detall",
+      "mandateDate": "signat el {date}",
+      "copy": "Copiar",
+      "copied": "Copiat",
+      "markPaid": "Marcar tots els pendents com a cobrats",
+      "markPaidConfirm": "Marcaràs com a cobrats tots els rebuts pendents de {month}. Fes-ho quan el banc ja els hagi passat.",
+      "confirm": "Sí, marcar-los",
+      "setStatus": "Canviar a:",
+      "excel": "Descarregar Excel",
+      "settingsTitle": "Preus",
+      "settingsLead": "Els imports que fan servir els rebuts nous. Canviar-los no modifica els rebuts ja calculats.",
+      "fee": "Quota anual de soci (€)",
+      "feeHint": "Per família. Deixa-ho en blanc mentre la junta no la fixi.",
+      "discount": "Descompte per diverses activitats (%)",
+      "discountHint": "Per participant, a cada activitat a partir de la segona; la més cara va a preu complet. 0 = sense descompte.",
+      "save": "Desar preus",
+      "saved": "Preus desats."
     }
   }
 }
