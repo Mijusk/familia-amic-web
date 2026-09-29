@@ -22,7 +22,7 @@
     "title": "Lluitem per la inclusió en el dia a dia dels nostres socis",
     "lead": "Estem preparant una web nova on les famílies podran apuntar-se a les activitats, gestionar les seves dades i seguir totes les novetats de l'associació des d'un sol lloc.",
     "contactCta": "Contacta amb nosaltres",
-    "registerCta": "Registra la teva família"
+    "registerCta": "Registra't"
   },
   "footer": {
     "contact": "Contacte",
@@ -69,21 +69,21 @@
   "auth": {
     "login": {
       "title": "Accedeix al teu compte",
-      "lead": "Entra per apuntar la teva família a les activitats.",
+      "lead": "Entra per apuntar-te a les activitats.",
       "email": "Correu electrònic",
       "password": "Contrasenya",
       "submit": "Entrar",
       "forgot": "Has oblidat la contrasenya?",
       "noAccount": "Encara no tens compte?",
-      "register": "Registra la teva família",
+      "register": "Registra't",
       "confirmed": "Correu confirmat. Ja pots entrar.",
       "passwordChanged": "Contrasenya canviada. Ja pots entrar."
     },
     "register": {
-      "title": "Registra la teva família",
-      "lead": "Només cal fer-ho una vegada. Després afegiràs les persones de la família que venen a les activitats.",
+      "title": "Registra't",
+      "lead": "Només cal fer-ho una vegada. Després afegiràs les persones que vénen a les activitats: tu mateix/a o les persones de qui t'encarregues.",
       "fullName": "Nom i cognoms",
-      "fullNameHint": "De la persona adulta responsable (pare, mare o tutor).",
+      "fullNameHint": "De la persona adulta responsable o de qui gestionarà el compte.",
       "phone": "Telèfon mòbil",
       "email": "Correu electrònic",
       "password": "Contrasenya",
@@ -113,7 +113,7 @@
     "hello": "Hola, {name}",
     "tabs": {
       "summary": "Resum",
-      "family": "La meva família",
+      "family": "Participants",
       "membership": "Soci"
     },
     "myData": {
@@ -124,7 +124,7 @@
       "emailHint": "Per canviar el correu, escriu a l'associació."
     },
     "summary": {
-      "familyTitle": "La teva família",
+      "familyTitle": "Participants",
       "familyEmpty": "Encara no has afegit cap participant.",
       "familyCount": "{count} participants",
       "addParticipant": "Afegir participant",
@@ -137,7 +137,7 @@
     }
   },
   "participants": {
-    "title": "La meva família",
+    "title": "Participants",
     "lead": "Les persones que vénen a les activitats. Les dades es desen una sola vegada i les podràs fer servir en totes les inscripcions.",
     "add": "Afegir participant",
     "empty": "Encara no hi ha cap participant.",
@@ -175,7 +175,7 @@
   },
   "membership": {
     "title": "Fes-te soci",
-    "lead": "Per participar a les activitats cal que la família sigui sòcia. La quota és anual, una per família, i es cobra per domiciliació bancària el mes de l'alta.",
+    "lead": "Per participar a les activitats cal ser soci. La quota és anual, una sola per compte encara que hi hagi diversos participants, i es cobra per domiciliació bancària el mes de l'alta.",
     "statusTitle": "Estat",
     "status": {
       "none": "No sou socis",

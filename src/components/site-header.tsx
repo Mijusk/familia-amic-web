@@ -14,7 +14,7 @@ export async function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionar
   ];
 
   return (
-    <header className="border-b border-line bg-surface">
+    <header className="border-t-4 border-b border-t-brand border-b-line bg-surface">
       <a href="#contingut" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4">
         {dict.nav.home}
       </a>

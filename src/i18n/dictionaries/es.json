@@ -22,7 +22,7 @@
     "title": "Luchamos por la inclusión en el día a día de nuestros socios",
     "lead": "Estamos preparando una web nueva donde las familias podrán apuntarse a las actividades, gestionar sus datos y seguir todas las novedades de la asociación desde un solo lugar.",
     "contactCta": "Contacta con nosotros",
-    "registerCta": "Registra a tu familia"
+    "registerCta": "Regístrate"
   },
   "footer": {
     "contact": "Contacto",
@@ -69,21 +69,21 @@
   "auth": {
     "login": {
       "title": "Accede a tu cuenta",
-      "lead": "Entra para apuntar a tu familia a las actividades.",
+      "lead": "Entra para apuntarte a las actividades.",
       "email": "Correo electrónico",
       "password": "Contraseña",
       "submit": "Entrar",
       "forgot": "¿Has olvidado la contraseña?",
       "noAccount": "¿Todavía no tienes cuenta?",
-      "register": "Registra a tu familia",
+      "register": "Regístrate",
       "confirmed": "Correo confirmado. Ya puedes entrar.",
       "passwordChanged": "Contraseña cambiada. Ya puedes entrar."
     },
     "register": {
-      "title": "Registra a tu familia",
-      "lead": "Solo hay que hacerlo una vez. Después añadirás a las personas de la familia que vienen a las actividades.",
+      "title": "Regístrate",
+      "lead": "Solo hay que hacerlo una vez. Después añadirás a las personas que vienen a las actividades: tú o las personas de las que te encargas.",
       "fullName": "Nombre y apellidos",
-      "fullNameHint": "De la persona adulta responsable (padre, madre o tutor).",
+      "fullNameHint": "De la persona adulta responsable o de quien vaya a gestionar la cuenta.",
       "phone": "Teléfono móvil",
       "email": "Correo electrónico",
       "password": "Contraseña",
@@ -113,7 +113,7 @@
     "hello": "Hola, {name}",
     "tabs": {
       "summary": "Resumen",
-      "family": "Mi familia",
+      "family": "Participantes",
       "membership": "Socio"
     },
     "myData": {
@@ -124,7 +124,7 @@
       "emailHint": "Para cambiar el correo, escribe a la asociación."
     },
     "summary": {
-      "familyTitle": "Tu familia",
+      "familyTitle": "Participantes",
       "familyEmpty": "Todavía no has añadido ningún participante.",
       "familyCount": "{count} participantes",
       "addParticipant": "Añadir participante",
@@ -137,7 +137,7 @@
     }
   },
   "participants": {
-    "title": "Mi familia",
+    "title": "Participantes",
     "lead": "Las personas que vienen a las actividades. Los datos se guardan una sola vez y podrás usarlos en todas las inscripciones.",
     "add": "Añadir participante",
     "empty": "Todavía no hay ningún participante.",
@@ -175,7 +175,7 @@
   },
   "membership": {
     "title": "Hazte socio",
-    "lead": "Para participar en las actividades la familia tiene que ser socia. La cuota es anual, una por familia, y se cobra por domiciliación bancaria el mes del alta.",
+    "lead": "Para participar en las actividades hay que ser socio. La cuota es anual, una sola por cuenta aunque haya varios participantes, y se cobra por domiciliación bancaria el mes del alta.",
     "statusTitle": "Estado",
     "status": {
       "none": "No sois socios",
