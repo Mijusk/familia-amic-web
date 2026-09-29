@@ -1,5 +1,6 @@
 import "server-only";
 import { createClient } from "@/lib/supabase/server";
+import { getSupabaseEnv } from "@/lib/supabase/env";
 
 export type Category = { id: string; slug: string; name_ca: string; name_es: string };
 
@@ -57,6 +58,8 @@ export function monthEnd(iso: string) {
 }
 
 export async function listCategories() {
+  // Sin Supabase configurado la web arranca igual, con las listas vacías.
+  if (!getSupabaseEnv()) return [];
   const supabase = await createClient();
   const { data } = await supabase.from("categories").select("id, slug, name_ca, name_es").order("sort_order").returns<Category[]>();
   return data ?? [];
@@ -64,6 +67,7 @@ export async function listCategories() {
 
 /** Actividades publicadas que aún no han terminado, las semanales primero. */
 export async function listActivities(categoryId?: string) {
+  if (!getSupabaseEnv()) return [];
   const supabase = await createClient();
   const today = todayLocal();
   let query = supabase
@@ -80,13 +84,14 @@ export async function listActivities(categoryId?: string) {
 }
 
 export async function getActivity(slug: string) {
-  if (!/^[a-z0-9-]{2,80}$/.test(slug)) return null;
+  if (!/^[a-z0-9-]{2,80}$/.test(slug) || !getSupabaseEnv()) return null;
   const supabase = await createClient();
   const { data } = await supabase.from("activities").select(activityColumns).eq("slug", slug).maybeSingle<Activity>();
   return data;
 }
 
 export async function getSpots() {
+  if (!getSupabaseEnv()) return new Map<string, Spots>();
   const supabase = await createClient();
   const { data } = await supabase.rpc("activity_spots");
   const rows = (data ?? []) as { activity_id: string; occupied: number; queued: number }[];
