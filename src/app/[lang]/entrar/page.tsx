@@ -5,6 +5,7 @@ import { loadPage } from "@/i18n/page";
 import { getCurrentUser, safeNext } from "@/lib/auth";
 import { AuthCard } from "@/components/auth/auth-card";
 import { LoginForm } from "@/components/auth/login-form";
+import { ResendForm } from "@/components/auth/resend-form";
 import { Alert } from "@/components/form";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/entrar">): Promise<Metadata> {
@@ -34,7 +35,8 @@ export default async function LoginPage({ params, searchParams }: PageProps<"/[l
     >
       <div className="space-y-5">
         {sp.error === "link" && <Alert tone="error">{dict.errors.linkInvalid}</Alert>}
-        <LoginForm lang={lang} next={next} t={t} errors={dict.errors} saving={dict.common.saving} />
+        <LoginForm lang={lang} next={next} t={t} resend={dict.auth.resend} errors={dict.errors} saving={dict.common.saving} />
+        {sp.error === "link" && <ResendForm lang={lang} t={dict.auth.resend} emailLabel={t.email} errors={dict.errors} saving={dict.common.saving} />}
       </div>
     </AuthCard>
   );

@@ -117,6 +117,11 @@
       "password": "Contraseña nueva",
       "confirm": "Repite la contraseña",
       "submit": "Cambiar la contraseña"
+    },
+    "resend": {
+      "lead": "Si el enlace era para confirmar la cuenta, te enviamos un correo nuevo:",
+      "submit": "Enviar un nuevo correo de confirmación",
+      "sent": "Si la cuenta está pendiente de confirmar, recibirás un correo nuevo en unos minutos. Abre solo el más reciente: los anteriores ya no funcionan."
     }
   },
   "account": {
