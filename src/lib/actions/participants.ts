@@ -90,8 +90,9 @@ export async function deleteParticipant(formData: FormData) {
   const user = await getCurrentUser();
   if (user && id) {
     const supabase = await createClient();
-    // RLS garantiza que solo se borra si es de esta familia.
-    await supabase.from("participants").delete().eq("id", id);
+    // RLS garantiza que solo se borra si es de esta familia. Con inscripciones no se puede borrar (se guardan para los recibos).
+    const { error } = await supabase.from("participants").delete().eq("id", id);
+    if (error?.code === "23503") redirect(`/${lang}/compte/familia/${id}?error=inUse`);
     revalidatePath("/[lang]/compte", "layout");
   }
   redirect(`/${lang}/compte/familia`);

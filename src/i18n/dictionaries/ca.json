@@ -64,7 +64,9 @@
     "invalidNumber": "Escriu un número entre 0 i 100.",
     "consentRequired": "Cal acceptar-ho per continuar.",
     "passwordMismatch": "Les contrasenyes no coincideixen.",
-    "tooLong": "El text és massa llarg."
+    "tooLong": "El text és massa llarg.",
+    "activityClosed": "Les inscripcions d'aquesta activitat estan tancades.",
+    "participantInUse": "No es pot esborrar: aquesta persona té inscripcions. Dona-les de baixa primer."
   },
   "auth": {
     "login": {
@@ -114,7 +116,8 @@
     "tabs": {
       "summary": "Resum",
       "family": "Participants",
-      "membership": "Soci"
+      "membership": "Soci",
+      "enrollments": "Inscripcions"
     },
     "myData": {
       "title": "Les meves dades",
@@ -205,5 +208,110 @@
     "submit": "Enviar sol·licitud de soci",
     "update": "Desar canvis",
     "sent": "Sol·licitud enviada. Et contactarem quan estigui confirmada."
+  },
+  "activities": {
+    "title": "Activitats",
+    "lead": "Activitats setmanals i sortides per a tothom. Tria'n una per veure l'horari i apuntar-t'hi.",
+    "filterLabel": "Filtra per categoria",
+    "all": "Totes",
+    "empty": "Ara mateix no hi ha activitats en aquesta categoria.",
+    "weekdays": [
+      "Dilluns",
+      "Dimarts",
+      "Dimecres",
+      "Dijous",
+      "Divendres",
+      "Dissabte",
+      "Diumenge"
+    ],
+    "everyWeekday": "Cada {weekday}, de {start} a {end}",
+    "spotsLeft": "Queden {n} places",
+    "oneSpotLeft": "Queda 1 plaça",
+    "full": "Completa · llista d'espera",
+    "noLimit": "Places sense límit",
+    "pricePerMonth": "{price} al mes",
+    "pricePerEvent": "{price} per persona",
+    "free": "Gratuïta",
+    "paymentRebut": "Es cobra amb el rebut mensual domiciliat.",
+    "paymentTransferencia": "Es paga per Bizum o transferència.",
+    "closedStatus": {
+      "cancellada": "Cancel·lada",
+      "finalitzada": "Finalitzada"
+    },
+    "back": "Torna a activitats",
+    "when": "Quan",
+    "where": "On",
+    "price": "Preu",
+    "spots": "Places",
+    "category": "Categoria",
+    "from": "Des del {date}",
+    "enrollTitle": "Apunta-t'hi",
+    "enrollClosed": "Les inscripcions d'aquesta activitat estan tancades.",
+    "loginToEnroll": "Entra al teu compte per apuntar-t'hi.",
+    "login": "Entrar",
+    "register": "Registra't",
+    "notFamily": "Les inscripcions es fan des d'un compte de família.",
+    "noParticipants": "Primer afegeix les persones que vindran a les activitats.",
+    "addParticipant": "Afegir participant",
+    "whoLabel": "Qui s'hi apunta?",
+    "alreadyIn": "Ja hi està apuntat/ada",
+    "inQueue": "A la llista d'espera",
+    "renewLabel": "Durada",
+    "renewMonthly": "Renovar cada mes fins que em doni de baixa",
+    "renewOnce": "Només aquest mes (acaba el {date})",
+    "trialTitle": "Sessió de prova",
+    "trialBody": "Per venir a les activitats cal ser soci. Abans, cada participant pot provar una sessió gratuïta.",
+    "trialDate": "Dia de la prova",
+    "becomeMember": "Fes-te soci",
+    "submit": "Apuntar",
+    "submitTrial": "Reservar la prova",
+    "noneSelected": "Tria almenys una persona.",
+    "fullWarning": "Ara no queden places: les persones que apuntis entraran a la llista d'espera.",
+    "resultsTitle": "Resultat de la inscripció",
+    "results": {
+      "confirmada": "Plaça confirmada.",
+      "cua": "A la llista d'espera. Encara no té plaça: t'avisarem si se n'allibera una.",
+      "prova": "Prova reservada per al {date}.",
+      "ja_inscrit": "Ja hi estava apuntat/ada.",
+      "cal_ser_soci": "Cal ser soci per apuntar-s'hi.",
+      "prova_usada": "Ja ha fet la sessió de prova. Per continuar cal fer-se soci.",
+      "prova_completa": "No queden places per fer la prova."
+    },
+    "emailSent": "T'hem enviat un correu amb el resum.",
+    "seeEnrollments": "Veure les meves inscripcions"
+  },
+  "enrollments": {
+    "title": "Inscripcions",
+    "lead": "Les activitats a què estan apuntades les persones del teu compte.",
+    "empty": "Encara no t'has apuntat a cap activitat.",
+    "browse": "Veure activitats",
+    "current": "Actuals",
+    "past": "Anteriors",
+    "status": {
+      "confirmada": "Plaça confirmada",
+      "cua": "Llista d'espera",
+      "prova": "Sessió de prova",
+      "baixa": "Baixa",
+      "acabada": "Acabada"
+    },
+    "queuePosition": "Posició {n} a la llista d'espera",
+    "trialOn": "Prova el {date}",
+    "renews": "Es renova cada mes",
+    "endsOn": "Fins al {date}",
+    "unenroll": "Donar de baixa",
+    "unenrollConfirm": "Segur que vols donar de baixa {name} de {activity}? Si és una activitat mensual, aquest mes encara es cobra.",
+    "unenrollButton": "Sí, donar de baixa",
+    "unenrolled": "Baixa feta. Hem avisat l'associació."
+  },
+  "emails": {
+    "greeting": "Hola, {name}:",
+    "enrollSubject": "Inscripció a {activity}",
+    "enrollIntro": "Aquest és el resum de la teva inscripció a {activity}:",
+    "queueNote": "Les persones a la llista d'espera encara NO tenen plaça. Si se n'allibera una, l'associació us avisarà.",
+    "paymentNote": "Com pagar: {notes}",
+    "manage": "Pots veure i gestionar les inscripcions al teu compte: {url}",
+    "signature": "Família Amic · Units per la inclusió",
+    "unenrollSubject": "Baixa: {name} de {activity}",
+    "unenrollBody": "{family} ha donat de baixa {name} de {activity} el {date}. Estat anterior: {status}."
   }
 }

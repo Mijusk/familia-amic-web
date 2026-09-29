@@ -44,6 +44,8 @@ Sin claves de Supabase la web arranca igual, pero sin registro ni cuentas.
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase → Project Settings → API (`Project URL` y `Publishable key`) |
 | `DATA_ENCRYPTION_KEY` | Clave para cifrar DNI e IBAN. Genera una con `node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"`. Usa la misma en local y en Vercel si compartís base de datos, y guárdala en un gestor de contraseñas: si se pierde, los DNI e IBAN guardados no se pueden leer. |
 | `NEXT_PUBLIC_SITE_URL` | La dirección de la web, para los enlaces de los correos (`http://localhost:3000` en local) |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM` | Servidor de correo para las confirmaciones de inscripción y los avisos de baja. Ver [Correo](#correo). Sin ellos la web funciona, pero no envía esos correos. |
+| `ASSOCIATION_EMAIL` | Adónde llegan los avisos de baja. Por defecto, `familiaamic@gmail.com`. |
 
 Nunca pegues la *secret key* de Supabase en el código ni en `.env.example`: la web no la necesita.
 
@@ -52,14 +54,28 @@ Nunca pegues la *secret key* de Supabase en el código ni en `.env.example`: la 
 Las tablas y sus reglas de acceso están en `supabase/migrations/`. Para aplicarlas a tu proyecto de Supabase:
 
 - **Opción fácil:** Supabase → SQL Editor → pega el contenido de cada fichero de `supabase/migrations/`, en orden, y ejecútalo.
+  Solo hace falta ejecutar los ficheros nuevos que aún no hayas aplicado.
 - **Con la CLI:** `npx supabase login`, `npx supabase link --project-ref <ref-del-proyecto>` y `npx supabase db push`.
 
 En Supabase → Authentication → URL Configuration pon la *Site URL* (la dirección de la web) y añade a
 *Redirect URLs* `http://localhost:3000/**` y la dirección de Vercel con `/**`, para que funcionen los enlaces de
 confirmación y de nueva contraseña.
 
-El correo que envía Supabase en el plan gratuito tiene un límite bajo de envíos por hora; sirve para probar.
-Antes del lanzamiento hay que configurar un SMTP propio (Authentication → Emails → SMTP Settings).
+### Correo
+
+La web envía dos tipos de correo: los de la cuenta (confirmar el registro, nueva contraseña), que manda Supabase,
+y los de las actividades (confirmación de inscripción, aviso de baja a la asociación), que manda la propia web.
+
+La opción sin coste y sin tocar el dominio es usar el Gmail de la entidad con una *contraseña de aplicación*:
+en la cuenta de Google, Seguridad → Verificación en dos pasos (activarla) → Contraseñas de aplicaciones. Con esa
+contraseña:
+
+- En Vercel y `.env.local`: `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_USER=familiaamic@gmail.com`,
+  `SMTP_PASS=<contraseña de aplicación>`.
+- En Supabase → Authentication → Emails → SMTP Settings, los mismos datos. Así los correos de la cuenta también
+  salen de familiaamic@gmail.com y desaparece el límite de pocos envíos por hora del correo de prueba de Supabase.
+
+Gmail permite unos 500 envíos al día, de sobra para la asociación.
 
 ### Primeros administradores
 
@@ -70,11 +86,17 @@ update public.profiles set account_type = 'admin'
 where id in (select id from auth.users where email = 'correo@ejemplo.com');
 ```
 
+### Actividades de prueba
+
+Hasta que llegue el panel de administración (fase 3), las actividades se crean en Supabase → Table Editor →
+`activities`. `supabase/seed.sql` tiene ejemplos (solo se cargan en la base de datos local).
+
 ### Supabase en local (opcional)
 
 Con Docker instalado, `npx supabase start` levanta una copia local (API en `http://127.0.0.1:54321`, correos de
-prueba en <http://127.0.0.1:54324>) y `npx supabase db reset` aplica las migraciones desde cero. Las claves
-locales las muestra `npx supabase status`.
+prueba en <http://127.0.0.1:54324>) y `npx supabase db reset` aplica las migraciones desde cero con los datos de ejemplo. Las claves
+locales las muestra `npx supabase status`. Para ver los correos de la web en local, pon `SMTP_HOST=127.0.0.1` y
+`SMTP_PORT=54325`.
 
 ### Comandos
 
@@ -92,12 +114,14 @@ locales las muestra `npx supabase status`.
 ```
 src/
   app/[lang]/        Páginas; [lang] es ca o es
-    compte/          Cuenta de la familia: resumen, participantes, ficha de socio
+    activitats/      Listado y detalle de actividades, con la inscripción
+    compte/          Cuenta: resumen, participantes, inscripciones, ficha de socio
   components/        Cabecera, pie, formularios…
   config/site.ts     Datos de contacto de la entidad
   i18n/              Idiomas y textos (dictionaries/ca.json, es.json)
   lib/actions/       Server Actions de los formularios (registro, participantes, socio…)
   lib/crypto.ts      Cifrado de DNI e IBAN
+  lib/email.ts       Envío de correos por SMTP
   lib/supabase/      Clientes de Supabase para servidor, navegador y proxy
   proxy.ts           Redirige al idioma y refresca la sesión en cada petición
 supabase/migrations/ Tablas y reglas de acceso (RLS)
