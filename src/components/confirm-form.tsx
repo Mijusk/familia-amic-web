@@ -10,10 +10,12 @@ type Props = {
   confirmText: string;
   confirmButton: string;
   cancel: string;
+  /** Campos ocultos extra que necesita la acción. */
+  hidden?: Record<string, string>;
 };
 
 /** Botón que pide confirmación en la propia página antes de enviar (sin diálogos del navegador). */
-export function ConfirmForm({ action, lang, id, label, confirmText, confirmButton, cancel }: Props) {
+export function ConfirmForm({ action, lang, id, label, confirmText, confirmButton, cancel, hidden }: Props) {
   const [confirming, setConfirming] = useState(false);
 
   if (!confirming) {
@@ -28,6 +30,9 @@ export function ConfirmForm({ action, lang, id, label, confirmText, confirmButto
     <form action={action} className="max-w-2xl rounded-lg border border-red-600 p-4">
       <input type="hidden" name="lang" value={lang} />
       <input type="hidden" name="id" value={id} />
+      {Object.entries(hidden ?? {}).map(([name, value]) => (
+        <input key={name} type="hidden" name={name} value={value} />
+      ))}
       <p>{confirmText}</p>
       <div className="mt-4 flex flex-wrap gap-4">
         <button type="submit" className="min-h-11 rounded-md bg-red-700 px-5 font-semibold text-white">

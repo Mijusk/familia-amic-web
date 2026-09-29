@@ -40,6 +40,13 @@ export async function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionar
                       {dict.nav.account}
                     </Link>
                   </li>
+                  {user.profile.account_type === "admin" && (
+                    <li>
+                      <Link href={`/${lang}/admin`} className="hover:text-accent">
+                        {dict.nav.admin}
+                      </Link>
+                    </li>
+                  )}
                   <li>
                     <form action={signOut}>
                       <input type="hidden" name="lang" value={lang} />

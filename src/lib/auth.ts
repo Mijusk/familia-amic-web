@@ -1,6 +1,6 @@
 import "server-only";
 import { cache } from "react";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import type { Locale } from "@/i18n/config";
 import { createClient } from "@/lib/supabase/server";
 import { getSupabaseEnv } from "@/lib/supabase/env";
@@ -39,4 +39,18 @@ export async function requireUser(lang: Locale, next: string) {
 export function safeNext(lang: Locale, next: string | null | undefined, fallback = `/${lang}/compte`) {
   if (next && next.startsWith(`/${lang}/`) && !next.startsWith("//") && !next.includes("\\")) return next;
   return fallback;
+}
+
+/**
+ * Para el panel: solo cuentas admin y con la verificación en dos pasos hecha en esta sesión.
+ * A quien no es admin le responde 404, para no dar pistas de que el panel existe.
+ */
+export async function requireAdmin(lang: Locale, next: string) {
+  const user = await requireUser(lang, next);
+  if (user.profile.account_type !== "admin") notFound();
+  const supabase = await createClient();
+  // getClaims verifica la firma del token de sesión; "aal2" = ha entrado con el código de 2FA.
+  const { data } = await supabase.auth.getClaims();
+  if (data?.claims.aal !== "aal2") redirect(`/${lang}/admin/verificacio?next=${encodeURIComponent(next)}`);
+  return user;
 }
