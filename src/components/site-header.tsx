@@ -1,10 +1,13 @@
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
+import { getCurrentUser } from "@/lib/auth";
+import { signOut } from "@/lib/actions/auth";
 import { LanguageSwitcher } from "./language-switcher";
 
-export function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionary }) {
-  // En la fase 0 solo existen Inici y Contacte; el resto de secciones se añaden en sus fases.
+export async function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionary }) {
+  const user = await getCurrentUser();
+  // Solo se enlazan secciones que ya existen; el resto se añade en su fase.
   const nav = [
     { href: `/${lang}`, label: dict.nav.home },
     { href: "#contacte", label: dict.nav.contact },
@@ -19,9 +22,9 @@ export function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         <Link href={`/${lang}`} className="font-display text-xl font-extrabold tracking-tight">
           Família <span className="text-accent">Amic</span>
         </Link>
-        <div className="flex flex-wrap items-center gap-6">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <nav aria-label={dict.nav.menu}>
-            <ul className="flex gap-5 font-semibold">
+            <ul className="flex flex-wrap items-center gap-5 font-semibold">
               {nav.map((item) => (
                 <li key={item.href}>
                   <Link href={item.href} className="hover:text-accent">
@@ -29,6 +32,29 @@ export function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionary }) {
                   </Link>
                 </li>
               ))}
+              {user ? (
+                <>
+                  <li>
+                    <Link href={`/${lang}/compte`} className="hover:text-accent">
+                      {dict.nav.account}
+                    </Link>
+                  </li>
+                  <li>
+                    <form action={signOut}>
+                      <input type="hidden" name="lang" value={lang} />
+                      <button type="submit" className="font-semibold text-muted hover:text-foreground">
+                        {dict.nav.logout}
+                      </button>
+                    </form>
+                  </li>
+                </>
+              ) : (
+                <li>
+                  <Link href={`/${lang}/entrar`} className="rounded-md border border-accent px-3 py-1.5 text-accent hover:bg-accent-soft">
+                    {dict.nav.login}
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
           <LanguageSwitcher current={lang} label={dict.nav.language} />

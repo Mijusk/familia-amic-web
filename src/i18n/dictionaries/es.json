@@ -13,13 +13,16 @@
     "contact": "Contacto",
     "login": "Acceder",
     "menu": "Menú",
-    "language": "Idioma"
+    "language": "Idioma",
+    "account": "Mi cuenta",
+    "logout": "Cerrar sesión"
   },
   "home": {
     "eyebrow": "Nueva web en construcción",
     "title": "Luchamos por la inclusión en el día a día de nuestros socios",
     "lead": "Estamos preparando una web nueva donde las familias podrán apuntarse a las actividades, gestionar sus datos y seguir todas las novedades de la asociación desde un solo lugar.",
-    "contactCta": "Contacta con nosotros"
+    "contactCta": "Contacta con nosotros",
+    "registerCta": "Registra a tu familia"
   },
   "footer": {
     "contact": "Contacto",
@@ -30,5 +33,177 @@
     "title": "No hemos encontrado esta página",
     "body": "Puede que el enlace sea antiguo o que la página se haya movido.",
     "back": "Volver al inicio"
+  },
+  "common": {
+    "save": "Guardar",
+    "saving": "Guardando…",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Volver",
+    "optional": "opcional",
+    "yes": "Sí",
+    "no": "No",
+    "saved": "Cambios guardados."
+  },
+  "errors": {
+    "generic": "Algo no ha funcionado. Vuelve a intentarlo en un rato.",
+    "notConfigured": "El acceso todavía no está configurado en este entorno.",
+    "required": "Este campo es obligatorio.",
+    "invalidEmail": "Revisa el correo electrónico.",
+    "invalidPhone": "Escribe un teléfono de 9 cifras como mínimo.",
+    "passwordWeak": "La contraseña debe tener al menos 8 caracteres, con letras y números.",
+    "invalidCredentials": "El correo o la contraseña no son correctos.",
+    "emailNotConfirmed": "Todavía no has confirmado el correo. Mira la bandeja de entrada (y el correo no deseado).",
+    "rateLimited": "Demasiados intentos seguidos. Espera unos minutos y vuelve a intentarlo.",
+    "linkInvalid": "El enlace ha caducado o ya se ha usado. Pide uno nuevo.",
+    "invalidDni": "El DNI o NIE no es correcto. Revisa los números y la letra.",
+    "invalidIban": "El IBAN no es correcto. Debe ser una cuenta española (ES + 22 cifras).",
+    "invalidPostalCode": "El código postal debe tener 5 cifras.",
+    "invalidDate": "Revisa la fecha.",
+    "invalidNumber": "Escribe un número entre 0 y 100.",
+    "consentRequired": "Tienes que aceptarlo para continuar.",
+    "passwordMismatch": "Las contraseñas no coinciden.",
+    "tooLong": "El texto es demasiado largo."
+  },
+  "auth": {
+    "login": {
+      "title": "Accede a tu cuenta",
+      "lead": "Entra para apuntar a tu familia a las actividades.",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Entrar",
+      "forgot": "¿Has olvidado la contraseña?",
+      "noAccount": "¿Todavía no tienes cuenta?",
+      "register": "Registra a tu familia",
+      "confirmed": "Correo confirmado. Ya puedes entrar.",
+      "passwordChanged": "Contraseña cambiada. Ya puedes entrar."
+    },
+    "register": {
+      "title": "Registra a tu familia",
+      "lead": "Solo hay que hacerlo una vez. Después añadirás a las personas de la familia que vienen a las actividades.",
+      "fullName": "Nombre y apellidos",
+      "fullNameHint": "De la persona adulta responsable (padre, madre o tutor).",
+      "phone": "Teléfono móvil",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "passwordHint": "Mínimo 8 caracteres, con letras y números.",
+      "privacy": "Acepto que Família Amic trate estos datos para gestionar mi cuenta y las inscripciones a las actividades.",
+      "submit": "Crear la cuenta",
+      "haveAccount": "¿Ya tienes cuenta?",
+      "login": "Entra",
+      "checkEmailTitle": "Mira tu correo",
+      "checkEmailBody": "Te hemos enviado un enlace para confirmar la cuenta a {email}. Ábrelo desde este mismo dispositivo. Si no lo ves, mira el correo no deseado."
+    },
+    "forgot": {
+      "title": "Recupera la contraseña",
+      "lead": "Escribe el correo de tu cuenta y te enviaremos un enlace para elegir una nueva.",
+      "submit": "Enviar el enlace",
+      "sent": "Si hay una cuenta con este correo, recibirás un enlace en unos minutos."
+    },
+    "reset": {
+      "title": "Elige una contraseña nueva",
+      "password": "Contraseña nueva",
+      "confirm": "Repite la contraseña",
+      "submit": "Cambiar la contraseña"
+    }
+  },
+  "account": {
+    "title": "Mi cuenta",
+    "hello": "Hola, {name}",
+    "tabs": {
+      "summary": "Resumen",
+      "family": "Mi familia",
+      "membership": "Socio"
+    },
+    "myData": {
+      "title": "Mis datos",
+      "fullName": "Nombre y apellidos",
+      "phone": "Teléfono móvil",
+      "email": "Correo electrónico",
+      "emailHint": "Para cambiar el correo, escribe a la asociación."
+    },
+    "summary": {
+      "familyTitle": "Tu familia",
+      "familyEmpty": "Todavía no has añadido ningún participante.",
+      "familyCount": "{count} participantes",
+      "addParticipant": "Añadir participante",
+      "membershipTitle": "Socio",
+      "trialNote": "Cada participante puede probar una actividad una vez antes de hacerse socio."
+    },
+    "volunteer": {
+      "title": "Cuenta de voluntario",
+      "body": "Pronto podrás completar aquí tu solicitud de voluntariado."
+    }
+  },
+  "participants": {
+    "title": "Mi familia",
+    "lead": "Las personas que vienen a las actividades. Los datos se guardan una sola vez y podrás usarlos en todas las inscripciones.",
+    "add": "Añadir participante",
+    "empty": "Todavía no hay ningún participante.",
+    "newTitle": "Nuevo participante",
+    "editTitle": "Editar participante",
+    "sectionPerson": "Datos de la persona",
+    "sectionHealth": "Salud y apoyo",
+    "sectionHealthLead": "Solo lo ven las personas que organizan las actividades. Rellena solo lo que nos ayude a cuidarla bien.",
+    "sectionConsent": "Autorizaciones",
+    "firstName": "Nombre",
+    "lastName": "Apellidos",
+    "dni": "DNI o NIE",
+    "birthDate": "Fecha de nacimiento",
+    "relationship": "Relación contigo",
+    "relationships": {
+      "familiar": "Familiar",
+      "alumne": "Alumno/a",
+      "pacient": "Paciente",
+      "amic": "Amigo/amiga"
+    },
+    "disabilityPct": "Grado de discapacidad reconocido (%)",
+    "hasDependency": "¿Tiene reconocida la ley de dependencia?",
+    "dependencyGrade": "Grado de dependencia",
+    "grade": "Grado {n}",
+    "allergies": "Alergias o intolerancias",
+    "medicalNotes": "Otra información médica o de apoyo",
+    "guardian": "Soy el padre, la madre o el tutor legal de esta persona (o soy yo mismo/a) y autorizo que participe en las actividades de Família Amic.",
+    "healthConsent": "Consiento que Família Amic trate los datos de salud de esta persona solo para organizar las actividades con seguridad.",
+    "save": "Guardar participante",
+    "deleteConfirm": "¿Seguro que quieres eliminar a {name}? Esta acción no se puede deshacer.",
+    "deleteConfirmButton": "Sí, eliminar",
+    "age": "{age} años",
+    "dniSaved": "DNI guardado. Escríbelo de nuevo solo si quieres cambiarlo.",
+    "notFound": "Este participante no existe."
+  },
+  "membership": {
+    "title": "Hazte socio",
+    "lead": "Para participar en las actividades la familia tiene que ser socia. La cuota es anual, una por familia, y se cobra por domiciliación bancaria el mes del alta.",
+    "statusTitle": "Estado",
+    "status": {
+      "none": "No sois socios",
+      "pendent": "Solicitud enviada",
+      "actiu": "Socios",
+      "baixa": "Baja"
+    },
+    "statusHelp": {
+      "none": "Cada participante puede probar una actividad antes de hacerse socio.",
+      "pendent": "La asociación revisará los datos y os dará de alta.",
+      "actiu": "Sois socios de Família Amic desde el {date}.",
+      "baixa": "Ya no sois socios. Escribe a la asociación si quieres volver."
+    },
+    "sectionHolder": "Titular",
+    "sectionBank": "Domiciliación bancaria",
+    "dni": "DNI o NIE del titular",
+    "address": "Dirección",
+    "postalCode": "Código postal",
+    "city": "Población",
+    "bankName": "Entidad bancaria",
+    "iban": "IBAN",
+    "ibanHint": "Cuenta española: ES y 22 cifras.",
+    "ibanSaved": "IBAN guardado: {iban}. Escríbelo de nuevo solo si quieres cambiarlo.",
+    "dniSaved": "DNI guardado. Escríbelo de nuevo solo si quieres cambiarlo.",
+    "sepa": "Autorizo a Família Amic a enviar órdenes a mi entidad para cargar en mi cuenta la cuota de socio y las actividades a las que me apunte, y a mi entidad a efectuar estos cargos (orden de domiciliación SEPA). Puedo solicitar su devolución en un plazo de 8 semanas desde el cargo.",
+    "sepaReference": "Referencia del mandato SEPA: {ref}",
+    "submit": "Enviar solicitud de socio",
+    "update": "Guardar cambios",
+    "sent": "Solicitud enviada. Te contactaremos cuando esté confirmada."
   }
 }

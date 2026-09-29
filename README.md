@@ -29,14 +29,52 @@ Necesitas [Node.js](https://nodejs.org/) 20 o superior y Git.
 git clone https://github.com/Mijusk/familia-amic-web.git
 cd familia-amic-web
 npm install
-cp .env.example .env.local   # rellena las claves de Supabase (opcional por ahora)
+cp .env.example .env.local   # y rellénalo (ver abajo)
 npm run dev
 ```
 
 Abre <http://localhost:3000>. Te redirige a `/ca` o `/es` según el idioma del navegador.
 
-Sin claves de Supabase la web arranca igual; solo hacen falta para el login, que llega en la fase 1.
-Las claves están en Supabase → Project Settings → API (`Project URL` y `Publishable key`).
+Sin claves de Supabase la web arranca igual, pero sin registro ni cuentas.
+
+### Variables de entorno
+
+| Variable | De dónde sale |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Supabase → Project Settings → API (`Project URL` y `Publishable key`) |
+| `DATA_ENCRYPTION_KEY` | Clave para cifrar DNI e IBAN. Genera una con `node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"`. Usa la misma en local y en Vercel si compartís base de datos, y guárdala en un gestor de contraseñas: si se pierde, los DNI e IBAN guardados no se pueden leer. |
+| `NEXT_PUBLIC_SITE_URL` | La dirección de la web, para los enlaces de los correos (`http://localhost:3000` en local) |
+
+Nunca pegues la *secret key* de Supabase en el código ni en `.env.example`: la web no la necesita.
+
+## Base de datos
+
+Las tablas y sus reglas de acceso están en `supabase/migrations/`. Para aplicarlas a tu proyecto de Supabase:
+
+- **Opción fácil:** Supabase → SQL Editor → pega el contenido de cada fichero de `supabase/migrations/`, en orden, y ejecútalo.
+- **Con la CLI:** `npx supabase login`, `npx supabase link --project-ref <ref-del-proyecto>` y `npx supabase db push`.
+
+En Supabase → Authentication → URL Configuration pon la *Site URL* (la dirección de la web) y añade a
+*Redirect URLs* `http://localhost:3000/**` y la dirección de Vercel con `/**`, para que funcionen los enlaces de
+confirmación y de nueva contraseña.
+
+El correo que envía Supabase en el plan gratuito tiene un límite bajo de envíos por hora; sirve para probar.
+Antes del lanzamiento hay que configurar un SMTP propio (Authentication → Emails → SMTP Settings).
+
+### Primeros administradores
+
+Nadie puede darse permisos de admin desde la web. Cuando la persona se haya registrado, en el SQL Editor:
+
+```sql
+update public.profiles set account_type = 'admin'
+where id in (select id from auth.users where email = 'correo@ejemplo.com');
+```
+
+### Supabase en local (opcional)
+
+Con Docker instalado, `npx supabase start` levanta una copia local (API en `http://127.0.0.1:54321`, correos de
+prueba en <http://127.0.0.1:54324>) y `npx supabase db reset` aplica las migraciones desde cero. Las claves
+locales las muestra `npx supabase status`.
 
 ### Comandos
 
@@ -47,17 +85,22 @@ Las claves están en Supabase → Project Settings → API (`Project URL` y `Pub
 | `npm start` | Arranca la versión compilada |
 | `npm run lint` | Revisa el código con ESLint |
 | `npm run typecheck` | Comprueba los tipos de TypeScript |
+| `npm test` | Pruebas unitarias (validación de DNI/IBAN, cifrado) |
 
 ## Estructura
 
 ```
 src/
   app/[lang]/        Páginas; [lang] es ca o es
-  components/        Cabecera, pie, selector de idioma…
+    compte/          Cuenta de la familia: resumen, participantes, ficha de socio
+  components/        Cabecera, pie, formularios…
   config/site.ts     Datos de contacto de la entidad
   i18n/              Idiomas y textos (dictionaries/ca.json, es.json)
+  lib/actions/       Server Actions de los formularios (registro, participantes, socio…)
+  lib/crypto.ts      Cifrado de DNI e IBAN
   lib/supabase/      Clientes de Supabase para servidor, navegador y proxy
   proxy.ts           Redirige al idioma y refresca la sesión en cada petición
+supabase/migrations/ Tablas y reglas de acceso (RLS)
 docs/                Alcance y decisiones
 ```
 
@@ -78,5 +121,5 @@ El dominio `familiaamic.cat` sigue en IONOS y no se toca hasta el lanzamiento.
 ## Reglas del proyecto
 
 - Nunca subas `.env.local`, datos reales de familias ni exportaciones de recibos: este repositorio es público.
-- Los datos sensibles (DNI, IBAN, salud) se protegen en la base de datos con Row Level Security.
-- Cada cambio va en una rama y un pull request; la integración continua comprueba lint, tipos y compilación.
+- Los datos sensibles (DNI, IBAN, salud) se protegen en la base de datos con Row Level Security; DNI e IBAN además van cifrados.
+- Cada cambio va en una rama y un pull request; la integración continua comprueba lint, tipos, pruebas y compilación.

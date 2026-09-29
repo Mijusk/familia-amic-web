@@ -13,13 +13,16 @@
     "contact": "Contacte",
     "login": "Accedir",
     "menu": "Menú",
-    "language": "Idioma"
+    "language": "Idioma",
+    "account": "El meu compte",
+    "logout": "Tancar sessió"
   },
   "home": {
     "eyebrow": "Nova web en construcció",
     "title": "Lluitem per la inclusió en el dia a dia dels nostres socis",
     "lead": "Estem preparant una web nova on les famílies podran apuntar-se a les activitats, gestionar les seves dades i seguir totes les novetats de l'associació des d'un sol lloc.",
-    "contactCta": "Contacta amb nosaltres"
+    "contactCta": "Contacta amb nosaltres",
+    "registerCta": "Registra la teva família"
   },
   "footer": {
     "contact": "Contacte",
@@ -30,5 +33,177 @@
     "title": "No hem trobat aquesta pàgina",
     "body": "Pot ser que l'enllaç sigui antic o que la pàgina s'hagi mogut.",
     "back": "Tornar a l'inici"
+  },
+  "common": {
+    "save": "Desar",
+    "saving": "Desant…",
+    "cancel": "Cancel·lar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Tornar",
+    "optional": "opcional",
+    "yes": "Sí",
+    "no": "No",
+    "saved": "Canvis desats."
+  },
+  "errors": {
+    "generic": "Alguna cosa no ha funcionat. Torna-ho a provar d'aquí a una estona.",
+    "notConfigured": "L'accés encara no està configurat en aquest entorn.",
+    "required": "Aquest camp és obligatori.",
+    "invalidEmail": "Revisa el correu electrònic.",
+    "invalidPhone": "Escriu un telèfon de 9 xifres com a mínim.",
+    "passwordWeak": "La contrasenya ha de tenir almenys 8 caràcters, amb lletres i números.",
+    "invalidCredentials": "El correu o la contrasenya no són correctes.",
+    "emailNotConfirmed": "Encara no has confirmat el correu. Mira la safata d'entrada (i el correu brossa).",
+    "rateLimited": "Massa intents seguits. Espera uns minuts i torna-ho a provar.",
+    "linkInvalid": "L'enllaç ha caducat o ja s'ha fet servir. Demana'n un de nou.",
+    "invalidDni": "El DNI o NIE no és correcte. Revisa els números i la lletra.",
+    "invalidIban": "L'IBAN no és correcte. Ha de ser un compte espanyol (ES + 22 xifres).",
+    "invalidPostalCode": "El codi postal ha de tenir 5 xifres.",
+    "invalidDate": "Revisa la data.",
+    "invalidNumber": "Escriu un número entre 0 i 100.",
+    "consentRequired": "Cal acceptar-ho per continuar.",
+    "passwordMismatch": "Les contrasenyes no coincideixen.",
+    "tooLong": "El text és massa llarg."
+  },
+  "auth": {
+    "login": {
+      "title": "Accedeix al teu compte",
+      "lead": "Entra per apuntar la teva família a les activitats.",
+      "email": "Correu electrònic",
+      "password": "Contrasenya",
+      "submit": "Entrar",
+      "forgot": "Has oblidat la contrasenya?",
+      "noAccount": "Encara no tens compte?",
+      "register": "Registra la teva família",
+      "confirmed": "Correu confirmat. Ja pots entrar.",
+      "passwordChanged": "Contrasenya canviada. Ja pots entrar."
+    },
+    "register": {
+      "title": "Registra la teva família",
+      "lead": "Només cal fer-ho una vegada. Després afegiràs les persones de la família que venen a les activitats.",
+      "fullName": "Nom i cognoms",
+      "fullNameHint": "De la persona adulta responsable (pare, mare o tutor).",
+      "phone": "Telèfon mòbil",
+      "email": "Correu electrònic",
+      "password": "Contrasenya",
+      "passwordHint": "Mínim 8 caràcters, amb lletres i números.",
+      "privacy": "Accepto que Família Amic tracti aquestes dades per gestionar el meu compte i les inscripcions a les activitats.",
+      "submit": "Crear el compte",
+      "haveAccount": "Ja tens compte?",
+      "login": "Entra",
+      "checkEmailTitle": "Mira el teu correu",
+      "checkEmailBody": "T'hem enviat un enllaç per confirmar el compte a {email}. Obre'l des d'aquest mateix dispositiu. Si no el veus, mira el correu brossa."
+    },
+    "forgot": {
+      "title": "Recupera la contrasenya",
+      "lead": "Escriu el correu del teu compte i t'enviarem un enllaç per triar-ne una de nova.",
+      "submit": "Enviar l'enllaç",
+      "sent": "Si hi ha un compte amb aquest correu, rebràs un enllaç en uns minuts."
+    },
+    "reset": {
+      "title": "Tria una contrasenya nova",
+      "password": "Contrasenya nova",
+      "confirm": "Repeteix la contrasenya",
+      "submit": "Canviar la contrasenya"
+    }
+  },
+  "account": {
+    "title": "El meu compte",
+    "hello": "Hola, {name}",
+    "tabs": {
+      "summary": "Resum",
+      "family": "La meva família",
+      "membership": "Soci"
+    },
+    "myData": {
+      "title": "Les meves dades",
+      "fullName": "Nom i cognoms",
+      "phone": "Telèfon mòbil",
+      "email": "Correu electrònic",
+      "emailHint": "Per canviar el correu, escriu a l'associació."
+    },
+    "summary": {
+      "familyTitle": "La teva família",
+      "familyEmpty": "Encara no has afegit cap participant.",
+      "familyCount": "{count} participants",
+      "addParticipant": "Afegir participant",
+      "membershipTitle": "Soci",
+      "trialNote": "Cada participant pot provar una activitat una vegada abans de fer-se soci."
+    },
+    "volunteer": {
+      "title": "Compte de voluntari",
+      "body": "Aviat podràs completar aquí la teva sol·licitud de voluntariat."
+    }
+  },
+  "participants": {
+    "title": "La meva família",
+    "lead": "Les persones que vénen a les activitats. Les dades es desen una sola vegada i les podràs fer servir en totes les inscripcions.",
+    "add": "Afegir participant",
+    "empty": "Encara no hi ha cap participant.",
+    "newTitle": "Nou participant",
+    "editTitle": "Editar participant",
+    "sectionPerson": "Dades de la persona",
+    "sectionHealth": "Salut i suport",
+    "sectionHealthLead": "Només ho veuen les persones que organitzen les activitats. Omple només el que ens ajudi a cuidar-la bé.",
+    "sectionConsent": "Autoritzacions",
+    "firstName": "Nom",
+    "lastName": "Cognoms",
+    "dni": "DNI o NIE",
+    "birthDate": "Data de naixement",
+    "relationship": "Relació amb tu",
+    "relationships": {
+      "familiar": "Familiar",
+      "alumne": "Alumne/a",
+      "pacient": "Pacient",
+      "amic": "Amic/amiga"
+    },
+    "disabilityPct": "Grau de discapacitat reconegut (%)",
+    "hasDependency": "Té reconeguda la llei de dependència?",
+    "dependencyGrade": "Grau de dependència",
+    "grade": "Grau {n}",
+    "allergies": "Al·lèrgies o intoleràncies",
+    "medicalNotes": "Altres informacions mèdiques o de suport",
+    "guardian": "Soc el pare, la mare o el tutor legal d'aquesta persona (o soc jo mateix/a) i autoritzo que participi a les activitats de Família Amic.",
+    "healthConsent": "Consenteixo que Família Amic tracti les dades de salut d'aquesta persona només per organitzar les activitats amb seguretat.",
+    "save": "Desar participant",
+    "deleteConfirm": "Segur que vols eliminar {name}? Aquesta acció no es pot desfer.",
+    "deleteConfirmButton": "Sí, eliminar",
+    "age": "{age} anys",
+    "dniSaved": "DNI desat. Escriu-lo de nou només si el vols canviar.",
+    "notFound": "Aquest participant no existeix."
+  },
+  "membership": {
+    "title": "Fes-te soci",
+    "lead": "Per participar a les activitats cal que la família sigui sòcia. La quota és anual, una per família, i es cobra per domiciliació bancària el mes de l'alta.",
+    "statusTitle": "Estat",
+    "status": {
+      "none": "No sou socis",
+      "pendent": "Sol·licitud enviada",
+      "actiu": "Socis",
+      "baixa": "Baixa"
+    },
+    "statusHelp": {
+      "none": "Cada participant pot provar una activitat abans de fer-se soci.",
+      "pendent": "L'associació revisarà les dades i us donarà d'alta.",
+      "actiu": "Sou socis de Família Amic des del {date}.",
+      "baixa": "Ja no sou socis. Escriu a l'associació si vols tornar."
+    },
+    "sectionHolder": "Titular",
+    "sectionBank": "Domiciliació bancària",
+    "dni": "DNI o NIE del titular",
+    "address": "Adreça",
+    "postalCode": "Codi postal",
+    "city": "Població",
+    "bankName": "Entitat bancària",
+    "iban": "IBAN",
+    "ibanHint": "Compte espanyol: ES i 22 xifres.",
+    "ibanSaved": "IBAN desat: {iban}. Escriu-lo de nou només si el vols canviar.",
+    "dniSaved": "DNI desat. Escriu-lo de nou només si el vols canviar.",
+    "sepa": "Autoritzo Família Amic a enviar ordres a la meva entitat per carregar al meu compte la quota de soci i les activitats a què m'apunti, i la meva entitat a fer aquests càrrecs (ordre de domiciliació SEPA). Puc demanar-ne la devolució en un termini de 8 setmanes des del càrrec.",
+    "sepaReference": "Referència del mandat SEPA: {ref}",
+    "submit": "Enviar sol·licitud de soci",
+    "update": "Desar canvis",
+    "sent": "Sol·licitud enviada. Et contactarem quan estigui confirmada."
   }
 }
