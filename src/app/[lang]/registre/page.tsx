@@ -11,25 +11,33 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/registre">
   return { title: dict.auth.register.title };
 }
 
-export default async function RegisterPage({ params }: PageProps<"/[lang]/registre">) {
+export default async function RegisterPage({ params, searchParams }: PageProps<"/[lang]/registre">) {
   const { lang, dict } = await loadPage(params);
   if (await getCurrentUser()) redirect(`/${lang}/compte`);
   const t = dict.auth.register;
+  const volunteer = (await searchParams).tipus === "voluntari";
 
   return (
     <AuthCard
-      title={t.title}
-      lead={t.lead}
+      title={volunteer ? t.volunteerTitle : t.title}
+      lead={volunteer ? t.volunteerLead : t.lead}
       footer={
-        <p>
-          {t.haveAccount}{" "}
-          <Link href={`/${lang}/entrar`} className="font-semibold text-accent underline underline-offset-4">
-            {t.login}
-          </Link>
-        </p>
+        <>
+          <p>
+            {t.haveAccount}{" "}
+            <Link href={`/${lang}/entrar`} className="font-semibold text-accent underline underline-offset-4">
+              {t.login}
+            </Link>
+          </p>
+          <p className="mt-2">
+            <Link href={volunteer ? `/${lang}/registre` : `/${lang}/registre?tipus=voluntari`} className="font-semibold text-accent underline underline-offset-4">
+              {volunteer ? t.switchToFamily : t.switchToVolunteer}
+            </Link>
+          </p>
+        </>
       }
     >
-      <RegisterForm lang={lang} t={t} errors={dict.errors} saving={dict.common.saving} />
+      <RegisterForm lang={lang} volunteer={volunteer} t={t} errors={dict.errors} saving={dict.common.saving} />
     </AuthCard>
   );
 }

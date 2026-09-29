@@ -47,3 +47,6 @@ según el RGPD. Por eso:
 3. Panel: actividades, inscritos, cola, familias, activar socios, admins con 2FA, registro de acciones.
 4. Recibos: precios editables, calcular los del mes (cuota el mes del alta, actividades con plaza ese mes, descuento por participante), lista para CaixaBank, Excel, estados cobrado/devuelto y recibos en la cuenta de la familia.
 5. Contenido: portada, Associació, noticias, recursos, contacto, voluntariado (formulario y su lista en el panel), fotos de actividades, legales, migración.
+   Decisiones tomadas al construirla (pendientes de que la junta las confirme): el IBAN de donativos no se
+   publica hasta que lo decidan (solo Bizum); la junta y el equipo no salen con nombres; las memorias anuales se
+   piden por correo hasta que se suban los PDF; cada participante tiene un permiso de imagen opcional.

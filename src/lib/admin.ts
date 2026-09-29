@@ -51,7 +51,7 @@ export async function getActivityById(id: string) {
 export type RosterEntry = Enrollment & {
   participants: Pick<
     Participant,
-    "first_name" | "last_name" | "birth_date" | "disability_pct" | "has_dependency" | "dependency_grade" | "allergies" | "medical_notes"
+    "first_name" | "last_name" | "birth_date" | "disability_pct" | "has_dependency" | "dependency_grade" | "allergies" | "medical_notes" | "image_consent"
   > | null;
   profiles: { full_name: string; phone: string } | null;
   family_id: string;
@@ -65,7 +65,7 @@ export async function getRoster(activityId: string) {
     .from("enrollments")
     .select(
       "id, activity_id, participant_id, family_id, status, is_trial, trial_date, auto_renew, starts_on, ends_on, cancelled_at, created_at, " +
-        "participants(first_name, last_name, birth_date, disability_pct, has_dependency, dependency_grade, allergies, medical_notes), " +
+        "participants(first_name, last_name, birth_date, disability_pct, has_dependency, dependency_grade, allergies, medical_notes, image_consent), " +
         "profiles(full_name, phone)",
     )
     .eq("activity_id", activityId)

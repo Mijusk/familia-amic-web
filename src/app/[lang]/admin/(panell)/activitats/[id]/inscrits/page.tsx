@@ -59,6 +59,7 @@ export default async function Roster({ params, searchParams }: PageProps<"/[lang
           <div>
             <p className="font-display text-lg font-extrabold">{name}</p>
             {p && <p className="text-muted">{format(t.age, { age: ageFrom(p.birth_date) })}</p>}
+            {p && !p.image_consent && <p className="mt-1 inline-block rounded-full bg-warm-soft px-3 py-0.5 text-sm font-semibold text-warm">{t.noPhotos}</p>}
             <p className="mt-1 text-sm">{when}</p>
           </div>
           <div className="text-[0.95rem]">

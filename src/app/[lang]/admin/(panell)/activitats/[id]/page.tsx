@@ -23,6 +23,9 @@ export default async function EditActivity({ params, searchParams }: PageProps<"
           <Link href={`/${lang}/admin/activitats/${a.id}/inscrits`} className="text-accent underline underline-offset-4">
             {t.roster}
           </Link>
+          <Link href={`/${lang}/admin/activitats/${a.id}/fotos`} className="text-accent underline underline-offset-4">
+            {dict.admin.photos.title}
+          </Link>
           <Link href={`/${lang}/activitats/${a.slug}`} className="text-accent underline underline-offset-4">
             {t.view}
           </Link>

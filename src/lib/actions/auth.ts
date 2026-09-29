@@ -56,13 +56,15 @@ export async function signUp(_prev: FormState, formData: FormData): Promise<Form
   if (!parsed.success) return { status: "error", fieldErrors: fieldErrors(parsed.error), values };
 
   const { full_name, phone, email } = parsed.data;
+  // Solo se puede elegir entre familia y voluntario; los admins se crean desde el panel.
+  const accountType = formData.get("tipus") === "voluntari" ? "voluntari" : "familia";
   const supabase = await createClient();
   const { error } = await supabase.auth.signUp({
     email,
     password: parsed.data.password,
     options: {
       emailRedirectTo: `${await siteOrigin()}/${lang}/auth/confirm?next=/${lang}/compte`,
-      data: { full_name, phone: normalizePhone(phone), locale: lang, account_type: "familia" },
+      data: { full_name, phone: normalizePhone(phone), locale: lang, account_type: accountType },
     },
   });
   if (error) return { status: "error", error: authError(error.code), values };

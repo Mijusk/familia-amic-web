@@ -19,6 +19,7 @@ type Initial = {
   dependency_grade: string;
   allergies: string;
   medical_notes: string;
+  image_consent: boolean;
   dniMasked?: string;
 };
 
@@ -34,6 +35,7 @@ const empty: Initial = {
   dependency_grade: "",
   allergies: "",
   medical_notes: "",
+  image_consent: false,
 };
 
 export function ParticipantForm({ lang, initial = empty, t, errors, common }: Props) {
@@ -119,6 +121,7 @@ export function ParticipantForm({ lang, initial = empty, t, errors, common }: Pr
         <legend className="font-display text-xl font-extrabold">{t.sectionConsent}</legend>
         <Checkbox label={t.guardian} name="guardian" required defaultChecked={editing || v.guardian === "on"} error={err("guardian")} />
         <Checkbox label={t.healthConsent} name="health_consent" required defaultChecked={editing || v.health_consent === "on"} error={err("health_consent")} />
+        <Checkbox label={t.imageConsent} name="image_consent" defaultChecked={state.values ? state.values.image_consent === "on" : initial.image_consent} />
       </fieldset>
 
       <div className="flex flex-wrap items-center gap-4">

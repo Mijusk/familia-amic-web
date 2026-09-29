@@ -13,6 +13,7 @@ export type Participant = {
   dependency_grade: number | null;
   allergies: string | null;
   medical_notes: string | null;
+  image_consent: boolean;
   dni_encrypted: string;
 };
 
@@ -29,7 +30,7 @@ export type Membership = {
 };
 
 const participantColumns =
-  "id, first_name, last_name, birth_date, relationship, disability_pct, has_dependency, dependency_grade, allergies, medical_notes, dni_encrypted";
+  "id, first_name, last_name, birth_date, relationship, disability_pct, has_dependency, dependency_grade, allergies, medical_notes, image_consent, dni_encrypted";
 
 /** Participantes de la familia con sesión (RLS filtra por familia). */
 export async function listParticipants() {

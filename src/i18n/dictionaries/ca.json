@@ -16,19 +16,50 @@
     "language": "Idioma",
     "account": "El meu compte",
     "logout": "Tancar sessió",
-    "admin": "Panell"
+    "admin": "Panell",
+    "skip": "Salta al contingut",
+    "tagline": "Units per la inclusió",
+    "whatsapp": "Escriu-nos per WhatsApp"
   },
   "home": {
-    "eyebrow": "Nova web en construcció",
-    "title": "Lluitem per la inclusió en el dia a dia dels nostres socis",
-    "lead": "Estem preparant una web nova on les famílies podran apuntar-se a les activitats, gestionar les seves dades i seguir totes les novetats de l'associació des d'un sol lloc.",
-    "contactCta": "Contacta amb nosaltres",
-    "registerCta": "Registra't"
+    "eyebrow": "Família AMIC · Valldoreix",
+    "title": "Units per la inclusió",
+    "lead": "Som una associació sense ànim de lucre que treballa per la igualtat d'oportunitats de les persones amb discapacitat intel·lectual i les seves famílies: a l'escola, a la feina i en el lleure.",
+    "aboutCta": "Coneix-nos",
+    "memberCta": "Fes-te soci",
+    "collaborateCta": "Col·labora",
+    "whatTitle": "Què fem",
+    "what": [
+      {
+        "title": "Activitats per a tothom",
+        "body": "Esports, tallers, música, sortides i casals pensats perquè cadascú hi participi al seu ritme."
+      },
+      {
+        "title": "Acompanyament a les famílies",
+        "body": "Orientació en educació, suport psicològic i assessorament legal en temes de discapacitat."
+      },
+      {
+        "title": "Formació i xarxa",
+        "body": "Jornades per a famílies i docents, i treball conjunt amb altres entitats per una escola i una societat inclusives."
+      }
+    ],
+    "activitiesTitle": "Properes activitats",
+    "allActivities": "Totes les activitats",
+    "noActivities": "Aviat publicarem les activitats del curs.",
+    "newsTitle": "Notícies",
+    "allNews": "Totes les notícies",
+    "volunteerTitle": "Vols fer de voluntari/a?",
+    "volunteerBody": "Amics, familiars, estudiants i professionals ens ajuden cada setmana. Et necessitem a les activitats, als casals i a l'organització.",
+    "volunteerCta": "Apunta't com a voluntari/a",
+    "donateTitle": "Fes un donatiu",
+    "donateBody": "Cada aportació ens ajuda a mantenir les activitats i les beques per a les famílies que ho necessiten.",
+    "donateCta": "Com col·laborar"
   },
   "footer": {
     "contact": "Contacte",
     "follow": "Segueix-nos",
-    "rights": "Tots els drets reservats."
+    "rights": "Tots els drets reservats.",
+    "legal": "Informació legal"
   },
   "notFound": {
     "title": "No hem trobat aquesta pàgina",
@@ -75,7 +106,9 @@
     "invalidTime": "L'hora de final ha de ser posterior a la d'inici.",
     "reviewForm": "Revisa els camps marcats en vermell.",
     "invalidPrice": "Escriu un import en euros, per exemple 50 o 12,50.",
-    "invalidPercent": "Escriu un percentatge entre 0 i 100."
+    "invalidPercent": "Escriu un percentatge entre 0 i 100.",
+    "invalidUrl": "Escriu una adreça completa que comenci per https://",
+    "chooseOne": "Tria almenys una opció."
   },
   "auth": {
     "login": {
@@ -104,7 +137,12 @@
       "haveAccount": "Ja tens compte?",
       "login": "Entra",
       "checkEmailTitle": "Mira el teu correu",
-      "checkEmailBody": "T'hem enviat un enllaç per confirmar el compte a {email}. Obre'l des d'aquest mateix dispositiu. Si no el veus, mira el correu brossa."
+      "checkEmailBody": "T'hem enviat un enllaç per confirmar el compte a {email}. Obre'l des d'aquest mateix dispositiu. Si no el veus, mira el correu brossa.",
+      "volunteerTitle": "Registra't com a voluntari/a",
+      "volunteerLead": "Crea el compte i després explica'ns en què t'agradaria ajudar. L'associació et contactarà.",
+      "volunteerPrivacy": "Accepto que Família Amic tracti aquestes dades per gestionar el meu compte i la meva sol·licitud de voluntariat.",
+      "switchToFamily": "Vols apuntar-te a les activitats? Crea un compte normal",
+      "switchToVolunteer": "Vols fer de voluntari/a? Crea un compte de voluntariat"
     },
     "forgot": {
       "title": "Recupera la contrasenya",
@@ -149,9 +187,9 @@
       "membershipTitle": "Soci",
       "trialNote": "Cada participant pot provar una activitat una vegada abans de fer-se soci."
     },
-    "volunteer": {
-      "title": "Compte de voluntari",
-      "body": "Aviat podràs completar aquí la teva sol·licitud de voluntariat."
+    "admin": {
+      "title": "Compte d'administració",
+      "body": "Aquest compte gestiona la web. Per apuntar-te a activitats, fes servir un compte a part."
     }
   },
   "participants": {
@@ -189,7 +227,8 @@
     "deleteConfirmButton": "Sí, eliminar",
     "age": "{age} anys",
     "dniSaved": "DNI desat. Escriu-lo de nou només si el vols canviar.",
-    "notFound": "Aquest participant no existeix."
+    "notFound": "Aquest participant no existeix.",
+    "imageConsent": "Autoritzo que es publiquin fotos de les activitats on surti aquesta persona (web i xarxes de l'associació). És opcional i es pot canviar quan vulguis."
   },
   "membership": {
     "title": "Fes-te soci",
@@ -294,7 +333,10 @@
       "prova_completa": "No queden places per fer la prova."
     },
     "emailSent": "T'hem enviat un correu amb el resum.",
-    "seeEnrollments": "Veure les meves inscripcions"
+    "seeEnrollments": "Veure les meves inscripcions",
+    "photos": "Fotos",
+    "photoAlt": "Foto de l'activitat",
+    "relatedNews": "Notícies d'aquesta activitat"
   },
   "enrollments": {
     "title": "Inscripcions",
@@ -330,7 +372,11 @@
     "unenrollSubject": "Baixa: {name} de {activity}",
     "unenrollBody": "{family} ha donat de baixa {name} de {activity} el {date}. Estat anterior: {status}.",
     "promotedSubject": "Ja teniu plaça a {activity}",
-    "promotedBody": "{name} ja té plaça confirmada a {activity}. Era a la llista d'espera i l'associació li ha donat plaça."
+    "promotedBody": "{name} ja té plaça confirmada a {activity}. Era a la llista d'espera i l'associació li ha donat plaça.",
+    "contactSubject": "Missatge de contacte de {name}",
+    "contactBody": "Nou missatge des del formulari de la web.\n\nNom: {name}\nCorreu: {email}\nTelèfon: {phone}\n\nPots respondre directament a aquest correu.",
+    "volunteerSubject": "Nova sol·licitud de voluntariat: {name}",
+    "volunteerBody": "{name} ha enviat una sol·licitud de voluntariat.\n\nCorreu: {email}\nTelèfon: {phone}\n\nLa pots veure al panell: {url}"
   },
   "receipts": {
     "title": "Rebuts",
@@ -360,7 +406,11 @@
       "families": "Famílies i socis",
       "admins": "Administradors",
       "log": "Registre",
-      "receipts": "Rebuts"
+      "receipts": "Rebuts",
+      "messages": "Missatges",
+      "volunteers": "Voluntaris",
+      "news": "Notícies",
+      "resources": "Recursos"
     },
     "mfa": {
       "enrollTitle": "Activa la verificació en dos passos",
@@ -380,7 +430,9 @@
       "published": "Activitats publicades",
       "families": "Comptes registrats",
       "see": "Veure",
-      "pendingReceipts": "Rebuts d'aquest mes per cobrar"
+      "pendingReceipts": "Rebuts d'aquest mes per cobrar",
+      "unreadMessages": "Missatges de contacte per atendre",
+      "newVolunteers": "Sol·licituds de voluntariat noves"
     },
     "status": {
       "esborrany": "Esborrany",
@@ -476,7 +528,8 @@
       "cancelConfirm": "Segur que vols donar de baixa {name}?",
       "cancelButton": "Sí, donar de baixa",
       "confirmedMsg": "Plaça confirmada. Hem avisat la família per correu.",
-      "cancelledMsg": "Baixa feta."
+      "cancelledMsg": "Baixa feta.",
+      "noPhotos": "Sense permís de fotos"
     },
     "families": {
       "title": "Famílies i socis",
@@ -547,7 +600,16 @@
         "receipts_paid": "Rebuts marcats com a cobrats",
         "receipts_view": "Consulta de la llista de rebuts",
         "receipts_export": "Excel de rebuts descarregat",
-        "billing_settings": "Preus canviats"
+        "billing_settings": "Preus canviats",
+        "news_create": "Notícia creada",
+        "news_update": "Notícia editada",
+        "news_delete": "Notícia eliminada",
+        "resource_create": "Recurs creat",
+        "resource_update": "Recurs editat",
+        "resource_delete": "Recurs eliminat",
+        "photo_add": "Foto afegida",
+        "photo_delete": "Foto eliminada",
+        "volunteer_status": "Estat de voluntari"
       }
     },
     "receipts": {
@@ -591,6 +653,325 @@
       "discountHint": "Per participant, a cada activitat a partir de la segona; la més cara va a preu complet. 0 = sense descompte.",
       "save": "Desar preus",
       "saved": "Preus desats."
+    },
+    "content": {
+      "saved": "Canvis desats.",
+      "deleted": "Eliminat.",
+      "view": "Veure a la web",
+      "delete": "Eliminar",
+      "deleteConfirm": "Segur que ho vols eliminar? No es pot desfer.",
+      "fTitle": "Títol",
+      "fSlug": "Adreça (URL)",
+      "fSlugHint": "Es crea sola a partir del títol. Canvia-la només si cal.",
+      "fLang": "Idioma del text",
+      "fSummary": "Resum",
+      "fSummaryHint": "Una o dues frases. Surt a les llistes.",
+      "fBody": "Text",
+      "fBodyHint": "Deixa una línia en blanc entre paràgrafs. \"## \" al principi fa un subtítol, \"- \" fa una llista, **així** fa negreta i [text](https://…) fa un enllaç.",
+      "fStatus": "Estat",
+      "status": {
+        "esborrany": "Esborrany (no es veu)",
+        "publicada": "Publicada"
+      }
+    },
+    "news": {
+      "title": "Notícies",
+      "new": "Nova notícia",
+      "empty": "Encara no hi ha cap notícia.",
+      "editTitle": "Editar notícia",
+      "created": "Notícia creada.",
+      "fDate": "Data",
+      "fImage": "Imatge (adreça)",
+      "fImageHint": "Adreça https d'una imatge ja publicada. Opcional.",
+      "fActivity": "Activitat relacionada",
+      "noActivity": "Cap"
+    },
+    "resources": {
+      "title": "Recursos",
+      "lead": "Guies pràctiques per a les famílies: temes legals, educació i salut.",
+      "new": "Nou recurs",
+      "empty": "Encara no hi ha cap recurs.",
+      "editTitle": "Editar recurs",
+      "created": "Recurs creat.",
+      "fCategory": "Tema",
+      "fPosition": "Ordre",
+      "fPositionHint": "Els números més baixos surten primer.",
+      "fLink": "Enllaç oficial",
+      "fLinkHint": "Pàgina de la Generalitat, la Seguretat Social… Opcional."
+    },
+    "photos": {
+      "title": "Fotos",
+      "lead": "Les fotos es veuen a la pàgina de l'activitat. Abans de pujar-ne, mira a la llista d'inscrits qui no té permís de fotos.",
+      "empty": "Encara no hi ha cap foto.",
+      "deleteConfirm": "Segur que vols eliminar aquesta foto?",
+      "files": "Fotos",
+      "filesHint": "JPG, PNG o WebP, fins a 5 MB cadascuna. Pots triar-ne diverses alhora.",
+      "caption": "Peu de foto",
+      "captionHint": "Descriu la foto en poques paraules (ajuda les persones que no hi veuen). Opcional.",
+      "upload": "Pujar les fotos",
+      "uploading": "Pujant…",
+      "uploaded": "{n} fotos pujades.",
+      "chooseFiles": "Tria almenys una foto.",
+      "invalidFile": "ha de ser JPG, PNG o WebP i de 5 MB com a màxim.",
+      "uploadError": "no s'ha pogut pujar. Torna-ho a provar."
+    },
+    "messages": {
+      "title": "Missatges de contacte",
+      "lead": "El que ha arribat pel formulari de contacte. També arriba al correu de l'associació.",
+      "empty": "Encara no ha arribat cap missatge.",
+      "pending": "Per atendre",
+      "handledOn": "Atès el {date}",
+      "markHandled": "Marcar com a atès",
+      "markPending": "Tornar a per atendre"
+    },
+    "volunteers": {
+      "title": "Voluntaris",
+      "lead": "Sol·licituds enviades des dels comptes de voluntariat.",
+      "empty": "Encara no ha arribat cap sol·licitud.",
+      "status": "Estat",
+      "statuses": {
+        "nova": "Nova",
+        "contactada": "Contactada",
+        "activa": "Col·labora",
+        "arxivada": "Arxivada"
+      },
+      "withoutForm": "Comptes sense sol·licitud",
+      "withoutFormLead": "S'han registrat com a voluntaris però encara no han omplert el formulari."
+    }
+  },
+  "volunteer": {
+    "formTitle": "La teva sol·licitud de voluntariat",
+    "formLead": "Explica'ns com t'agradaria ajudar. Quan l'enviïs, l'associació et contactarà.",
+    "areas": "On t'agradaria ajudar?",
+    "areasHint": "Pots triar-ne diverses.",
+    "areaNames": {
+      "activitats": "Activitats setmanals",
+      "esports": "Esports",
+      "casals": "Casals i colònies",
+      "tallers": "Tallers i música",
+      "comunicacio": "Comunicació i xarxes",
+      "administracio": "Administració i organització",
+      "altres": "Altres"
+    },
+    "availability": "Disponibilitat",
+    "availabilityHint": "Dies i hores que et van bé (per exemple: dissabtes al matí).",
+    "experience": "Experiència o formació",
+    "motivation": "Per què vols fer de voluntari/a?",
+    "submit": "Enviar la sol·licitud",
+    "sent": "Sol·licitud enviada. L'associació et contactarà aviat.",
+    "statusHelp": {
+      "nova": "Hem rebut la teva sol·licitud. L'associació et contactarà aviat.",
+      "contactada": "L'associació ja ha parlat amb tu. Pots actualitzar les teves dades quan vulguis.",
+      "activa": "Gràcies per col·laborar amb Família Amic! Pots actualitzar les teves dades quan vulguis.",
+      "arxivada": "La sol·licitud està arxivada. Si vols tornar a col·laborar, actualitza-la o escriu a l'associació."
+    }
+  },
+  "contact": {
+    "title": "Contacte",
+    "lead": "Escriu-nos i et respondrem com més aviat millor. També ens pots trucar o escriure per WhatsApp.",
+    "name": "Nom i cognoms",
+    "email": "Correu electrònic",
+    "phone": "Telèfon",
+    "message": "Missatge",
+    "privacy": "Accepto que Família Amic faci servir aquestes dades només per respondre el meu missatge.",
+    "submit": "Enviar",
+    "sending": "Enviant…",
+    "sentTitle": "Missatge enviat",
+    "sentBody": "Gràcies per escriure'ns. Et respondrem al correu que ens has donat.",
+    "otherWays": "Altres maneres de contactar"
+  },
+  "association": {
+    "title": "Associació",
+    "lead": "Qui som, què defensem i amb qui treballem.",
+    "onThisPage": "En aquesta pàgina",
+    "whoTitle": "Qui som",
+    "who": [
+      "Família AMIC és una entitat sense ànim de lucre que té com a principal objectiu promoure la igualtat d'oportunitats i una major adquisició de drets socials i individuals de les persones amb discapacitat intel·lectual i de les seves famílies.",
+      "Amics, familiars, docents, especialistes i voluntaris treballem cada dia per la plena inclusió escolar, laboral i social de les persones amb capacitats diferents. Per aconseguir-ho, necessitem la teva col·laboració."
+    ],
+    "registry": "Inscrita al Registre d'associacions de Catalunya amb el número {generalitat} i al Registre d'entitats municipals amb el número {municipal}.",
+    "rightsTitle": "Drets del soci",
+    "rightsLead": "Els socis tenen dret a:",
+    "rights": [
+      "Participar a l'assemblea amb veu i vot.",
+      "Inscripció gratuïta a les jornades de formació per a famílies i docents.",
+      "Assessorament i orientació en educació.",
+      "Descomptes i bonificacions amb les entitats i els professionals col·laboradors.",
+      "Bonificació a totes les activitats.",
+      "Accés a beques, amb els requisits que s'estableixin.",
+      "Assessorament legal en temes de discapacitat.",
+      "Descompte a la trobada bienal de famílies de Down Catalunya."
+    ],
+    "networksTitle": "Formem part de",
+    "networks": [
+      "Coordinadora Down Catalunya, com a entitat de ple dret.",
+      "Plataforma Ciutadana per una Escola Inclusiva a Catalunya.",
+      "Taula per a persones amb discapacitat de l'Ajuntament de Sant Cugat."
+    ],
+    "collaboratorsTitle": "Col·laboradors",
+    "collaboratorsLead": "Gràcies a les entitats, empreses i professionals que ens donen suport:",
+    "transparencyTitle": "Transparència",
+    "transparency": "Com a entitat sense ànim de lucre, ens comprometem a fer accessible la informació sobre la nostra organització, la gestió econòmica i les activitats, d'acord amb la Llei 19/2014 de transparència, accés a la informació pública i bon govern.",
+    "reportsAsk": "Pots demanar les memòries anuals d'activitats a",
+    "complaintsTitle": "Canal de denúncies",
+    "complaints": "Si vols comunicar una situació irregular o un problema, fes-ho a través d'aquest formulari. El tractarem amb confidencialitat i com més aviat millor.",
+    "complaintsCta": "Obrir el formulari"
+  },
+  "collaborate": {
+    "title": "Col·labora",
+    "lead": "Hi ha moltes maneres d'ajudar Família Amic. Totes compten.",
+    "memberTitle": "Fes-te soci",
+    "memberBody": "Els socis participen a les activitats amb bonificació, tenen veu i vot a l'assemblea i reben assessorament.",
+    "volunteerTitle": "Fes-te voluntari/a",
+    "volunteerBody": "Dona'ns una mica del teu temps a les activitats, als casals o a l'organització.",
+    "donateTitle": "Fes un donatiu",
+    "donateBody": "Pots fer un donatiu de la quantitat que vulguis per Bizum.",
+    "iban": "Transferència (IBAN)",
+    "donateNote": "Posa \"Donatiu\" i el teu nom al concepte. Si vols el certificat per a la declaració de la renda, escriu-nos.",
+    "companies": "Ets una empresa o un comerç i vols col·laborar?",
+    "companiesCta": "Parlem-ne"
+  },
+  "news": {
+    "title": "Notícies",
+    "lead": "El que passa a Família Amic: activitats, sortides i novetats per a les famílies.",
+    "empty": "Encara no hi ha cap notícia.",
+    "back": "Totes les notícies",
+    "relatedActivity": "Aquesta notícia parla de l'activitat"
+  },
+  "resources": {
+    "title": "Recursos",
+    "lead": "Guies pràctiques sobre ajudes, tràmits, educació i salut per a les persones amb discapacitat i les seves famílies.",
+    "filterLabel": "Filtra per tema",
+    "all": "Tots",
+    "categories": {
+      "legals": "Temes legals",
+      "educacio": "Educació",
+      "salut": "Salut"
+    },
+    "empty": "Encara no hi ha cap recurs en aquest tema.",
+    "officialLink": "Més informació a la pàgina oficial",
+    "help": "Tens dubtes amb algun tràmit?",
+    "helpCta": "Pregunta'ns"
+  },
+  "legal": {
+    "updated": "Última actualització: setembre de 2026",
+    "pages": {
+      "avis-legal": {
+        "title": "Avís legal",
+        "sections": [
+          {
+            "title": "Titular del web",
+            "body": [
+              "Aquest web és de l'associació {name}, entitat sense ànim de lucre inscrita al Registre d'associacions de Catalunya amb el número {registry}, amb domicili a {address}. Correu de contacte: {email}."
+            ]
+          },
+          {
+            "title": "Ús del web",
+            "body": [
+              "Qui fa servir aquest web es compromet a fer-ho de bona fe i a no utilitzar-lo per a activitats il·lícites. L'associació pot retirar comptes que se'n facin un mal ús."
+            ]
+          },
+          {
+            "title": "Continguts",
+            "body": [
+              "Els textos, les imatges i el logotip són de {name} o s'hi publiquen amb permís. No es poden reproduir amb finalitat comercial sense autorització. Les guies de Recursos són orientatives: consulta sempre la informació oficial de cada tràmit."
+            ]
+          },
+          {
+            "title": "Enllaços",
+            "body": [
+              "Aquest web enllaça pàgines d'altres organismes. L'associació no es fa responsable del seu contingut."
+            ]
+          }
+        ]
+      },
+      "privacitat": {
+        "title": "Política de privacitat",
+        "sections": [
+          {
+            "title": "Qui tracta les teves dades",
+            "body": [
+              "{name}, amb domicili a {address}. Pots escriure'ns a {email} per a qualsevol qüestió sobre les teves dades."
+            ]
+          },
+          {
+            "title": "Quines dades i per a què",
+            "body": [
+              "Les dades del compte (nom, telèfon, correu) serveixen per gestionar les inscripcions a les activitats. Les dades de soci (DNI, domicili i compte bancari) serveixen per gestionar la quota i els rebuts. Les dades de salut dels participants (discapacitat, dependència, al·lèrgies i observacions) serveixen només perquè les persones que organitzen les activitats les puguin fer amb seguretat. Les dades del formulari de contacte i de voluntariat serveixen per respondre't."
+            ]
+          },
+          {
+            "title": "Base legal",
+            "body": [
+              "El teu consentiment, que dones en marcar les caselles de cada formulari, i la relació d'associat quan et fas soci. Les dades de salut es tracten amb el teu consentiment explícit."
+            ]
+          },
+          {
+            "title": "Qui les pot veure",
+            "body": [
+              "Només les persones de l'associació que gestionen les activitats i l'administració, amb verificació en dos passos. El DNI i el compte bancari es guarden xifrats. No cedim dades a tercers, llevat del banc per cobrar els rebuts i quan ho exigeixi la llei. Les dades es guarden en servidors de la Unió Europea."
+            ]
+          },
+          {
+            "title": "Quant de temps",
+            "body": [
+              "Mentre tinguis el compte o siguis soci, i després el temps que exigeixin les obligacions legals i comptables."
+            ]
+          },
+          {
+            "title": "Els teus drets",
+            "body": [
+              "Pots accedir a les teves dades, rectificar-les, suprimir-les, limitar-ne o oposar-te al tractament i demanar-ne la portabilitat escrivint a {email}. També pots reclamar a l'Autoritat Catalana de Protecció de Dades (apdcat.gencat.cat)."
+            ]
+          }
+        ]
+      },
+      "cookies": {
+        "title": "Política de galetes",
+        "sections": [
+          {
+            "title": "Quines galetes fem servir",
+            "body": [
+              "Aquest web només fa servir galetes tècniques necessàries: la que manté la sessió oberta quan entres al teu compte i la que recorda l'idioma que has triat. No fem servir galetes de publicitat ni de seguiment."
+            ]
+          },
+          {
+            "title": "Estadístiques",
+            "body": [
+              "Si mesurem les visites, ho fem amb una eina que no fa servir galetes ni identifica les persones."
+            ]
+          },
+          {
+            "title": "Com desactivar-les",
+            "body": [
+              "Pots esborrar les galetes des de la configuració del navegador. Si ho fas, hauràs de tornar a entrar al teu compte."
+            ]
+          }
+        ]
+      },
+      "accessibilitat": {
+        "title": "Declaració d'accessibilitat",
+        "sections": [
+          {
+            "title": "El nostre compromís",
+            "body": [
+              "{name} vol que aquest web el pugui fer servir tothom. L'hem dissenyat seguint les pautes WCAG 2.2 de nivell AA: textos amb bon contrast, lletra pensada per a persones amb baixa visió, navegació amb teclat i compatibilitat amb lectors de pantalla."
+            ]
+          },
+          {
+            "title": "Limitacions conegudes",
+            "body": [
+              "Algunes fotos i documents antics poden no tenir una descripció completa. Els anem revisant."
+            ]
+          },
+          {
+            "title": "Si trobes un problema",
+            "body": [
+              "Escriu-nos a {email} o fes servir el formulari de contacte. Et respondrem i t'ajudarem a fer el tràmit d'una altra manera si cal."
+            ]
+          }
+        ]
+      }
     }
   }
 }
