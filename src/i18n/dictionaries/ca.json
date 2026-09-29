@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Família Amic",
+    "description": "Associació que lluita per la inclusió en el dia a dia de les persones amb discapacitat i les seves famílies."
+  },
+  "nav": {
+    "home": "Inici",
+    "association": "Associació",
+    "activities": "Activitats",
+    "news": "Notícies",
+    "resources": "Recursos",
+    "collaborate": "Col·labora",
+    "contact": "Contacte",
+    "login": "Accedir",
+    "menu": "Menú",
+    "language": "Idioma"
+  },
+  "home": {
+    "eyebrow": "Nova web en construcció",
+    "title": "Lluitem per la inclusió en el dia a dia dels nostres socis",
+    "lead": "Estem preparant una web nova on les famílies podran apuntar-se a les activitats, gestionar les seves dades i seguir totes les novetats de l'associació des d'un sol lloc.",
+    "contactCta": "Contacta amb nosaltres"
+  },
+  "footer": {
+    "contact": "Contacte",
+    "follow": "Segueix-nos",
+    "rights": "Tots els drets reservats."
+  },
+  "notFound": {
+    "title": "No hem trobat aquesta pàgina",
+    "body": "Pot ser que l'enllaç sigui antic o que la pàgina s'hagi mogut.",
+    "back": "Tornar a l'inici"
+  }
+}
