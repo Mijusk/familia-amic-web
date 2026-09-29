@@ -5,6 +5,7 @@ import { loadPage } from "@/i18n/page";
 import { freeSpots, getActivity, getSpots, isCurrent, listCategories, listEnrollments, monthEnd, todayLocal, upcomingSessions } from "@/lib/activities";
 import { priceText, scheduleText, spotsText } from "@/lib/activity-format";
 import { getCurrentUser } from "@/lib/auth";
+import { listNews, listPhotos, photoUrl } from "@/lib/content";
 import { getMembership, listParticipants } from "@/lib/data";
 import { EnrollForm } from "@/components/activities/enroll-form";
 
@@ -21,7 +22,13 @@ export default async function ActivityPage({ params }: PageProps<"/[lang]/activi
   if (!activity) notFound();
   const t = dict.activities;
 
-  const [spots, categories, user] = await Promise.all([getSpots(), listCategories(), getCurrentUser()]);
+  const [spots, categories, user, photos, news] = await Promise.all([
+    getSpots(),
+    listCategories(),
+    getCurrentUser(),
+    listPhotos(activity.id),
+    listNews({ activityId: activity.id, limit: 5 }),
+  ]);
   const free = freeSpots(activity, spots.get(activity.id));
   const category = categories.find((c) => c.id === activity.category_id);
   const today = todayLocal();
@@ -114,6 +121,44 @@ export default async function ActivityPage({ params }: PageProps<"/[lang]/activi
           )}
           <p className="mt-4 text-lg">{activity.summary}</p>
           {activity.description && <div className="mt-4 whitespace-pre-line text-muted">{activity.description}</div>}
+
+          {photos.length > 0 && (
+            <section className="mt-10" aria-labelledby="fotos" lang={lang}>
+              <h2 id="fotos" className="font-display text-2xl font-extrabold">
+                {t.photos}
+              </h2>
+              <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {photos.map((p) => (
+                  <li key={p.id}>
+                    <figure>
+                      <a href={photoUrl(p.path)} target="_blank" rel="noopener noreferrer">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- fotos de Storage, sin optimizador de imágenes */}
+                        <img src={photoUrl(p.path)} alt={p.caption || t.photoAlt} className="aspect-[4/3] w-full rounded-md object-cover" loading="lazy" />
+                      </a>
+                      {p.caption && <figcaption className="mt-1 text-sm text-muted">{p.caption}</figcaption>}
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {news.length > 0 && (
+            <section className="mt-10" aria-labelledby="noticies" lang={lang}>
+              <h2 id="noticies" className="font-display text-2xl font-extrabold">
+                {t.relatedNews}
+              </h2>
+              <ul className="mt-3 space-y-2">
+                {news.map((n) => (
+                  <li key={n.id}>
+                    <Link href={`/${lang}/noticies/${n.slug}`} className="font-semibold text-accent underline underline-offset-4" lang={n.lang}>
+                      {n.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
         </article>
 
         <aside className="space-y-6" lang={lang}>

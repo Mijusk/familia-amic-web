@@ -5,22 +5,27 @@ import { listAccounts, listAllActivities } from "@/lib/admin";
 import { requireAdmin } from "@/lib/auth";
 import { parsePeriod } from "@/lib/receipt-period";
 import { listReceipts } from "@/lib/receipts";
+import { listContactMessages, listVolunteerApplications } from "@/lib/content";
 import { PageHeader } from "@/components/page-header";
 
 export default async function AdminHome({ params }: PageProps<"/[lang]/admin">) {
   const { lang, dict } = await loadPage(params);
   await requireAdmin(lang, `/${lang}/admin`);
   const t = dict.admin.home;
-  const [accounts, activities, spots, receipts] = await Promise.all([
+  const [accounts, activities, spots, receipts, messages, volunteers] = await Promise.all([
     listAccounts(),
     listAllActivities(),
     getSpots(),
     listReceipts(parsePeriod(undefined, todayLocal())),
+    listContactMessages(),
+    listVolunteerApplications(),
   ]);
   const queued = [...spots.values()].reduce((n, s) => n + s.queued, 0);
 
   const cards = [
     { label: t.pendingMembers, value: accounts.filter((a) => a.membership_status === "pendent").length, href: `/${lang}/admin/families?filtre=pendent`, warn: true },
+    { label: t.unreadMessages, value: messages.filter((m) => !m.handled_at).length, href: `/${lang}/admin/missatges`, warn: true },
+    { label: t.newVolunteers, value: volunteers.filter((v) => v.status === "nova").length, href: `/${lang}/admin/voluntaris`, warn: true },
     { label: t.queued, value: queued, href: `/${lang}/admin/activitats`, warn: true },
     { label: t.pendingReceipts, value: receipts.filter((r) => r.status === "pendent").length, href: `/${lang}/admin/rebuts`, warn: true },
     { label: t.published, value: activities.filter((a) => a.status === "publicada").length, href: `/${lang}/admin/activitats` },

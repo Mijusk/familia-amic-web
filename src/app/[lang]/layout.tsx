@@ -5,6 +5,7 @@ import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 import "../globals.css";
 
 // Atkinson Hyperlegible está diseñada para personas con baja visión.
@@ -43,7 +44,8 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         <main id="contingut" className="flex-1">
           {children}
         </main>
-        <SiteFooter dict={dict} />
+        <SiteFooter lang={lang} dict={dict} />
+        <WhatsAppButton label={dict.nav.whatsapp} />
       </body>
     </html>
   );

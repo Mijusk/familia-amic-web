@@ -39,6 +39,7 @@ export default async function EditParticipantPage({ params, searchParams }: Page
           dependency_grade: p.dependency_grade?.toString() ?? "",
           allergies: p.allergies ?? "",
           medical_notes: p.medical_notes ?? "",
+          image_consent: p.image_consent,
           dniMasked: maskedDni(p.dni_encrypted),
         }}
       />

@@ -16,19 +16,50 @@
     "language": "Idioma",
     "account": "Mi cuenta",
     "logout": "Cerrar sesión",
-    "admin": "Panel"
+    "admin": "Panel",
+    "skip": "Saltar al contenido",
+    "tagline": "Unidos por la inclusión",
+    "whatsapp": "Escríbenos por WhatsApp"
   },
   "home": {
-    "eyebrow": "Nueva web en construcción",
-    "title": "Luchamos por la inclusión en el día a día de nuestros socios",
-    "lead": "Estamos preparando una web nueva donde las familias podrán apuntarse a las actividades, gestionar sus datos y seguir todas las novedades de la asociación desde un solo lugar.",
-    "contactCta": "Contacta con nosotros",
-    "registerCta": "Regístrate"
+    "eyebrow": "Família AMIC · Valldoreix",
+    "title": "Unidos por la inclusión",
+    "lead": "Somos una asociación sin ánimo de lucro que trabaja por la igualdad de oportunidades de las personas con discapacidad intelectual y sus familias: en la escuela, en el trabajo y en el ocio.",
+    "aboutCta": "Conócenos",
+    "memberCta": "Hazte socio",
+    "collaborateCta": "Colabora",
+    "whatTitle": "Qué hacemos",
+    "what": [
+      {
+        "title": "Actividades para todos",
+        "body": "Deportes, talleres, música, salidas y casales pensados para que cada persona participe a su ritmo."
+      },
+      {
+        "title": "Acompañamiento a las familias",
+        "body": "Orientación en educación, apoyo psicológico y asesoramiento legal en temas de discapacidad."
+      },
+      {
+        "title": "Formación y red",
+        "body": "Jornadas para familias y docentes, y trabajo conjunto con otras entidades por una escuela y una sociedad inclusivas."
+      }
+    ],
+    "activitiesTitle": "Próximas actividades",
+    "allActivities": "Todas las actividades",
+    "noActivities": "Pronto publicaremos las actividades del curso.",
+    "newsTitle": "Noticias",
+    "allNews": "Todas las noticias",
+    "volunteerTitle": "¿Quieres hacer voluntariado?",
+    "volunteerBody": "Amigos, familiares, estudiantes y profesionales nos ayudan cada semana. Te necesitamos en las actividades, en los casales y en la organización.",
+    "volunteerCta": "Apúntate como voluntario/a",
+    "donateTitle": "Haz un donativo",
+    "donateBody": "Cada aportación nos ayuda a mantener las actividades y las becas para las familias que lo necesitan.",
+    "donateCta": "Cómo colaborar"
   },
   "footer": {
     "contact": "Contacto",
     "follow": "Síguenos",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "legal": "Información legal"
   },
   "notFound": {
     "title": "No hemos encontrado esta página",
@@ -75,7 +106,9 @@
     "invalidTime": "La hora de final tiene que ser posterior a la de inicio.",
     "reviewForm": "Revisa los campos marcados en rojo.",
     "invalidPrice": "Escribe un importe en euros, por ejemplo 50 o 12,50.",
-    "invalidPercent": "Escribe un porcentaje entre 0 y 100."
+    "invalidPercent": "Escribe un porcentaje entre 0 y 100.",
+    "invalidUrl": "Escribe una dirección completa que empiece por https://",
+    "chooseOne": "Elige al menos una opción."
   },
   "auth": {
     "login": {
@@ -104,7 +137,12 @@
       "haveAccount": "¿Ya tienes cuenta?",
       "login": "Entra",
       "checkEmailTitle": "Mira tu correo",
-      "checkEmailBody": "Te hemos enviado un enlace para confirmar la cuenta a {email}. Ábrelo desde este mismo dispositivo. Si no lo ves, mira el correo no deseado."
+      "checkEmailBody": "Te hemos enviado un enlace para confirmar la cuenta a {email}. Ábrelo desde este mismo dispositivo. Si no lo ves, mira el correo no deseado.",
+      "volunteerTitle": "Regístrate como voluntario/a",
+      "volunteerLead": "Crea la cuenta y después cuéntanos en qué te gustaría ayudar. La asociación se pondrá en contacto contigo.",
+      "volunteerPrivacy": "Acepto que Família Amic trate estos datos para gestionar mi cuenta y mi solicitud de voluntariado.",
+      "switchToFamily": "¿Quieres apuntarte a las actividades? Crea una cuenta normal",
+      "switchToVolunteer": "¿Quieres hacer voluntariado? Crea una cuenta de voluntariado"
     },
     "forgot": {
       "title": "Recupera la contraseña",
@@ -149,9 +187,9 @@
       "membershipTitle": "Socio",
       "trialNote": "Cada participante puede probar una actividad una vez antes de hacerse socio."
     },
-    "volunteer": {
-      "title": "Cuenta de voluntario",
-      "body": "Pronto podrás completar aquí tu solicitud de voluntariado."
+    "admin": {
+      "title": "Cuenta de administración",
+      "body": "Esta cuenta gestiona la web. Para apuntarte a actividades, usa una cuenta aparte."
     }
   },
   "participants": {
@@ -189,7 +227,8 @@
     "deleteConfirmButton": "Sí, eliminar",
     "age": "{age} años",
     "dniSaved": "DNI guardado. Escríbelo de nuevo solo si quieres cambiarlo.",
-    "notFound": "Este participante no existe."
+    "notFound": "Este participante no existe.",
+    "imageConsent": "Autorizo que se publiquen fotos de las actividades en las que salga esta persona (web y redes de la asociación). Es opcional y se puede cambiar cuando quieras."
   },
   "membership": {
     "title": "Hazte socio",
@@ -294,7 +333,10 @@
       "prova_completa": "No quedan plazas para hacer la prueba."
     },
     "emailSent": "Te hemos enviado un correo con el resumen.",
-    "seeEnrollments": "Ver mis inscripciones"
+    "seeEnrollments": "Ver mis inscripciones",
+    "photos": "Fotos",
+    "photoAlt": "Foto de la actividad",
+    "relatedNews": "Noticias de esta actividad"
   },
   "enrollments": {
     "title": "Inscripciones",
@@ -330,7 +372,11 @@
     "unenrollSubject": "Baja: {name} de {activity}",
     "unenrollBody": "{family} ha dado de baja a {name} de {activity} el {date}. Estado anterior: {status}.",
     "promotedSubject": "Ya tenéis plaza en {activity}",
-    "promotedBody": "{name} ya tiene plaza confirmada en {activity}. Estaba en la lista de espera y la asociación le ha dado plaza."
+    "promotedBody": "{name} ya tiene plaza confirmada en {activity}. Estaba en la lista de espera y la asociación le ha dado plaza.",
+    "contactSubject": "Mensaje de contacto de {name}",
+    "contactBody": "Nuevo mensaje desde el formulario de la web.\n\nNombre: {name}\nCorreo: {email}\nTeléfono: {phone}\n\nPuedes responder directamente a este correo.",
+    "volunteerSubject": "Nueva solicitud de voluntariado: {name}",
+    "volunteerBody": "{name} ha enviado una solicitud de voluntariado.\n\nCorreo: {email}\nTeléfono: {phone}\n\nPuedes verla en el panel: {url}"
   },
   "receipts": {
     "title": "Recibos",
@@ -360,7 +406,11 @@
       "families": "Familias y socios",
       "admins": "Administradores",
       "log": "Registro",
-      "receipts": "Recibos"
+      "receipts": "Recibos",
+      "messages": "Mensajes",
+      "volunteers": "Voluntarios",
+      "news": "Noticias",
+      "resources": "Recursos"
     },
     "mfa": {
       "enrollTitle": "Activa la verificación en dos pasos",
@@ -380,7 +430,9 @@
       "published": "Actividades publicadas",
       "families": "Cuentas registradas",
       "see": "Ver",
-      "pendingReceipts": "Recibos de este mes por cobrar"
+      "pendingReceipts": "Recibos de este mes por cobrar",
+      "unreadMessages": "Mensajes de contacto por atender",
+      "newVolunteers": "Solicitudes de voluntariado nuevas"
     },
     "status": {
       "esborrany": "Borrador",
@@ -476,7 +528,8 @@
       "cancelConfirm": "¿Seguro que quieres dar de baja a {name}?",
       "cancelButton": "Sí, dar de baja",
       "confirmedMsg": "Plaza confirmada. Hemos avisado a la familia por correo.",
-      "cancelledMsg": "Baja hecha."
+      "cancelledMsg": "Baja hecha.",
+      "noPhotos": "Sin permiso de fotos"
     },
     "families": {
       "title": "Familias y socios",
@@ -547,7 +600,16 @@
         "receipts_paid": "Recibos marcados como cobrados",
         "receipts_view": "Consulta de la lista de recibos",
         "receipts_export": "Excel de recibos descargado",
-        "billing_settings": "Precios cambiados"
+        "billing_settings": "Precios cambiados",
+        "news_create": "Noticia creada",
+        "news_update": "Noticia editada",
+        "news_delete": "Noticia eliminada",
+        "resource_create": "Recurso creado",
+        "resource_update": "Recurso editado",
+        "resource_delete": "Recurso eliminado",
+        "photo_add": "Foto añadida",
+        "photo_delete": "Foto eliminada",
+        "volunteer_status": "Estado de voluntario"
       }
     },
     "receipts": {
@@ -591,6 +653,325 @@
       "discountHint": "Por participante, en cada actividad a partir de la segunda; la más cara va a precio completo. 0 = sin descuento.",
       "save": "Guardar precios",
       "saved": "Precios guardados."
+    },
+    "content": {
+      "saved": "Cambios guardados.",
+      "deleted": "Eliminado.",
+      "view": "Ver en la web",
+      "delete": "Eliminar",
+      "deleteConfirm": "¿Seguro que quieres eliminarlo? No se puede deshacer.",
+      "fTitle": "Título",
+      "fSlug": "Dirección (URL)",
+      "fSlugHint": "Se crea sola a partir del título. Cámbiala solo si hace falta.",
+      "fLang": "Idioma del texto",
+      "fSummary": "Resumen",
+      "fSummaryHint": "Una o dos frases. Sale en las listas.",
+      "fBody": "Texto",
+      "fBodyHint": "Deja una línea en blanco entre párrafos. \"## \" al principio hace un subtítulo, \"- \" hace una lista, **así** hace negrita y [texto](https://…) hace un enlace.",
+      "fStatus": "Estado",
+      "status": {
+        "esborrany": "Borrador (no se ve)",
+        "publicada": "Publicada"
+      }
+    },
+    "news": {
+      "title": "Noticias",
+      "new": "Nueva noticia",
+      "empty": "Todavía no hay ninguna noticia.",
+      "editTitle": "Editar noticia",
+      "created": "Noticia creada.",
+      "fDate": "Fecha",
+      "fImage": "Imagen (dirección)",
+      "fImageHint": "Dirección https de una imagen ya publicada. Opcional.",
+      "fActivity": "Actividad relacionada",
+      "noActivity": "Ninguna"
+    },
+    "resources": {
+      "title": "Recursos",
+      "lead": "Guías prácticas para las familias: temas legales, educación y salud.",
+      "new": "Nuevo recurso",
+      "empty": "Todavía no hay ningún recurso.",
+      "editTitle": "Editar recurso",
+      "created": "Recurso creado.",
+      "fCategory": "Tema",
+      "fPosition": "Orden",
+      "fPositionHint": "Los números más bajos salen primero.",
+      "fLink": "Enlace oficial",
+      "fLinkHint": "Página de la Generalitat, la Seguridad Social… Opcional."
+    },
+    "photos": {
+      "title": "Fotos",
+      "lead": "Las fotos se ven en la página de la actividad. Antes de subirlas, mira en la lista de inscritos quién no tiene permiso de fotos.",
+      "empty": "Todavía no hay ninguna foto.",
+      "deleteConfirm": "¿Seguro que quieres eliminar esta foto?",
+      "files": "Fotos",
+      "filesHint": "JPG, PNG o WebP, hasta 5 MB cada una. Puedes elegir varias a la vez.",
+      "caption": "Pie de foto",
+      "captionHint": "Describe la foto en pocas palabras (ayuda a las personas que no ven). Opcional.",
+      "upload": "Subir las fotos",
+      "uploading": "Subiendo…",
+      "uploaded": "{n} fotos subidas.",
+      "chooseFiles": "Elige al menos una foto.",
+      "invalidFile": "tiene que ser JPG, PNG o WebP y de 5 MB como máximo.",
+      "uploadError": "no se ha podido subir. Vuelve a intentarlo."
+    },
+    "messages": {
+      "title": "Mensajes de contacto",
+      "lead": "Lo que ha llegado por el formulario de contacto. También llega al correo de la asociación.",
+      "empty": "Todavía no ha llegado ningún mensaje.",
+      "pending": "Por atender",
+      "handledOn": "Atendido el {date}",
+      "markHandled": "Marcar como atendido",
+      "markPending": "Volver a por atender"
+    },
+    "volunteers": {
+      "title": "Voluntarios",
+      "lead": "Solicitudes enviadas desde las cuentas de voluntariado.",
+      "empty": "Todavía no ha llegado ninguna solicitud.",
+      "status": "Estado",
+      "statuses": {
+        "nova": "Nueva",
+        "contactada": "Contactada",
+        "activa": "Colabora",
+        "arxivada": "Archivada"
+      },
+      "withoutForm": "Cuentas sin solicitud",
+      "withoutFormLead": "Se han registrado como voluntarios pero todavía no han rellenado el formulario."
+    }
+  },
+  "volunteer": {
+    "formTitle": "Tu solicitud de voluntariado",
+    "formLead": "Cuéntanos cómo te gustaría ayudar. Cuando la envíes, la asociación se pondrá en contacto contigo.",
+    "areas": "¿Dónde te gustaría ayudar?",
+    "areasHint": "Puedes elegir varias.",
+    "areaNames": {
+      "activitats": "Actividades semanales",
+      "esports": "Deportes",
+      "casals": "Casales y colonias",
+      "tallers": "Talleres y música",
+      "comunicacio": "Comunicación y redes",
+      "administracio": "Administración y organización",
+      "altres": "Otras"
+    },
+    "availability": "Disponibilidad",
+    "availabilityHint": "Días y horas que te van bien (por ejemplo: sábados por la mañana).",
+    "experience": "Experiencia o formación",
+    "motivation": "¿Por qué quieres hacer voluntariado?",
+    "submit": "Enviar la solicitud",
+    "sent": "Solicitud enviada. La asociación se pondrá en contacto contigo pronto.",
+    "statusHelp": {
+      "nova": "Hemos recibido tu solicitud. La asociación se pondrá en contacto contigo pronto.",
+      "contactada": "La asociación ya ha hablado contigo. Puedes actualizar tus datos cuando quieras.",
+      "activa": "¡Gracias por colaborar con Família Amic! Puedes actualizar tus datos cuando quieras.",
+      "arxivada": "La solicitud está archivada. Si quieres volver a colaborar, actualízala o escribe a la asociación."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "lead": "Escríbenos y te responderemos lo antes posible. También puedes llamarnos o escribirnos por WhatsApp.",
+    "name": "Nombre y apellidos",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "privacy": "Acepto que Família Amic use estos datos solo para responder a mi mensaje.",
+    "submit": "Enviar",
+    "sending": "Enviando…",
+    "sentTitle": "Mensaje enviado",
+    "sentBody": "Gracias por escribirnos. Te responderemos al correo que nos has dado.",
+    "otherWays": "Otras formas de contactar"
+  },
+  "association": {
+    "title": "Asociación",
+    "lead": "Quiénes somos, qué defendemos y con quién trabajamos.",
+    "onThisPage": "En esta página",
+    "whoTitle": "Quiénes somos",
+    "who": [
+      "Família AMIC es una entidad sin ánimo de lucro cuyo principal objetivo es promover la igualdad de oportunidades y una mayor adquisición de derechos sociales e individuales de las personas con discapacidad intelectual y de sus familias.",
+      "Amigos, familiares, docentes, especialistas y voluntarios trabajamos cada día por la plena inclusión escolar, laboral y social de las personas con capacidades diferentes. Para conseguirlo, necesitamos tu colaboración."
+    ],
+    "registry": "Inscrita en el Registro de asociaciones de Cataluña con el número {generalitat} y en el Registro de entidades municipales con el número {municipal}.",
+    "rightsTitle": "Derechos del socio",
+    "rightsLead": "Los socios tienen derecho a:",
+    "rights": [
+      "Participar en la asamblea con voz y voto.",
+      "Inscripción gratuita a las jornadas de formación para familias y docentes.",
+      "Asesoramiento y orientación en educación.",
+      "Descuentos y bonificaciones con las entidades y los profesionales colaboradores.",
+      "Bonificación en todas las actividades.",
+      "Acceso a becas, con los requisitos que se establezcan.",
+      "Asesoramiento legal en temas de discapacidad.",
+      "Descuento en el encuentro bienal de familias de Down Catalunya."
+    ],
+    "networksTitle": "Formamos parte de",
+    "networks": [
+      "Coordinadora Down Catalunya, como entidad de pleno derecho.",
+      "Plataforma Ciudadana por una Escuela Inclusiva en Cataluña.",
+      "Mesa para personas con discapacidad del Ayuntamiento de Sant Cugat."
+    ],
+    "collaboratorsTitle": "Colaboradores",
+    "collaboratorsLead": "Gracias a las entidades, empresas y profesionales que nos apoyan:",
+    "transparencyTitle": "Transparencia",
+    "transparency": "Como entidad sin ánimo de lucro, nos comprometemos a hacer accesible la información sobre nuestra organización, la gestión económica y las actividades, de acuerdo con la Ley 19/2014 de transparencia, acceso a la información pública y buen gobierno.",
+    "reportsAsk": "Puedes pedir las memorias anuales de actividades en",
+    "complaintsTitle": "Canal de denuncias",
+    "complaints": "Si quieres comunicar una situación irregular o un problema, hazlo a través de este formulario. Lo trataremos con confidencialidad y lo antes posible.",
+    "complaintsCta": "Abrir el formulario"
+  },
+  "collaborate": {
+    "title": "Colabora",
+    "lead": "Hay muchas formas de ayudar a Família Amic. Todas cuentan.",
+    "memberTitle": "Hazte socio",
+    "memberBody": "Los socios participan en las actividades con bonificación, tienen voz y voto en la asamblea y reciben asesoramiento.",
+    "volunteerTitle": "Hazte voluntario/a",
+    "volunteerBody": "Danos un poco de tu tiempo en las actividades, en los casales o en la organización.",
+    "donateTitle": "Haz un donativo",
+    "donateBody": "Puedes hacer un donativo de la cantidad que quieras por Bizum.",
+    "iban": "Transferencia (IBAN)",
+    "donateNote": "Pon \"Donativo\" y tu nombre en el concepto. Si quieres el certificado para la declaración de la renta, escríbenos.",
+    "companies": "¿Eres una empresa o un comercio y quieres colaborar?",
+    "companiesCta": "Hablemos"
+  },
+  "news": {
+    "title": "Noticias",
+    "lead": "Lo que pasa en Família Amic: actividades, salidas y novedades para las familias.",
+    "empty": "Todavía no hay ninguna noticia.",
+    "back": "Todas las noticias",
+    "relatedActivity": "Esta noticia habla de la actividad"
+  },
+  "resources": {
+    "title": "Recursos",
+    "lead": "Guías prácticas sobre ayudas, trámites, educación y salud para las personas con discapacidad y sus familias.",
+    "filterLabel": "Filtra por tema",
+    "all": "Todos",
+    "categories": {
+      "legals": "Temas legales",
+      "educacio": "Educación",
+      "salut": "Salud"
+    },
+    "empty": "Todavía no hay ningún recurso en este tema.",
+    "officialLink": "Más información en la página oficial",
+    "help": "¿Tienes dudas con algún trámite?",
+    "helpCta": "Pregúntanos"
+  },
+  "legal": {
+    "updated": "Última actualización: septiembre de 2026",
+    "pages": {
+      "avis-legal": {
+        "title": "Aviso legal",
+        "sections": [
+          {
+            "title": "Titular de la web",
+            "body": [
+              "Esta web es de la asociación {name}, entidad sin ánimo de lucro inscrita en el Registro de asociaciones de Cataluña con el número {registry}, con domicilio en {address}. Correo de contacto: {email}."
+            ]
+          },
+          {
+            "title": "Uso de la web",
+            "body": [
+              "Quien usa esta web se compromete a hacerlo de buena fe y a no utilizarla para actividades ilícitas. La asociación puede retirar cuentas de las que se haga un mal uso."
+            ]
+          },
+          {
+            "title": "Contenidos",
+            "body": [
+              "Los textos, las imágenes y el logotipo son de {name} o se publican con permiso. No se pueden reproducir con fines comerciales sin autorización. Las guías de Recursos son orientativas: consulta siempre la información oficial de cada trámite."
+            ]
+          },
+          {
+            "title": "Enlaces",
+            "body": [
+              "Esta web enlaza páginas de otros organismos. La asociación no se hace responsable de su contenido."
+            ]
+          }
+        ]
+      },
+      "privacitat": {
+        "title": "Política de privacidad",
+        "sections": [
+          {
+            "title": "Quién trata tus datos",
+            "body": [
+              "{name}, con domicilio en {address}. Puedes escribirnos a {email} para cualquier cuestión sobre tus datos."
+            ]
+          },
+          {
+            "title": "Qué datos y para qué",
+            "body": [
+              "Los datos de la cuenta (nombre, teléfono, correo) sirven para gestionar las inscripciones a las actividades. Los datos de socio (DNI, domicilio y cuenta bancaria) sirven para gestionar la cuota y los recibos. Los datos de salud de los participantes (discapacidad, dependencia, alergias y observaciones) sirven solo para que las personas que organizan las actividades puedan hacerlas con seguridad. Los datos del formulario de contacto y de voluntariado sirven para responderte."
+            ]
+          },
+          {
+            "title": "Base legal",
+            "body": [
+              "Tu consentimiento, que das al marcar las casillas de cada formulario, y la relación de asociado cuando te haces socio. Los datos de salud se tratan con tu consentimiento explícito."
+            ]
+          },
+          {
+            "title": "Quién puede verlos",
+            "body": [
+              "Solo las personas de la asociación que gestionan las actividades y la administración, con verificación en dos pasos. El DNI y la cuenta bancaria se guardan cifrados. No cedemos datos a terceros, salvo al banco para cobrar los recibos y cuando lo exija la ley. Los datos se guardan en servidores de la Unión Europea."
+            ]
+          },
+          {
+            "title": "Cuánto tiempo",
+            "body": [
+              "Mientras tengas la cuenta o seas socio, y después el tiempo que exijan las obligaciones legales y contables."
+            ]
+          },
+          {
+            "title": "Tus derechos",
+            "body": [
+              "Puedes acceder a tus datos, rectificarlos, suprimirlos, limitar u oponerte a su tratamiento y pedir su portabilidad escribiendo a {email}. También puedes reclamar ante la Autoritat Catalana de Protecció de Dades (apdcat.gencat.cat)."
+            ]
+          }
+        ]
+      },
+      "cookies": {
+        "title": "Política de cookies",
+        "sections": [
+          {
+            "title": "Qué cookies usamos",
+            "body": [
+              "Esta web solo usa cookies técnicas necesarias: la que mantiene la sesión abierta cuando entras en tu cuenta y la que recuerda el idioma que has elegido. No usamos cookies de publicidad ni de seguimiento."
+            ]
+          },
+          {
+            "title": "Estadísticas",
+            "body": [
+              "Si medimos las visitas, lo hacemos con una herramienta que no usa cookies ni identifica a las personas."
+            ]
+          },
+          {
+            "title": "Cómo desactivarlas",
+            "body": [
+              "Puedes borrar las cookies desde la configuración del navegador. Si lo haces, tendrás que volver a entrar en tu cuenta."
+            ]
+          }
+        ]
+      },
+      "accessibilitat": {
+        "title": "Declaración de accesibilidad",
+        "sections": [
+          {
+            "title": "Nuestro compromiso",
+            "body": [
+              "{name} quiere que esta web la pueda usar todo el mundo. La hemos diseñado siguiendo las pautas WCAG 2.2 de nivel AA: textos con buen contraste, letra pensada para personas con baja visión, navegación con teclado y compatibilidad con lectores de pantalla."
+            ]
+          },
+          {
+            "title": "Limitaciones conocidas",
+            "body": [
+              "Algunas fotos y documentos antiguos pueden no tener una descripción completa. Los vamos revisando."
+            ]
+          },
+          {
+            "title": "Si encuentras un problema",
+            "body": [
+              "Escríbenos a {email} o usa el formulario de contacto. Te responderemos y te ayudaremos a hacer el trámite de otra manera si hace falta."
+            ]
+          }
+        ]
+      }
     }
   }
 }

@@ -121,6 +121,23 @@ No hay pago online. Cada mes, en Panell → Rebuts:
 Volver a calcular un mes solo rehace los recibos pendientes. Cada familia ve sus recibos en El meu compte →
 Rebuts, sin el IBAN completo.
 
+### Contenido: noticias, recursos, fotos, mensajes y voluntarios
+
+- **Contenido inicial:** después de aplicar las migraciones, ejecuta una vez `supabase/contingut-inicial.sql` en el
+  SQL Editor. Carga las noticias y las guías de Recursos copiadas de la web antigua (sin fotos, porque los enlaces
+  de la web antigua caducan). Se puede volver a ejecutar sin duplicar nada.
+- **Noticias y recursos** se escriben en Panell → Notícies / Recursos, en el idioma que se quiera. El texto admite
+  un formato sencillo que se explica debajo del campo (subtítulos, listas, negrita y enlaces).
+- **Fotos de actividades:** Panell → Activitats → (actividad) → Fotos. Se guardan en Supabase Storage, en el bucket
+  público `fotos` que crea la migración. Antes de subir fotos, la lista de inscritos marca quién no tiene permiso
+  de imagen (cada familia lo marca en la ficha del participante).
+- **Contacto:** los mensajes del formulario llegan a `ASSOCIATION_EMAIL` (o familiaamic@gmail.com) y quedan en
+  Panell → Missatges para marcarlos como atendidos.
+- **Voluntariado:** las personas voluntarias se registran en `/ca/registre?tipus=voluntari` (hay un enlace en el
+  registro normal y en Col·labora) y rellenan su solicitud en El meu compte. Llega un aviso por correo y aparece en
+  Panell → Voluntaris, donde se cambia su estado.
+- **Donativos:** el Bizum y, si se decide publicarlo, el IBAN de donativos están en `src/config/site.ts`.
+
 ### Actividades de prueba
 
 Las actividades se crean desde el panel. `supabase/seed.sql` tiene ejemplos que solo se cargan en la base
@@ -149,11 +166,14 @@ locales las muestra `npx supabase status`. Para ver los correos de la web en loc
 ```
 src/
   app/[lang]/        Páginas; [lang] es ca o es
-    activitats/      Listado y detalle de actividades, con la inscripción
+    activitats/      Listado y detalle de actividades, con la inscripción y las fotos
+    associacio/, collabora/, contacte/, noticies/, recursos/, legal/
+                     Páginas públicas de contenido
     compte/          Cuenta: resumen, participantes, inscripciones, ficha de socio
     admin/           Panel de administración (solo admins con verificación en dos pasos)
   components/        Cabecera, pie, formularios…
-  config/site.ts     Datos de contacto de la entidad
+  config/site.ts     Datos de contacto, Bizum y registros de la entidad
+  config/collaborators.ts  Entidades colaboradoras (página Associació)
   i18n/              Idiomas y textos (dictionaries/ca.json, es.json)
   lib/actions/       Server Actions de los formularios (registro, participantes, socio…)
   lib/crypto.ts      Cifrado de DNI e IBAN

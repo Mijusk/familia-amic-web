@@ -70,6 +70,8 @@ export async function saveParticipant(_prev: FormState, formData: FormData): Pro
     medical_notes: d.medical_notes,
     guardian_authorized_at: now,
     health_consent_at: now,
+    // Opcional: sin marcar, la persona no sale en las fotos que se publican.
+    image_consent: formData.get("image_consent") === "on",
     ...(dni ? { dni_encrypted: encrypt(normalizeDni(dni)) } : {}),
   };
 
