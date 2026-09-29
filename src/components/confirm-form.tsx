@@ -12,8 +12,8 @@ type Props = {
   cancel: string;
 };
 
-/** Botón de eliminar con confirmación en la propia página (sin diálogos del navegador). */
-export function DeleteParticipant({ action, lang, id, label, confirmText, confirmButton, cancel }: Props) {
+/** Botón que pide confirmación en la propia página antes de enviar (sin diálogos del navegador). */
+export function ConfirmForm({ action, lang, id, label, confirmText, confirmButton, cancel }: Props) {
   const [confirming, setConfirming] = useState(false);
 
   if (!confirming) {

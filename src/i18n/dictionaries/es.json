@@ -64,7 +64,9 @@
     "invalidNumber": "Escribe un número entre 0 y 100.",
     "consentRequired": "Tienes que aceptarlo para continuar.",
     "passwordMismatch": "Las contraseñas no coinciden.",
-    "tooLong": "El texto es demasiado largo."
+    "tooLong": "El texto es demasiado largo.",
+    "activityClosed": "Las inscripciones de esta actividad están cerradas.",
+    "participantInUse": "No se puede borrar: esta persona tiene inscripciones. Dalas de baja primero."
   },
   "auth": {
     "login": {
@@ -114,7 +116,8 @@
     "tabs": {
       "summary": "Resumen",
       "family": "Participantes",
-      "membership": "Socio"
+      "membership": "Socio",
+      "enrollments": "Inscripciones"
     },
     "myData": {
       "title": "Mis datos",
@@ -205,5 +208,110 @@
     "submit": "Enviar solicitud de socio",
     "update": "Guardar cambios",
     "sent": "Solicitud enviada. Te contactaremos cuando esté confirmada."
+  },
+  "activities": {
+    "title": "Actividades",
+    "lead": "Actividades semanales y salidas para todo el mundo. Elige una para ver el horario y apuntarte.",
+    "filterLabel": "Filtra por categoría",
+    "all": "Todas",
+    "empty": "Ahora mismo no hay actividades en esta categoría.",
+    "weekdays": [
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado",
+      "Domingo"
+    ],
+    "everyWeekday": "Cada {weekday}, de {start} a {end}",
+    "spotsLeft": "Quedan {n} plazas",
+    "oneSpotLeft": "Queda 1 plaza",
+    "full": "Completa · lista de espera",
+    "noLimit": "Plazas sin límite",
+    "pricePerMonth": "{price} al mes",
+    "pricePerEvent": "{price} por persona",
+    "free": "Gratuita",
+    "paymentRebut": "Se cobra con el recibo mensual domiciliado.",
+    "paymentTransferencia": "Se paga por Bizum o transferencia.",
+    "closedStatus": {
+      "cancellada": "Cancelada",
+      "finalitzada": "Finalizada"
+    },
+    "back": "Volver a actividades",
+    "when": "Cuándo",
+    "where": "Dónde",
+    "price": "Precio",
+    "spots": "Plazas",
+    "category": "Categoría",
+    "from": "Desde el {date}",
+    "enrollTitle": "Apúntate",
+    "enrollClosed": "Las inscripciones de esta actividad están cerradas.",
+    "loginToEnroll": "Entra en tu cuenta para apuntarte.",
+    "login": "Entrar",
+    "register": "Regístrate",
+    "notFamily": "Las inscripciones se hacen desde una cuenta de familia.",
+    "noParticipants": "Primero añade a las personas que vendrán a las actividades.",
+    "addParticipant": "Añadir participante",
+    "whoLabel": "¿Quién se apunta?",
+    "alreadyIn": "Ya está apuntado/a",
+    "inQueue": "En la lista de espera",
+    "renewLabel": "Duración",
+    "renewMonthly": "Renovar cada mes hasta que me dé de baja",
+    "renewOnce": "Solo este mes (termina el {date})",
+    "trialTitle": "Sesión de prueba",
+    "trialBody": "Para venir a las actividades hay que ser socio. Antes, cada participante puede probar una sesión gratis.",
+    "trialDate": "Día de la prueba",
+    "becomeMember": "Hazte socio",
+    "submit": "Apuntar",
+    "submitTrial": "Reservar la prueba",
+    "noneSelected": "Elige al menos una persona.",
+    "fullWarning": "Ahora no quedan plazas: las personas que apuntes entrarán en la lista de espera.",
+    "resultsTitle": "Resultado de la inscripción",
+    "results": {
+      "confirmada": "Plaza confirmada.",
+      "cua": "En la lista de espera. Todavía no tiene plaza: te avisaremos si se libera una.",
+      "prova": "Prueba reservada para el {date}.",
+      "ja_inscrit": "Ya estaba apuntado/a.",
+      "cal_ser_soci": "Hay que ser socio para apuntarse.",
+      "prova_usada": "Ya ha hecho la sesión de prueba. Para continuar hay que hacerse socio.",
+      "prova_completa": "No quedan plazas para hacer la prueba."
+    },
+    "emailSent": "Te hemos enviado un correo con el resumen.",
+    "seeEnrollments": "Ver mis inscripciones"
+  },
+  "enrollments": {
+    "title": "Inscripciones",
+    "lead": "Las actividades a las que están apuntadas las personas de tu cuenta.",
+    "empty": "Todavía no te has apuntado a ninguna actividad.",
+    "browse": "Ver actividades",
+    "current": "Actuales",
+    "past": "Anteriores",
+    "status": {
+      "confirmada": "Plaza confirmada",
+      "cua": "Lista de espera",
+      "prova": "Sesión de prueba",
+      "baixa": "Baja",
+      "acabada": "Terminada"
+    },
+    "queuePosition": "Posición {n} en la lista de espera",
+    "trialOn": "Prueba el {date}",
+    "renews": "Se renueva cada mes",
+    "endsOn": "Hasta el {date}",
+    "unenroll": "Dar de baja",
+    "unenrollConfirm": "¿Seguro que quieres dar de baja a {name} de {activity}? Si es una actividad mensual, este mes todavía se cobra.",
+    "unenrollButton": "Sí, dar de baja",
+    "unenrolled": "Baja hecha. Hemos avisado a la asociación."
+  },
+  "emails": {
+    "greeting": "Hola, {name}:",
+    "enrollSubject": "Inscripción a {activity}",
+    "enrollIntro": "Este es el resumen de tu inscripción a {activity}:",
+    "queueNote": "Las personas en la lista de espera todavía NO tienen plaza. Si se libera una, la asociación os avisará.",
+    "paymentNote": "Cómo pagar: {notes}",
+    "manage": "Puedes ver y gestionar las inscripciones en tu cuenta: {url}",
+    "signature": "Família Amic · Units per la inclusió",
+    "unenrollSubject": "Baja: {name} de {activity}",
+    "unenrollBody": "{family} ha dado de baja a {name} de {activity} el {date}. Estado anterior: {status}."
   }
 }

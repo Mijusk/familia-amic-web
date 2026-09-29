@@ -10,6 +10,7 @@ export async function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionar
   // Solo se enlazan secciones que ya existen; el resto se añade en su fase.
   const nav = [
     { href: `/${lang}`, label: dict.nav.home },
+    { href: `/${lang}/activitats`, label: dict.nav.activities },
     { href: "#contacte", label: dict.nav.contact },
   ];
 

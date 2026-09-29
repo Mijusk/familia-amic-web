@@ -16,6 +16,7 @@ export default async function AccountLayout({ children, params }: LayoutProps<"/
       ? [
           { href: `/${lang}/compte`, label: t.tabs.summary },
           { href: `/${lang}/compte/familia`, label: t.tabs.family },
+          { href: `/${lang}/compte/inscripcions`, label: t.tabs.enrollments },
           { href: `/${lang}/compte/soci`, label: t.tabs.membership },
         ]
       : [{ href: `/${lang}/compte`, label: t.tabs.summary }];
