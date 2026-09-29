@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* Paleta de Família Amic. Colores como tokens para poder ajustar la marca en un solo sitio. */
+:root {
+  --background: #f7f8f6;
+  --surface: #ffffff;
+  --foreground: #1d2a33;
+  --muted: #56666e;
+  --line: #dde3e0;
+  --accent: #1f6f63;
+  --accent-contrast: #ffffff;
+  --accent-soft: #e3f1ee;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121a1e;
+    --surface: #19242a;
+    --foreground: #e4ebe8;
+    --muted: #9aaab0;
+    --line: #2b3a40;
+    --accent: #5cc2ae;
+    --accent-contrast: #0e1a17;
+    --accent-soft: #183a35;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-soft: var(--accent-soft);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Foco siempre visible para navegación con teclado. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
