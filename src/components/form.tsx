@@ -85,7 +85,10 @@ export function Select({
   return (
     <div>
       <Label label={label} name={name} required={props.required} optionalLabel={optionalLabel} />
+      {/* La key vuelve a montar el select cuando cambia el valor por defecto: tras un error, React 19 limpia el
+          formulario y un select no recupera solo lo que se había elegido. */}
       <select
+        key={String(props.defaultValue ?? "")}
         id={name}
         name={name}
         aria-invalid={error ? true : undefined}

@@ -2,7 +2,7 @@ import "server-only";
 import { createClient } from "@/lib/supabase/server";
 import { getSupabaseEnv } from "@/lib/supabase/env";
 
-export type Category = { id: string; slug: string; name_ca: string; name_es: string };
+export type Category = { id: string; slug: string; name_ca: string; name_es: string; sort_order: number };
 
 export type Activity = {
   id: string;
@@ -61,7 +61,7 @@ export async function listCategories() {
   // Sin Supabase configurado la web arranca igual, con las listas vacías.
   if (!getSupabaseEnv()) return [];
   const supabase = await createClient();
-  const { data } = await supabase.from("categories").select("id, slug, name_ca, name_es").order("sort_order").returns<Category[]>();
+  const { data } = await supabase.from("categories").select("id, slug, name_ca, name_es, sort_order").order("sort_order").order("name_ca").returns<Category[]>();
   return data ?? [];
 }
 

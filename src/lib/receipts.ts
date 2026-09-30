@@ -8,7 +8,7 @@ export const receiptStatuses: ReceiptStatus[] = ["pendent", "cobrat", "retornat"
 export type ReceiptLine = {
   id: number;
   position: number;
-  kind: "quota" | "activitat" | "descompte";
+  kind: "quota" | "activitat" | "descompte" | "ajust";
   activity_title: string | null;
   participant_name: string | null;
   discount_pct: number | null;
@@ -27,6 +27,20 @@ export type Receipt = {
   iban_last4: string;
   receipt_lines: ReceiptLine[];
 };
+
+/** Línea extra que un admin añade a mano al recibo de una familia (cargo o descuento). */
+export type ReceiptAdjustment = { id: string; family_id: string; period: string; concept: string; amount_cents: number; profiles: { full_name: string } | null };
+
+export async function listAdjustments(period: string) {
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("receipt_adjustments")
+    .select("id, family_id, period, concept, amount_cents, profiles!receipt_adjustments_family_id_fkey(full_name)")
+    .eq("period", period)
+    .order("created_at")
+    .returns<ReceiptAdjustment[]>();
+  return data ?? [];
+}
 
 export type BillingSettings = { membership_fee_cents: number | null; multi_activity_discount_pct: number };
 
