@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { saveNews } from "@/lib/actions/content";
+import { saveProject } from "@/lib/actions/content";
 import { initialFormState } from "@/lib/forms";
 import { Alert, Field, Select, SubmitButton, TextArea } from "@/components/form";
 import { ImageInput } from "./image-input";
@@ -10,17 +10,16 @@ import { ImageInput } from "./image-input";
 type Props = {
   lang: string;
   initial: Record<string, string> & { id?: string };
-  activities: { id: string; title: string }[];
   created?: boolean;
-  t: Dictionary["admin"]["news"];
+  t: Dictionary["admin"]["projects"];
   content: Dictionary["admin"]["content"];
   image: Dictionary["admin"]["image"];
   errors: Dictionary["errors"];
   common: Dictionary["common"];
 };
 
-export function NewsForm({ lang, initial, activities, created, t, content, image, errors, common }: Props) {
-  const [state, action, pending] = useActionState(saveNews, initialFormState);
+export function ProjectForm({ lang, initial, created, t, content, image, errors, common }: Props) {
+  const [state, action, pending] = useActionState(saveProject, initialFormState);
   const v = { ...initial, ...state.values };
   const fe = state.fieldErrors ?? {};
   const err = (name: string) => (fe[name] ? errors[fe[name]!] : undefined);
@@ -33,7 +32,8 @@ export function NewsForm({ lang, initial, activities, created, t, content, image
       {!state.error && Object.keys(fe).length > 0 && <Alert tone="error">{errors.reviewForm}</Alert>}
       {(state.status === "success" || (created && state.status === "idle")) && <Alert tone="success">{created && state.status === "idle" ? t.created : content.saved}</Alert>}
 
-      <Field label={content.fTitle} name="title" required defaultValue={v.title} error={err("title")} />
+      <Field label={content.fTitle} name="title" required maxLength={120} defaultValue={v.title} error={err("title")} />
+      <Field label={t.fSubtitle} name="subtitle" maxLength={200} hint={t.fSubtitleHint} optionalLabel={common.optional} defaultValue={v.subtitle} error={err("subtitle")} />
       <div className="grid gap-5 sm:grid-cols-3">
         <Field label={content.fSlug} name="slug" defaultValue={v.slug} hint={content.fSlugHint} optionalLabel={common.optional} error={err("slug")} />
         <Select
@@ -45,17 +45,10 @@ export function NewsForm({ lang, initial, activities, created, t, content, image
             { value: "es", label: "Castellano" },
           ]}
         />
-        <Field label={t.fDate} name="published_on" type="date" required defaultValue={v.published_on} error={err("published_on")} />
+        <Field label={t.fPosition} name="position" inputMode="numeric" hint={t.fPositionHint} optionalLabel={common.optional} defaultValue={v.position} error={err("position")} />
       </div>
-      <TextArea label={content.fSummary} name="summary" required maxLength={400} rows={2} hint={content.fSummaryHint} defaultValue={v.summary} error={err("summary")} />
-      <TextArea label={content.fBody} name="body" maxLength={20000} rows={14} hint={content.fBodyHint} optionalLabel={common.optional} defaultValue={v.body} error={err("body")} />
       <ImageInput label={t.fImage} name="image_url" optionalLabel={common.optional} defaultValue={v.image_url} error={err("image_url")} t={image} />
-      <Select
-        label={t.fActivity}
-        name="activity_id"
-        defaultValue={v.activity_id}
-        options={[{ value: "", label: t.noActivity }, ...activities.map((a) => ({ value: a.id, label: a.title }))]}
-      />
+      <TextArea label={t.fBody} name="body" maxLength={20000} rows={14} hint={content.fBodyHint} optionalLabel={common.optional} defaultValue={v.body} error={err("body")} />
       <Select
         label={content.fStatus}
         name="status"

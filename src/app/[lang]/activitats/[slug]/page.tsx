@@ -108,6 +108,10 @@ export default async function ActivityPage({ params }: PageProps<"/[lang]/activi
       </Link>
       <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_22rem]">
         <article lang={activity.lang}>
+          {activity.image_url && (
+            // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
+            <img src={activity.image_url} alt="" className="mb-6 aspect-[16/9] w-full rounded-lg object-cover" />
+          )}
           {category && (
             <p className="text-sm font-semibold uppercase tracking-wider text-accent" lang={lang}>
               {lang === "es" ? category.name_es : category.name_ca}

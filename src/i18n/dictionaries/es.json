@@ -6,12 +6,14 @@
   "nav": {
     "home": "Inicio",
     "association": "Asociación",
+    "projects": "Proyectos",
     "activities": "Actividades",
     "news": "Noticias",
     "resources": "Recursos",
     "collaborate": "Colabora",
     "contact": "Contacto",
     "login": "Acceder",
+    "register": "Regístrate",
     "menu": "Menú",
     "language": "Idioma",
     "account": "Mi cuenta",
@@ -411,6 +413,7 @@
       "receipts": "Recibos",
       "messages": "Mensajes",
       "volunteers": "Voluntarios",
+      "projects": "Proyectos",
       "news": "Noticias",
       "resources": "Recursos"
     },
@@ -466,6 +469,7 @@
       "fSummary": "Resumen",
       "fSummaryHint": "Una o dos frases para la lista de actividades.",
       "fDescription": "Descripción completa",
+      "fImage": "Imagen de portada",
       "fCategory": "Categoría",
       "noCategory": "Sin categoría",
       "fKind": "Tipo",
@@ -616,7 +620,10 @@
         "receipt_adjust_delete": "Ajuste de recibo eliminado",
         "category_create": "Categoría creada",
         "category_update": "Categoría editada",
-        "category_delete": "Categoría eliminada"
+        "category_delete": "Categoría eliminada",
+        "project_create": "Proyecto creado",
+        "project_update": "Proyecto modificado",
+        "project_delete": "Proyecto eliminado"
       }
     },
     "receipts": {
@@ -700,10 +707,27 @@
       "editTitle": "Editar noticia",
       "created": "Noticia creada.",
       "fDate": "Fecha",
-      "fImage": "Imagen (dirección)",
-      "fImageHint": "Dirección https de una imagen ya publicada. Opcional.",
+      "fImage": "Imagen",
       "fActivity": "Actividad relacionada",
       "noActivity": "Ninguna"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "lead": "Páginas informativas de los proyectos de la asociación, con portada y galería de fotos.",
+      "new": "Nuevo proyecto",
+      "empty": "Todavía no hay ningún proyecto.",
+      "editTitle": "Editar proyecto",
+      "created": "Proyecto creado. Ahora puedes añadir fotos a la galería.",
+      "fSubtitle": "Subtítulo",
+      "fSubtitleHint": "Una frase que resume el proyecto. Sale bajo el título y en la lista.",
+      "fPosition": "Orden",
+      "fPositionHint": "Los números más bajos salen primero.",
+      "positionShort": "Orden",
+      "fImage": "Imagen de portada",
+      "fBody": "Descripción",
+      "gallery": "Galería de fotos",
+      "galleryLead": "Las fotos salen en la página del proyecto. Antes de subirlas, comprueba que las personas que aparecen tienen permiso de fotos.",
+      "deleteConfirm": "¿Seguro que quieres eliminar este proyecto y todas sus fotos? No se puede deshacer."
     },
     "resources": {
       "title": "Recursos",
@@ -733,6 +757,17 @@
       "chooseFiles": "Elige al menos una foto.",
       "invalidFile": "tiene que ser JPG, PNG o WebP y de 5 MB como máximo.",
       "uploadError": "no se ha podido subir. Vuelve a intentarlo."
+    },
+    "image": {
+      "hint": "JPG, PNG o WebP, hasta 5 MB. Sale arriba de la página y en las listas. Mejor horizontal y sin caras de personas sin permiso de fotos.",
+      "preview": "Vista previa de la imagen",
+      "choose": "Subir una imagen",
+      "change": "Cambiar la imagen",
+      "remove": "Quitar la imagen",
+      "uploading": "Subiendo…",
+      "invalidFile": "debe ser JPG, PNG o WebP y de 5 MB como máximo.",
+      "uploadError": "no se ha podido subir. Vuelve a intentarlo.",
+      "pasteUrl": "O pega la dirección de una imagen ya publicada"
     },
     "messages": {
       "title": "Mensajes de contacto",
@@ -871,6 +906,20 @@
     "empty": "Todavía no hay ninguna noticia.",
     "back": "Todas las noticias",
     "relatedActivity": "Esta noticia habla de la actividad"
+  },
+  "projects": {
+    "title": "Proyectos",
+    "lead": "Los proyectos que hacen crecer Família Amic: espacios donde las personas con discapacidad y sus familias aprenden, disfrutan y participan.",
+    "empty": "Pronto explicaremos aquí nuestros proyectos.",
+    "discover": "Descubre el proyecto",
+    "back": "Todos los proyectos",
+    "eyebrow": "Proyecto",
+    "ctaTitle": "¿Quieres participar?",
+    "ctaBody": "Escríbenos y te contamos cómo funciona y cómo puedes formar parte.",
+    "ctaButton": "Contáctanos",
+    "photos": "Fotos",
+    "photoAlt": "Foto del proyecto",
+    "others": "Otros proyectos"
   },
   "resources": {
     "title": "Recursos",

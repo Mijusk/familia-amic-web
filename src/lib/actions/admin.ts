@@ -50,6 +50,7 @@ export async function saveActivity(_prev: FormState, formData: FormData): Promis
     lang: d.lang_text,
     summary: d.summary,
     description: d.description,
+    image_url: d.image_url,
     category_id: d.category_id,
     kind: d.kind,
     weekday: recurrent ? Number(d.weekday) : null,

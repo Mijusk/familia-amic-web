@@ -63,16 +63,22 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
           ) : (
             <ul className="mt-6 grid gap-5 sm:grid-cols-3">
               {activities.slice(0, 3).map((a) => (
-                <li key={a.id} className="relative rounded-lg border border-line bg-background p-5 hover:shadow-md">
-                  <h3 className="font-display text-xl font-extrabold" lang={a.lang}>
-                    <Link href={`/${lang}/activitats/${a.slug}`} className="after:absolute after:inset-0">
-                      {a.title}
-                    </Link>
-                  </h3>
-                  <p className="mt-2 font-semibold">{scheduleText(lang, dict.activities, a)}</p>
-                  <p className="mt-1 text-muted" lang={a.lang}>
-                    {a.summary}
-                  </p>
+                <li key={a.id} className="relative overflow-hidden rounded-lg border border-line bg-background hover:shadow-md">
+                  {a.image_url && (
+                    // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
+                    <img src={a.image_url} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
+                  )}
+                  <div className="p-5">
+                    <h3 className="font-display text-xl font-extrabold" lang={a.lang}>
+                      <Link href={`/${lang}/activitats/${a.slug}`} className="after:absolute after:inset-0">
+                        {a.title}
+                      </Link>
+                    </h3>
+                    <p className="mt-2 font-semibold">{scheduleText(lang, dict.activities, a)}</p>
+                    <p className="mt-1 text-muted" lang={a.lang}>
+                      {a.summary}
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>

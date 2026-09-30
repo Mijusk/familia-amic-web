@@ -38,6 +38,7 @@ export default async function NewActivity({ params }: PageProps<"/[lang]/admin/a
         categories={categories.map((c) => ({ id: c.id, name: lang === "es" ? c.name_es : c.name_ca }))}
         t={t}
         status={dict.admin.status}
+        image={dict.admin.image}
         weekdays={dict.activities.weekdays}
         errors={dict.errors}
         common={dict.common}

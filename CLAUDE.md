@@ -13,6 +13,8 @@
 
 Fases 0-5 de `docs/alcance-v1.md` hechas y fusionadas en `main`: cuentas, actividades con cola y prueba, panel con 2FA, recibos manuales (CaixaBank + Excel) y contenido (portada, Associació, noticias, recursos, contacto, voluntariado, fotos, legales).
 Después: ajustes manuales de recibos, categorías editables en el panel, estadísticas sin cookies (Umami, opcional por variable de entorno), sitemap y robots.
+Después: sección Projectes (editable en el panel, con portada y galería), imagen de portada subida desde el panel en noticias y actividades (`src/components/admin/image-input.tsx`), menú hamburguesa en todas las pantallas y botón "Accedir" siempre visible en la cabecera.
+La web ya está publicada en Vercel (se despliega sola con cada push a `main`).
 Falta el lanzamiento (Vercel, correo con Gmail, dominio desde IONOS) y, al final, el cambio estético. Luis quiere cerrar primero todo lo funcional.
 
 ## Decisiones de negocio confirmadas por Luis
@@ -31,4 +33,5 @@ Falta el lanzamiento (Vercel, correo con Gmail, dominio desde IONOS) y, al final
 - Textos: lenguaje inclusivo ("Registra't", nunca "registra a tu familia"; la cuenta es de la persona adulta responsable o de quien la gestione).
 - Sin pago online en la V1.
 - Contenido real con nombres de personas (junta, equipo, familias) no se sube al repo.
+- Imágenes: bucket público `fotos` de Supabase Storage; el navegador del admin sube el fichero y la base de datos guarda la ruta o la dirección. Para probar Storage en local, cambia temporalmente `[storage] enabled = true` en `supabase/config.toml` (no lo subas).
 - Pruebas: `npm test` (vitest). Supabase local con `npx supabase start` y `npx supabase db reset` (Storage puede no arrancar en local; la migración de fotos lo tolera).

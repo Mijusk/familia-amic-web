@@ -18,6 +18,7 @@ export default async function NewNews({ params }: PageProps<"/[lang]/admin/notic
         activities={activities.map((a) => ({ id: a.id, title: a.title }))}
         t={dict.admin.news}
         content={dict.admin.content}
+        image={dict.admin.image}
         errors={dict.errors}
         common={dict.common}
       />

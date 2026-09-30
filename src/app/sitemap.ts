@@ -1,16 +1,17 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/config";
 import { listActivities } from "@/lib/activities";
-import { listNews, listResources } from "@/lib/content";
+import { listNews, listProjects, listResources } from "@/lib/content";
 import { siteUrl } from "@/lib/site-url";
 
 // Páginas públicas, en los dos idiomas. Las de cuenta y panel quedan fuera (y bloqueadas en robots).
-const pages = ["", "/associacio", "/activitats", "/noticies", "/recursos", "/collabora", "/contacte", "/legal/avis-legal", "/legal/privacitat", "/legal/cookies", "/legal/accessibilitat"];
+const pages = ["", "/associacio", "/projectes", "/activitats", "/noticies", "/recursos", "/collabora", "/contacte", "/legal/avis-legal", "/legal/privacitat", "/legal/cookies", "/legal/accessibilitat"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [activities, news, resources] = await Promise.all([listActivities(), listNews(), listResources()]);
+  const [activities, news, resources, projects] = await Promise.all([listActivities(), listNews(), listResources(), listProjects()]);
   const paths: { path: string; lastModified?: string }[] = [
     ...pages.map((path) => ({ path })),
+    ...projects.map((p) => ({ path: `/projectes/${p.slug}` })),
     ...activities.map((a) => ({ path: `/activitats/${a.slug}` })),
     ...news.map((n) => ({ path: `/noticies/${n.slug}`, lastModified: n.published_on })),
     ...resources.map((r) => ({ path: `/recursos/${r.slug}` })),
