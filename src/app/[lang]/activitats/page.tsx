@@ -3,6 +3,7 @@ import Link from "next/link";
 import { loadPage } from "@/i18n/page";
 import { freeSpots, getSpots, listActivities, listCategories } from "@/lib/activities";
 import { priceText, scheduleText, spotsText } from "@/lib/activity-format";
+import { Cover } from "@/components/content/cover";
 import { PageHeader } from "@/components/page-header";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/activitats">): Promise<Metadata> {
@@ -28,7 +29,7 @@ export default async function ActivitiesPage({ params, searchParams }: PageProps
     }`;
 
   return (
-    <div className="mx-auto max-w-5xl space-y-8 px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-6xl space-y-8 px-4 py-10 sm:px-6">
       <PageHeader title={t.title} lead={t.lead} />
 
       <nav aria-label={t.filterLabel}>
@@ -59,27 +60,26 @@ export default async function ActivitiesPage({ params, searchParams }: PageProps
           {activities.map((a) => {
             const free = freeSpots(a, spots.get(a.id));
             return (
-              <li key={a.id} className="relative flex flex-col overflow-hidden rounded-lg border border-line border-t-4 border-t-brand bg-surface hover:shadow-md">
-                {a.image_url && (
-                  // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
-                  <img src={a.image_url} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
-                )}
-                <div className="flex flex-1 flex-col p-5">
+              <li key={a.id} className="group relative flex flex-col overflow-hidden rounded-xl bg-surface shadow-sm ring-1 ring-line transition-shadow hover:shadow-lg hover:shadow-brand/10">
+                <div className="p-5 pb-4">
                   {categoryName(a.category_id) && (
                     <p className="text-sm font-semibold uppercase tracking-wider text-accent">{categoryName(a.category_id)}</p>
                   )}
-                  <h2 className="mt-1 font-display text-2xl font-extrabold" lang={a.lang}>
+                  <h2 className="mt-1 font-display text-2xl font-extrabold leading-snug" lang={a.lang}>
                     <Link href={`/${lang}/activitats/${a.slug}`} className="after:absolute after:inset-0">
                       {a.title}
                     </Link>
                   </h2>
-                  <p className="mt-2 text-muted" lang={a.lang}>
+                </div>
+                <Cover src={a.image_url} tone={a.kind === "puntual" ? "warm" : "mint"} />
+                <div className="flex flex-1 flex-col p-5 pt-4">
+                  <p className="text-muted" lang={a.lang}>
                     {a.summary}
                   </p>
                   <dl className="mt-4 space-y-1 text-[0.95rem]">
                     <div>
                       <dt className="sr-only">{t.when}</dt>
-                      <dd className="font-semibold">{scheduleText(lang, t, a)}</dd>
+                      <dd className="font-semibold text-accent">{scheduleText(lang, t, a)}</dd>
                     </div>
                     {a.location && (
                       <div>

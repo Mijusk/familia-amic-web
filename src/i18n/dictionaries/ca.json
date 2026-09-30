@@ -354,7 +354,6 @@
     },
     "emailSent": "T'hem enviat un correu amb el resum.",
     "seeEnrollments": "Veure les meves inscripcions",
-    "photos": "Fotos",
     "photoAlt": "Foto de l'activitat",
     "relatedNews": "Notícies d'aquesta activitat"
   },
@@ -950,7 +949,9 @@
     "lead": "El que passa a Família Amic: activitats, sortides i novetats per a les famílies.",
     "empty": "Encara no hi ha cap notícia.",
     "back": "Totes les notícies",
-    "relatedActivity": "Aquesta notícia parla de l'activitat"
+    "date": "Data",
+    "photoAlt": "Foto de la notícia",
+    "activityLabel": "Activitat"
   },
   "projects": {
     "title": "Projectes",
@@ -1101,5 +1102,14 @@
         ]
       }
     }
+  },
+  "gallery": {
+    "region": "Fotos",
+    "prev": "Foto anterior",
+    "next": "Foto següent",
+    "open": "Veure en gran",
+    "close": "Tancar",
+    "counter": "{n} de {total}",
+    "thumb": "Foto {n} de {total}"
   }
 }

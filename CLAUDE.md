@@ -14,8 +14,9 @@
 Fases 0-5 de `docs/alcance-v1.md` hechas y fusionadas en `main`: cuentas, actividades con cola y prueba, panel con 2FA, recibos manuales (CaixaBank + Excel) y contenido (portada, Associació, noticias, recursos, contacto, voluntariado, fotos, legales).
 Después: ajustes manuales de recibos, categorías editables en el panel, estadísticas sin cookies (Umami, opcional por variable de entorno), sitemap y robots.
 Después: sección Projectes (editable en el panel, con portada y galería), imagen de portada subida desde el panel en noticias y actividades (`src/components/admin/image-input.tsx`), menú hamburguesa en todas las pantallas y botón "Accedir" siempre visible en la cabecera.
+Después (cambio estético, PR "Inicio nuevo"): colores claros y siempre en modo claro (sin modo oscuro), inicio con fotos que pasan (Panell → Portada, tabla `home_slides`), destacados con fechas `featured_from`/`featured_until` en noticias y actividades, filas de tarjetas que avanzan solas (`src/components/home/`), galería de fotos también en noticias (`news_photos`) y visor con flechas y ventana en grande (`src/components/content/gallery.tsx`). En listados y detalles el orden es título → portada → subtítulo. Falta el logo (Luis lo enviará).
 La web ya está publicada en Vercel (se despliega sola con cada push a `main`).
-Falta el lanzamiento (Vercel, correo con Gmail, dominio desde IONOS) y, al final, el cambio estético. Luis quiere cerrar primero todo lo funcional.
+Falta el lanzamiento (dominio desde IONOS) y poner el logo. Vercel y el correo con Gmail ya funcionan.
 
 ## Decisiones de negocio confirmadas por Luis
 

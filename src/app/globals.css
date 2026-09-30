@@ -91,3 +91,13 @@ h3 {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Cambio de foto en el visor (components/content/gallery.tsx). */
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

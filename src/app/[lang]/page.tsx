@@ -119,7 +119,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
         </section>
       )}
 
-      <section className="mx-auto max-w-6xl px-4 pt-14 sm:px-6" aria-labelledby="properes">
+      <section className="mx-auto max-w-6xl overflow-x-clip px-4 pt-14 sm:px-6" aria-labelledby="properes">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 id="properes" className="font-display text-3xl font-extrabold">
@@ -144,7 +144,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
       </section>
 
       {news.length > 0 && (
-        <section className="mx-auto max-w-6xl px-4 pt-12 sm:px-6" aria-labelledby="novetats">
+        <section className="mx-auto max-w-6xl overflow-x-clip px-4 pt-12 sm:px-6" aria-labelledby="novetats">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 id="novetats" className="font-display text-3xl font-extrabold">
