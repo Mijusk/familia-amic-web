@@ -10,6 +10,7 @@ import { parsePeriod, periodParam } from "@/lib/receipt-period";
 import { receiptStatuses, type ReceiptStatus } from "@/lib/receipts";
 import { createClient } from "@/lib/supabase/server";
 import { todayLocal } from "@/lib/activities";
+import { fieldErrors } from "./zod-errors";
 
 function langOf(formData: FormData): Locale {
   const raw = String(formData.get("lang") ?? "");
@@ -68,6 +69,68 @@ export async function markPeriodPaid(formData: FormData) {
     revalidatePath(`/${lang}/admin`, "layout");
   }
   redirect(`/${lang}/admin/rebuts?mes=${periodParam(period)}&${query}`);
+}
+
+// Importe con signo: "-15" es un descuento de 15 €, "8,50" un cargo de 8,50 €.
+const signedEuros = z
+  .string()
+  .trim()
+  .transform((v) => v.replace(",", ".").replace(/\s|€/g, ""))
+  .pipe(z.string().regex(/^[-+]?\d{1,4}(\.\d{1,2})?$/, "invalidPrice"))
+  .transform((v) => Math.round(Number(v) * 100))
+  .refine((v) => v !== 0, "invalidPrice");
+
+const adjustmentSchema = z.object({
+  family_id: z.string().regex(/^[0-9a-f-]{36}$/i, "required"),
+  concept: z.string().trim().min(2, "required").max(120, "tooLong"),
+  amount: z.preprocess((v) => v ?? "", signedEuros),
+});
+
+/** Si el mes ya tiene recibos, se recalculan para que el ajuste entre (los cobrados no se tocan). */
+async function refreshPeriod(supabase: Awaited<ReturnType<typeof createClient>>, period: string) {
+  const { count } = await supabase.from("receipts").select("id", { count: "exact", head: true }).eq("period", period);
+  if (count) await supabase.rpc("admin_generate_receipts", { p_period: period });
+}
+
+export async function addReceiptAdjustment(_prev: FormState, formData: FormData): Promise<FormState> {
+  const values = formValues(formData);
+  const lang = langOf(formData);
+  const period = periodOf(formData);
+  if (!(await isAdmin())) return { status: "error", error: "generic", values };
+  const parsed = adjustmentSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { status: "error", fieldErrors: fieldErrors(parsed.error), values };
+  const supabase = await createClient();
+  const { error } = await supabase.rpc("admin_add_receipt_adjustment", {
+    p_family_id: parsed.data.family_id,
+    p_period: period,
+    p_concept: parsed.data.concept,
+    p_amount_cents: parsed.data.amount,
+  });
+  if (error) {
+    if (error.message.includes("receipt_closed")) return { status: "error", error: "receiptClosed", values };
+    console.error("[addReceiptAdjustment]", error.message);
+    return { status: "error", error: "generic", values };
+  }
+  await refreshPeriod(supabase, period);
+  revalidatePath(`/${lang}/admin`, "layout");
+  return { status: "success" };
+}
+
+export async function deleteReceiptAdjustment(formData: FormData) {
+  const lang = langOf(formData);
+  const period = periodOf(formData);
+  const id = String(formData.get("id") ?? "");
+  let result = "error";
+  if ((await isAdmin()) && /^[0-9a-f-]{36}$/i.test(id)) {
+    const supabase = await createClient();
+    const { error } = await supabase.rpc("admin_delete_receipt_adjustment", { p_id: id });
+    if (!error) {
+      result = "ajust-esborrat";
+      await refreshPeriod(supabase, period);
+    } else result = error.message.includes("receipt_closed") ? "tancat" : "error";
+    revalidatePath(`/${lang}/admin`, "layout");
+  }
+  redirect(`/${lang}/admin/rebuts?mes=${periodParam(period)}&r=${result}#ajustos`);
 }
 
 const euros = z

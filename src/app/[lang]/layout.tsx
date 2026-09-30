@@ -6,6 +6,8 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
+import { Analytics } from "@/components/analytics";
+import { siteUrl } from "@/lib/site-url";
 import "../globals.css";
 
 // Atkinson Hyperlegible está diseñada para personas con baja visión.
@@ -27,8 +29,10 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
   if (!isLocale(lang)) return {};
   const dict = await getDictionary(lang);
   return {
+    metadataBase: new URL(siteUrl),
     title: { default: dict.meta.title, template: `%s · ${dict.meta.title}` },
     description: dict.meta.description,
+    openGraph: { siteName: dict.meta.title, locale: lang === "es" ? "es_ES" : "ca_ES", type: "website" },
   };
 }
 
@@ -46,6 +50,7 @@ export default async function RootLayout({ children, params }: LayoutProps<"/[la
         </main>
         <SiteFooter lang={lang} dict={dict} />
         <WhatsAppButton label={dict.nav.whatsapp} />
+        <Analytics />
       </body>
     </html>
   );

@@ -16,6 +16,9 @@ export default async function AdminActivities({ params }: PageProps<"/[lang]/adm
   return (
     <div className="space-y-8">
       <PageHeader title={t.title}>
+        <Link href={`/${lang}/admin/activitats/categories`} className="font-semibold text-accent underline underline-offset-4">
+          {dict.admin.categories.title}
+        </Link>
         <Link href={`/${lang}/admin/activitats/nova`} className="inline-flex min-h-11 items-center rounded-md bg-accent px-5 font-semibold text-accent-contrast hover:opacity-90">
           {t.new}
         </Link>

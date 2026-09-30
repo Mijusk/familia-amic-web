@@ -108,7 +108,8 @@
     "invalidPrice": "Escriu un import en euros, per exemple 50 o 12,50.",
     "invalidPercent": "Escriu un percentatge entre 0 i 100.",
     "invalidUrl": "Escriu una adreça completa que comenci per https://",
-    "chooseOne": "Tria almenys una opció."
+    "chooseOne": "Tria almenys una opció.",
+    "receiptClosed": "El rebut d'aquesta família ja està cobrat, retornat o anul·lat aquest mes. Posa l'ajust al mes següent."
   },
   "auth": {
     "login": {
@@ -393,7 +394,8 @@
     "lines": {
       "quota": "Quota anual de soci",
       "activitat": "{activity} · {name}",
-      "descompte": "Descompte {pct}% per diverses activitats · {name}"
+      "descompte": "Descompte {pct}% per diverses activitats · {name}",
+      "ajust": "{activity}"
     },
     "returnedHelp": "El banc ha retornat aquest rebut. Posa't en contacte amb l'associació per resoldre-ho.",
     "questions": "Si alguna cosa no quadra, escriu a l'associació abans que es cobri."
@@ -609,7 +611,12 @@
         "resource_delete": "Recurs eliminat",
         "photo_add": "Foto afegida",
         "photo_delete": "Foto eliminada",
-        "volunteer_status": "Estat de voluntari"
+        "volunteer_status": "Estat de voluntari",
+        "receipt_adjust": "Ajust de rebut",
+        "receipt_adjust_delete": "Ajust de rebut eliminat",
+        "category_create": "Categoria creada",
+        "category_update": "Categoria editada",
+        "category_delete": "Categoria eliminada"
       }
     },
     "receipts": {
@@ -652,7 +659,19 @@
       "discount": "Descompte per diverses activitats (%)",
       "discountHint": "Per participant, a cada activitat a partir de la segona; la més cara va a preu complet. 0 = sense descompte.",
       "save": "Desar preus",
-      "saved": "Preus desats."
+      "saved": "Preus desats.",
+      "adjustTitle": "Ajustos de {month}",
+      "adjustLead": "Per a les excepcions: un càrrec extra (material, una sortida) o un descompte (una beca, un error del mes passat). S'afegeix com una línia més al rebut de la família i es manté encara que tornis a calcular. Només famílies sòcies actives.",
+      "adjustFamily": "Família",
+      "adjustChoose": "Tria una família",
+      "adjustConcept": "Concepte",
+      "adjustConceptHint": "El veurà la família al seu rebut.",
+      "adjustAmount": "Import (€)",
+      "adjustAmountHint": "Amb un menys davant és un descompte: -15",
+      "adjustAdd": "Afegir l'ajust",
+      "adjustAdded": "Ajust afegit. Si el mes ja tenia rebuts, s'han tornat a calcular.",
+      "adjustDeleted": "Ajust eliminat.",
+      "adjustNoMembers": "Encara no hi ha cap família sòcia activa."
     },
     "content": {
       "saved": "Canvis desats.",
@@ -737,6 +756,21 @@
       },
       "withoutForm": "Comptes sense sol·licitud",
       "withoutFormLead": "S'han registrat com a voluntaris però encara no han omplert el formulari."
+    },
+    "categories": {
+      "title": "Categories",
+      "lead": "Les categories serveixen per filtrar les activitats a la web. L'ordre és el dels filtres.",
+      "nameCa": "Nom en català",
+      "nameEs": "Nom en castellà",
+      "order": "Ordre",
+      "new": "Nova categoria",
+      "add": "Afegir la categoria",
+      "saved": "Categoria desada.",
+      "deleted": "Categoria eliminada.",
+      "invalid": "Revisa els noms (de 2 a 60 lletres) i l'ordre (un número).",
+      "usedBy": "{n} activitats",
+      "deleteConfirm": "Segur que vols eliminar aquesta categoria?",
+      "deleteConfirmUsed": "Segur? Les {n} activitats que la tenen es quedaran sense categoria."
     }
   },
   "volunteer": {

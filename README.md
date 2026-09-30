@@ -118,6 +118,11 @@ No hay pago online. Cada mes, en Panell → Rebuts:
 4. Cuando el banco los haya pasado, «Marcar tots els pendents com a cobrats». Un recibo devuelto se marca
    como «Retornat» y la familia lo ve así en su cuenta.
 
+Para las excepciones (una beca, material extra, un error del mes anterior) está «Ajustos», debajo de la lista:
+se elige la familia, el concepto y el importe (con un menos delante si es un descuento). Sale como una línea más
+en su recibo, también en su cuenta, y se mantiene aunque se vuelva a calcular. Un recibo ya cobrado, devuelto o
+anulado no se puede ajustar: el ajuste va al mes siguiente.
+
 Volver a calcular un mes solo rehace los recibos pendientes. Cada familia ve sus recibos en El meu compte →
 Rebuts, sin el IBAN completo.
 
@@ -137,6 +142,20 @@ Rebuts, sin el IBAN completo.
   registro normal y en Col·labora) y rellenan su solicitud en El meu compte. Llega un aviso por correo y aparece en
   Panell → Voluntaris, donde se cambia su estado.
 - **Donativos:** el Bizum y, si se decide publicarlo, el IBAN de donativos están en `src/config/site.ts`.
+
+### Categorías de actividades
+
+Panell → Activitats → Categories: crear, renombrar (en catalán y castellano), ordenar y borrar las categorías
+que salen como filtros en la web. Borrar una deja sus actividades sin categoría.
+
+### Estadísticas y buscadores
+
+- **Estadísticas sin cookies:** crea una cuenta gratuita en <https://cloud.umami.is>, añade el sitio y pon su
+  *Website ID* en `NEXT_PUBLIC_UMAMI_WEBSITE_ID` (Vercel). Sin esa variable no se carga nada. No usa cookies ni
+  guarda datos personales, así que no hace falta aviso de consentimiento.
+- **Google:** `/sitemap.xml` lista las páginas públicas en los dos idiomas (actividades, noticias y recursos
+  incluidos) y `/robots.txt` deja fuera el panel y las cuentas. Ambos usan `NEXT_PUBLIC_SITE_URL`, que en
+  producción debe ser la dirección definitiva. Después, dar de alta la web en Google Search Console con ese sitemap.
 
 ### Actividades de prueba
 

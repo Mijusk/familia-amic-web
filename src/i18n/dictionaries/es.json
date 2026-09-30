@@ -108,7 +108,8 @@
     "invalidPrice": "Escribe un importe en euros, por ejemplo 50 o 12,50.",
     "invalidPercent": "Escribe un porcentaje entre 0 y 100.",
     "invalidUrl": "Escribe una dirección completa que empiece por https://",
-    "chooseOne": "Elige al menos una opción."
+    "chooseOne": "Elige al menos una opción.",
+    "receiptClosed": "El recibo de esta familia ya está cobrado, devuelto o anulado este mes. Pon el ajuste en el mes siguiente."
   },
   "auth": {
     "login": {
@@ -393,7 +394,8 @@
     "lines": {
       "quota": "Cuota anual de socio",
       "activitat": "{activity} · {name}",
-      "descompte": "Descuento {pct}% por varias actividades · {name}"
+      "descompte": "Descuento {pct}% por varias actividades · {name}",
+      "ajust": "{activity}"
     },
     "returnedHelp": "El banco ha devuelto este recibo. Ponte en contacto con la asociación para resolverlo.",
     "questions": "Si algo no cuadra, escribe a la asociación antes de que se cobre."
@@ -609,7 +611,12 @@
         "resource_delete": "Recurso eliminado",
         "photo_add": "Foto añadida",
         "photo_delete": "Foto eliminada",
-        "volunteer_status": "Estado de voluntario"
+        "volunteer_status": "Estado de voluntario",
+        "receipt_adjust": "Ajuste de recibo",
+        "receipt_adjust_delete": "Ajuste de recibo eliminado",
+        "category_create": "Categoría creada",
+        "category_update": "Categoría editada",
+        "category_delete": "Categoría eliminada"
       }
     },
     "receipts": {
@@ -652,7 +659,19 @@
       "discount": "Descuento por varias actividades (%)",
       "discountHint": "Por participante, en cada actividad a partir de la segunda; la más cara va a precio completo. 0 = sin descuento.",
       "save": "Guardar precios",
-      "saved": "Precios guardados."
+      "saved": "Precios guardados.",
+      "adjustTitle": "Ajustes de {month}",
+      "adjustLead": "Para las excepciones: un cargo extra (material, una salida) o un descuento (una beca, un error del mes pasado). Se añade como una línea más al recibo de la familia y se mantiene aunque vuelvas a calcular. Solo familias socias activas.",
+      "adjustFamily": "Familia",
+      "adjustChoose": "Elige una familia",
+      "adjustConcept": "Concepto",
+      "adjustConceptHint": "Lo verá la familia en su recibo.",
+      "adjustAmount": "Importe (€)",
+      "adjustAmountHint": "Con un menos delante es un descuento: -15",
+      "adjustAdd": "Añadir el ajuste",
+      "adjustAdded": "Ajuste añadido. Si el mes ya tenía recibos, se han vuelto a calcular.",
+      "adjustDeleted": "Ajuste eliminado.",
+      "adjustNoMembers": "Todavía no hay ninguna familia socia activa."
     },
     "content": {
       "saved": "Cambios guardados.",
@@ -737,6 +756,21 @@
       },
       "withoutForm": "Cuentas sin solicitud",
       "withoutFormLead": "Se han registrado como voluntarios pero todavía no han rellenado el formulario."
+    },
+    "categories": {
+      "title": "Categorías",
+      "lead": "Las categorías sirven para filtrar las actividades en la web. El orden es el de los filtros.",
+      "nameCa": "Nombre en catalán",
+      "nameEs": "Nombre en castellano",
+      "order": "Orden",
+      "new": "Nueva categoría",
+      "add": "Añadir la categoría",
+      "saved": "Categoría guardada.",
+      "deleted": "Categoría eliminada.",
+      "invalid": "Revisa los nombres (de 2 a 60 letras) y el orden (un número).",
+      "usedBy": "{n} actividades",
+      "deleteConfirm": "¿Seguro que quieres eliminar esta categoría?",
+      "deleteConfirmUsed": "¿Seguro? Las {n} actividades que la tienen se quedarán sin categoría."
     }
   },
   "volunteer": {

@@ -1,7 +1,7 @@
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { format } from "@/i18n/format";
 
-type Line = { kind: "quota" | "activitat" | "descompte"; activity_title: string | null; participant_name: string | null; discount_pct: number | null };
+type Line = { kind: "quota" | "activitat" | "descompte" | "ajust"; activity_title: string | null; participant_name: string | null; discount_pct: number | null };
 
 /** Texto de una línea del recibo en el idioma de quien lo mira. */
 export function lineText(t: Dictionary["receipts"], line: Line) {

@@ -3,13 +3,14 @@ import { format, formatDate } from "@/i18n/format";
 import { loadPage } from "@/i18n/page";
 import { monthEnd, todayLocal } from "@/lib/activities";
 import { formatPrice } from "@/lib/activity-format";
-import { generateReceipts, markPeriodPaid, setReceiptStatus } from "@/lib/actions/receipts";
-import { logAction } from "@/lib/admin";
+import { deleteReceiptAdjustment, generateReceipts, markPeriodPaid, setReceiptStatus } from "@/lib/actions/receipts";
+import { listAccounts, logAction } from "@/lib/admin";
 import { requireAdmin } from "@/lib/auth";
 import { decrypt } from "@/lib/crypto";
 import { amountForBank, bankConcept, groupIban, parsePeriod, periodLabel, periodParam, shiftPeriod } from "@/lib/receipt-period";
 import { lineText } from "@/lib/receipt-format";
-import { encryptedIbans, getBillingSettings, listReceipts, pendingFamiliesWithActivity, receiptStatuses, type Receipt } from "@/lib/receipts";
+import { encryptedIbans, getBillingSettings, listAdjustments, listReceipts, pendingFamiliesWithActivity, receiptStatuses, type Receipt } from "@/lib/receipts";
+import { AdjustmentForm } from "@/components/admin/adjustment-form";
 import { BillingSettingsForm } from "@/components/admin/billing-settings-form";
 import { CopyButton } from "@/components/admin/copy-button";
 import { ConfirmForm } from "@/components/confirm-form";
@@ -41,11 +42,15 @@ export default async function Receipts({ params, searchParams }: PageProps<"/[la
   const mes = periodParam(period);
   const month = periodLabel(lang, period);
 
-  const [receipts, settings, pendingFamilies] = await Promise.all([
+  const [receipts, settings, pendingFamilies, adjustments, accounts] = await Promise.all([
     listReceipts(period),
     getBillingSettings(),
     pendingFamiliesWithActivity(period, monthEnd(period)),
+    listAdjustments(period),
+    listAccounts(),
   ]);
+  const members = accounts.filter((a) => a.membership_status === "actiu").map((a) => ({ id: a.id, name: a.full_name }));
+  const closed = new Set(receipts.filter((r) => r.status !== "pendent").map((r) => r.family_id));
   const ibans = await encryptedIbans(receipts.map((r) => r.family_id));
   // Ver la lista con los IBAN completos queda registrado.
   if (receipts.length > 0) await logAction("receipts_view", "period", mes);
@@ -64,7 +69,9 @@ export default async function Receipts({ params, searchParams }: PageProps<"/[la
         ? format(t.paidDone, { n: Number(sp.n) })
         : sp.r === "estat"
           ? t.statusDone
-          : null;
+          : sp.r === "ajust-esborrat"
+            ? t.adjustDeleted
+            : null;
 
   const monthLink = (offset: number, label: string) => (
     <Link href={`/${lang}/admin/rebuts?mes=${periodParam(shiftPeriod(period, offset))}`} className="font-semibold underline underline-offset-4">
@@ -86,6 +93,7 @@ export default async function Receipts({ params, searchParams }: PageProps<"/[la
 
       {message && <Alert tone="success">{message}</Alert>}
       {sp.r === "error" && <Alert tone="error">{dict.errors.generic}</Alert>}
+      {sp.r === "tancat" && <Alert tone="error">{dict.errors.receiptClosed}</Alert>}
       {settings.membership_fee_cents == null && <Alert tone="info">{t.feeMissing}</Alert>}
       {pendingFamilies.length > 0 && (
         <div className="rounded-md border-l-4 border-warm bg-warm-soft px-4 py-3">
@@ -224,6 +232,40 @@ export default async function Receipts({ params, searchParams }: PageProps<"/[la
           )}
         </section>
       )}
+
+      <section id="ajustos" className="space-y-4 border-t border-line pt-8">
+        <h2 className="font-display text-2xl font-extrabold">{format(t.adjustTitle, { month })}</h2>
+        <p className="max-w-3xl text-muted">{t.adjustLead}</p>
+        {adjustments.length > 0 && (
+          <ul className="max-w-3xl divide-y divide-line rounded-lg border border-line bg-surface">
+            {adjustments.map((a) => (
+              <li key={a.id} className="flex flex-wrap items-center justify-between gap-3 p-3">
+                <span>
+                  <span className="font-semibold">{a.profiles?.full_name}</span> · {a.concept}
+                </span>
+                <span className="flex items-center gap-4">
+                  <span className="whitespace-nowrap font-semibold">{formatPrice(lang, a.amount_cents)}</span>
+                  {!closed.has(a.family_id) && (
+                    <form action={deleteReceiptAdjustment}>
+                      <input type="hidden" name="lang" value={lang} />
+                      <input type="hidden" name="mes" value={mes} />
+                      <input type="hidden" name="id" value={a.id} />
+                      <button type="submit" className="font-semibold text-red-700 underline underline-offset-4 dark:text-red-400">
+                        {dict.common.delete}
+                      </button>
+                    </form>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {members.length === 0 ? (
+          <p className="text-muted">{t.adjustNoMembers}</p>
+        ) : (
+          <AdjustmentForm lang={lang} mes={mes} families={members} t={t} errors={dict.errors} common={dict.common} />
+        )}
+      </section>
 
       <section className="space-y-4 border-t border-line pt-8">
         <h2 className="font-display text-2xl font-extrabold">{t.settingsTitle}</h2>
