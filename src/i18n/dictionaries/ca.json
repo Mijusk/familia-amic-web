@@ -55,7 +55,24 @@
     "volunteerCta": "Apunta't com a voluntari/a",
     "donateTitle": "Fes un donatiu",
     "donateBody": "Cada aportació ens ajuda a mantenir les activitats i les beques per a les famílies que ho necessiten.",
-    "donateCta": "Com col·laborar"
+    "donateCta": "Com col·laborar",
+    "featuredTitle": "Destacat",
+    "featuredUntil": "Fins al {date}",
+    "badgeActivity": "Activitat",
+    "badgeEvent": "Esdeveniment",
+    "badgeNews": "Notícia",
+    "featuredActivityCta": "Més informació i inscripció",
+    "featuredNewsCta": "Llegeix-ne més",
+    "moreInfo": "Més informació",
+    "sliderRegion": "Fotos de l'associació",
+    "sliderPrev": "Foto anterior",
+    "sliderNext": "Foto següent",
+    "sliderPause": "Aturar les fotos",
+    "sliderPlay": "Tornar a passar les fotos",
+    "sliderSlide": "Foto {n} de {total}",
+    "railPrev": "Anteriors",
+    "railNext": "Següents",
+    "weekly": "Cada setmana"
   },
   "footer": {
     "contact": "Contacte",
@@ -415,7 +432,8 @@
       "volunteers": "Voluntaris",
       "projects": "Projectes",
       "news": "Notícies",
-      "resources": "Recursos"
+      "resources": "Recursos",
+      "slides": "Portada"
     },
     "mfa": {
       "enrollTitle": "Activa la verificació en dos passos",
@@ -623,7 +641,10 @@
         "category_delete": "Categoria eliminada",
         "project_create": "Projecte creat",
         "project_update": "Projecte modificat",
-        "project_delete": "Projecte eliminat"
+        "project_delete": "Projecte eliminat",
+        "slide_create": "Foto de portada afegida",
+        "slide_update": "Foto de portada modificada",
+        "slide_delete": "Foto de portada eliminada"
       }
     },
     "receipts": {
@@ -756,7 +777,8 @@
       "uploaded": "{n} fotos pujades.",
       "chooseFiles": "Tria almenys una foto.",
       "invalidFile": "ha de ser JPG, PNG o WebP i de 5 MB com a màxim.",
-      "uploadError": "no s'ha pogut pujar. Torna-ho a provar."
+      "uploadError": "no s'ha pogut pujar. Torna-ho a provar.",
+      "newsLead": "Les fotos surten a la pàgina de la notícia, després de la portada. Abans de pujar-ne, comprova que les persones que hi surten tenen permís de fotos."
     },
     "image": {
       "hint": "JPG, PNG o WebP, fins a 5 MB. Surt a dalt de la pàgina i a les llistes. Millor horitzontal i sense cares de persones sense permís de fotos.",
@@ -806,6 +828,29 @@
       "usedBy": "{n} activitats",
       "deleteConfirm": "Segur que vols eliminar aquesta categoria?",
       "deleteConfirmUsed": "Segur? Les {n} activitats que la tenen es quedaran sense categoria."
+    },
+    "slides": {
+      "title": "Fotos de la portada",
+      "lead": "Les fotos que van passant a dalt de tot de l'inici. Cada foto pot portar un text curt i un enllaç opcional.",
+      "empty": "Encara no hi ha cap foto. Mentre no n'hi hagi, l'inici mostra un dibuix.",
+      "caption": "Text curt",
+      "link": "Enllaç (opcional)",
+      "linkHint": "Una pàgina de la web (/ca/activitats/…) o una adreça que comenci per https://",
+      "order": "Ordre",
+      "active": "Es veu a l'inici",
+      "image": "Foto",
+      "new": "Afegir una foto",
+      "add": "Afegir",
+      "saved": "Canvis desats.",
+      "deleted": "Foto eliminada.",
+      "invalid": "Revisa les dades: cal una foto, el text té com a màxim 140 caràcters i l'enllaç ha de començar per / o https://.",
+      "deleteConfirm": "Segur que vols eliminar aquesta foto de la portada?"
+    },
+    "featured": {
+      "title": "Destacar a l'inici",
+      "hint": "Entre aquestes dues dates (incloses) surt en gran a dalt de l'inici. Deixa-les buides perquè no surti.",
+      "from": "Des del",
+      "until": "Fins al"
     }
   },
   "volunteer": {

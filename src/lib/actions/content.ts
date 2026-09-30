@@ -7,7 +7,7 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import { format } from "@/i18n/format";
 import { logAction } from "@/lib/admin";
 import { getCurrentUser } from "@/lib/auth";
-import { contactSchema, newsSchema, projectSchema, resourceSchema, volunteerSchema } from "@/lib/content-schema";
+import { contactSchema, newsSchema, projectSchema, resourceSchema, slideSchema, volunteerSchema } from "@/lib/content-schema";
 import { associationEmail, sendEmail } from "@/lib/email";
 import { formValues, type FormState } from "@/lib/forms";
 import { slugify } from "@/lib/slug";
@@ -51,6 +51,8 @@ export async function saveNews(_prev: FormState, formData: FormData): Promise<Fo
     activity_id: d.activity_id,
     published_on: d.published_on,
     status: d.status,
+    featured_from: d.featured_from,
+    featured_until: d.featured_until,
   };
   const supabase = await createClient();
   const { data, error } = id
@@ -188,11 +190,12 @@ export async function deleteProject(formData: FormData) {
 // --- Fotos de actividades y proyectos ----------------------------------------------
 // El navegador sube el fichero directamente a Storage (con la sesión del admin); aquí solo se registra.
 
-export type PhotoOwner = "activity" | "project";
+export type PhotoOwner = "activity" | "project" | "news";
 
 const photoTables = {
   activity: { table: "activity_photos", column: "activity_id", folder: (id: string) => id, page: (lang: string, id: string) => `/${lang}/admin/activitats/${id}/fotos` },
   project: { table: "project_photos", column: "project_id", folder: (id: string) => `projectes/${id}`, page: (lang: string, id: string) => `/${lang}/admin/projectes/${id}/fotos` },
+  news: { table: "news_photos", column: "news_id", folder: (id: string) => `noticies/${id}`, page: (lang: string, id: string) => `/${lang}/admin/noticies/${id}/fotos` },
 } as const;
 
 export async function addPhoto(input: { lang: string; owner: PhotoOwner; ownerId: string; path: string; caption: string }) {
@@ -226,7 +229,8 @@ export async function addPhoto(input: { lang: string; owner: PhotoOwner; ownerId
 export async function deletePhoto(formData: FormData) {
   const lang = langOf(formData);
   const id = String(formData.get("id") ?? "");
-  const owner: PhotoOwner = formData.get("owner") === "project" ? "project" : "activity";
+  const rawOwner = formData.get("owner");
+  const owner: PhotoOwner = rawOwner === "project" || rawOwner === "news" ? rawOwner : "activity";
   const ownerId = String(formData.get("owner_id") ?? formData.get("activity") ?? "");
   const t = photoTables[owner];
   if ((await isAdmin()) && uuid.test(id) && uuid.test(ownerId)) {
@@ -239,6 +243,47 @@ export async function deletePhoto(formData: FormData) {
     revalidatePath(`/${lang}`, "layout");
   }
   redirect(t.page(lang, ownerId));
+}
+
+// --- Fotos del inicio ------------------------------------------------------------
+
+export async function saveSlide(formData: FormData) {
+  const lang = langOf(formData);
+  const id = String(formData.get("id") ?? "");
+  const parsed = slideSchema.safeParse(Object.fromEntries(formData));
+  let result = "invalid";
+  if ((await isAdmin()) && (!id || uuid.test(id)) && parsed.success) {
+    const supabase = await createClient();
+    const { data, error } = id
+      ? await supabase.from("home_slides").update(parsed.data).eq("id", id).select("id").maybeSingle()
+      : await supabase.from("home_slides").insert(parsed.data).select("id").maybeSingle();
+    if (error || !data) {
+      console.error("[saveSlide]", error?.message);
+      result = "error";
+    } else {
+      await logAction(id ? "slide_update" : "slide_create", "slide", data.id, { caption: parsed.data.caption });
+      revalidatePath(`/${lang}`, "layout");
+      result = "desat";
+    }
+  }
+  redirect(`/${lang}/admin/portada?r=${result}`);
+}
+
+export async function deleteSlide(formData: FormData) {
+  const lang = langOf(formData);
+  const id = String(formData.get("id") ?? "");
+  if ((await isAdmin()) && uuid.test(id)) {
+    const supabase = await createClient();
+    const { data } = await supabase.from("home_slides").delete().eq("id", id).select("image_url").maybeSingle<{ image_url: string }>();
+    if (data) {
+      // Si la foto se subió desde el panel, se borra también el fichero.
+      const path = data.image_url.split("/storage/v1/object/public/fotos/")[1];
+      if (path?.startsWith("imatges/")) await supabase.storage.from("fotos").remove([decodeURIComponent(path)]);
+      await logAction("slide_delete", "slide", id);
+    }
+    revalidatePath(`/${lang}`, "layout");
+  }
+  redirect(`/${lang}/admin/portada?r=esborrada`);
 }
 
 // --- Contacto --------------------------------------------------------------------

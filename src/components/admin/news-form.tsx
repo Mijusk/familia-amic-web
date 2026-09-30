@@ -5,6 +5,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { saveNews } from "@/lib/actions/content";
 import { initialFormState } from "@/lib/forms";
 import { Alert, Field, Select, SubmitButton, TextArea } from "@/components/form";
+import { FeaturedFields } from "./featured-fields";
 import { ImageInput } from "./image-input";
 
 type Props = {
@@ -15,11 +16,12 @@ type Props = {
   t: Dictionary["admin"]["news"];
   content: Dictionary["admin"]["content"];
   image: Dictionary["admin"]["image"];
+  featured: Dictionary["admin"]["featured"];
   errors: Dictionary["errors"];
   common: Dictionary["common"];
 };
 
-export function NewsForm({ lang, initial, activities, created, t, content, image, errors, common }: Props) {
+export function NewsForm({ lang, initial, activities, created, t, content, image, featured, errors, common }: Props) {
   const [state, action, pending] = useActionState(saveNews, initialFormState);
   const v = { ...initial, ...state.values };
   const fe = state.fieldErrors ?? {};
@@ -56,6 +58,7 @@ export function NewsForm({ lang, initial, activities, created, t, content, image
         defaultValue={v.activity_id}
         options={[{ value: "", label: t.noActivity }, ...activities.map((a) => ({ value: a.id, label: a.title }))]}
       />
+      <FeaturedFields from={v.featured_from} until={v.featured_until} err={err} t={featured} optional={common.optional} />
       <Select
         label={content.fStatus}
         name="status"

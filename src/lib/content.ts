@@ -15,6 +15,8 @@ export type News = {
   activity_id: string | null;
   published_on: string;
   status: "esborrany" | "publicada";
+  featured_from: string | null;
+  featured_until: string | null;
 };
 
 export type ResourceCategory = "legals" | "educacio" | "salut";
@@ -47,7 +49,7 @@ export type Project = {
   status: "esborrany" | "publicada";
 };
 
-const newsColumns = "id, slug, lang, title, summary, body, image_url, activity_id, published_on, status";
+const newsColumns = "id, slug, lang, title, summary, body, image_url, activity_id, published_on, status, featured_from, featured_until";
 const resourceColumns = "id, slug, lang, category, title, summary, body, external_url, position, status";
 const projectColumns = "id, slug, lang, title, subtitle, body, image_url, position, status";
 
@@ -95,6 +97,66 @@ export async function listPhotos(activityId: string) {
     .order("created_at")
     .returns<Photo[]>();
   return data ?? [];
+}
+
+export async function listNewsPhotos(newsId: string) {
+  if (!getSupabaseEnv()) return [];
+  const supabase = await createClient();
+  const { data } = await supabase.from("news_photos").select("id, path, caption, position").eq("news_id", newsId).order("position").order("created_at").returns<Photo[]>();
+  return data ?? [];
+}
+
+// --- Inicio --------------------------------------------------------------------
+
+export type HomeSlide = { id: string; image_url: string; caption: string; link_url: string | null; position: number; active: boolean };
+const slideColumns = "id, image_url, caption, link_url, position, active";
+
+/** Fotos del inicio que se ven en la web (las activas, en su orden). */
+export async function listHomeSlides() {
+  if (!getSupabaseEnv()) return [];
+  const supabase = await createClient();
+  const { data } = await supabase.from("home_slides").select(slideColumns).eq("active", true).order("position").order("created_at").returns<HomeSlide[]>();
+  return data ?? [];
+}
+
+export async function listAllHomeSlides() {
+  const supabase = await createClient();
+  const { data } = await supabase.from("home_slides").select(slideColumns).order("position").order("created_at").returns<HomeSlide[]>();
+  return data ?? [];
+}
+
+export type Featured = {
+  kind: "news" | "activity";
+  slug: string;
+  lang: "ca" | "es";
+  title: string;
+  summary: string;
+  image_url: string | null;
+  featured_until: string;
+  /** Solo actividades: se puede inscribir desde su página. */
+  enrollment_open?: boolean;
+  /** Solo actividades: evento de un día o unos días (no semanal). */
+  activity_kind?: "recurrent" | "puntual";
+};
+
+/** Noticias y actividades publicadas que hoy están destacadas en el inicio. */
+export async function listFeatured(today: string) {
+  if (!getSupabaseEnv()) return [];
+  const supabase = await createClient();
+  const cols = "slug, lang, title, summary, image_url, featured_until";
+  const [{ data: news }, { data: activities }] = await Promise.all([
+    supabase.from("news").select(cols).eq("status", "publicada").lte("featured_from", today).gte("featured_until", today).returns<Omit<Featured, "kind">[]>(),
+    supabase
+      .from("activities")
+      .select(`${cols}, enrollment_open, activity_kind:kind`)
+      .eq("status", "publicada")
+      .lte("featured_from", today)
+      .gte("featured_until", today)
+      .returns<Omit<Featured, "kind">[]>(),
+  ]);
+  return [...(activities ?? []).map((a) => ({ ...a, kind: "activity" as const })), ...(news ?? []).map((n) => ({ ...n, kind: "news" as const }))].sort((a, b) =>
+    a.featured_until.localeCompare(b.featured_until),
+  );
 }
 
 export async function listProjects() {

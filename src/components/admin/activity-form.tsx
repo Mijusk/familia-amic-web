@@ -5,6 +5,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import { saveActivity } from "@/lib/actions/admin";
 import { initialFormState } from "@/lib/forms";
 import { Alert, Checkbox, Field, Select, SubmitButton, TextArea } from "@/components/form";
+import { FeaturedFields } from "./featured-fields";
 import { ImageInput } from "./image-input";
 
 export type ActivityInitial = Record<string, string> & { id?: string; kind: string; payment_method: string };
@@ -17,12 +18,13 @@ type Props = {
   t: Dictionary["admin"]["activities"];
   status: Dictionary["admin"]["status"];
   image: Dictionary["admin"]["image"];
+  featured: Dictionary["admin"]["featured"];
   weekdays: string[];
   errors: Dictionary["errors"];
   common: Dictionary["common"];
 };
 
-export function ActivityForm({ lang, initial, categories, created, t, status, image, weekdays, errors, common }: Props) {
+export function ActivityForm({ lang, initial, categories, created, t, status, image, featured, weekdays, errors, common }: Props) {
   const [state, action, pending] = useActionState(saveActivity, initialFormState);
   const v = { ...initial, ...state.values } as ActivityInitial;
   const fe = state.fieldErrors ?? {};
@@ -127,6 +129,8 @@ export function ActivityForm({ lang, initial, categories, created, t, status, im
           </div>
         </div>
       </fieldset>
+
+      <FeaturedFields from={v.featured_from} until={v.featured_until} err={err} t={featured} optional={common.optional} />
 
       <SubmitButton pending={pending} pendingLabel={common.saving}>
         {t.save}

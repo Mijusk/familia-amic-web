@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { imageUrl } from "./content-schema";
+import { checkFeatured, featuredFields, imageUrl } from "./content-schema";
 
 const uuid = /^[0-9a-f-]{36}$/i;
 
@@ -37,6 +37,7 @@ export const activitySchema = z
     payment_method: z.enum(["rebut", "transferencia", "gratuit"], "required"),
     payment_notes: text(500),
     status: z.enum(["esborrany", "publicada", "cancellada", "finalitzada"], "required"),
+    ...featuredFields,
   })
   .superRefine((d, ctx) => {
     if (d.kind === "recurrent") {
@@ -46,4 +47,5 @@ export const activitySchema = z
       else if (d.start_time && d.end_time <= d.start_time) ctx.addIssue({ code: "custom", message: "invalidTime", path: ["end_time"] });
     }
     if (d.ends_on && d.ends_on < d.starts_on) ctx.addIssue({ code: "custom", message: "invalidDate", path: ["ends_on"] });
+    checkFeatured(d, ctx);
   });

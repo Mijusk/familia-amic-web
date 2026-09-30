@@ -30,7 +30,7 @@ export function PhotoUploader({ lang, owner, ownerId, t }: Props) {
     const supabase = createClient();
     let done = 0;
     for (const file of files) {
-      const folder = owner === "project" ? `projectes/${ownerId}` : ownerId;
+      const folder = owner === "project" ? `projectes/${ownerId}` : owner === "news" ? `noticies/${ownerId}` : ownerId;
       const path = `${folder}/${crypto.randomUUID()}.${types[file.type]}`;
       const { error } = await supabase.storage.from("fotos").upload(path, file, { contentType: file.type, cacheControl: "31536000" });
       if (error || !(await addPhoto({ lang, owner, ownerId, path, caption })).ok) {

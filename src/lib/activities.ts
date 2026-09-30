@@ -26,6 +26,8 @@ export type Activity = {
   payment_notes: string;
   enrollment_open: boolean;
   status: "esborrany" | "publicada" | "cancellada" | "finalitzada";
+  featured_from: string | null;
+  featured_until: string | null;
 };
 
 export type Spots = { occupied: number; queued: number };
@@ -45,7 +47,7 @@ export type Enrollment = {
 };
 
 const activityColumns =
-  "id, slug, lang, title, summary, description, image_url, category_id, kind, weekday, start_time, end_time, starts_on, ends_on, location, capacity, price_cents, payment_method, payment_notes, enrollment_open, status";
+  "id, slug, lang, title, summary, description, image_url, category_id, kind, weekday, start_time, end_time, starts_on, ends_on, location, capacity, price_cents, payment_method, payment_notes, enrollment_open, status, featured_from, featured_until";
 
 /** Hoy en Barcelona, como 2026-09-29. */
 export function todayLocal(now = new Date()) {

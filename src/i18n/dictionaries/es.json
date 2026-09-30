@@ -55,7 +55,24 @@
     "volunteerCta": "Apúntate como voluntario/a",
     "donateTitle": "Haz un donativo",
     "donateBody": "Cada aportación nos ayuda a mantener las actividades y las becas para las familias que lo necesitan.",
-    "donateCta": "Cómo colaborar"
+    "donateCta": "Cómo colaborar",
+    "featuredTitle": "Destacado",
+    "featuredUntil": "Hasta el {date}",
+    "badgeActivity": "Actividad",
+    "badgeEvent": "Evento",
+    "badgeNews": "Noticia",
+    "featuredActivityCta": "Más información e inscripción",
+    "featuredNewsCta": "Leer más",
+    "moreInfo": "Más información",
+    "sliderRegion": "Fotos de la asociación",
+    "sliderPrev": "Foto anterior",
+    "sliderNext": "Foto siguiente",
+    "sliderPause": "Parar las fotos",
+    "sliderPlay": "Volver a pasar las fotos",
+    "sliderSlide": "Foto {n} de {total}",
+    "railPrev": "Anteriores",
+    "railNext": "Siguientes",
+    "weekly": "Cada semana"
   },
   "footer": {
     "contact": "Contacto",
@@ -415,7 +432,8 @@
       "volunteers": "Voluntarios",
       "projects": "Proyectos",
       "news": "Noticias",
-      "resources": "Recursos"
+      "resources": "Recursos",
+      "slides": "Portada"
     },
     "mfa": {
       "enrollTitle": "Activa la verificación en dos pasos",
@@ -623,7 +641,10 @@
         "category_delete": "Categoría eliminada",
         "project_create": "Proyecto creado",
         "project_update": "Proyecto modificado",
-        "project_delete": "Proyecto eliminado"
+        "project_delete": "Proyecto eliminado",
+        "slide_create": "Foto de portada añadida",
+        "slide_update": "Foto de portada modificada",
+        "slide_delete": "Foto de portada eliminada"
       }
     },
     "receipts": {
@@ -756,7 +777,8 @@
       "uploaded": "{n} fotos subidas.",
       "chooseFiles": "Elige al menos una foto.",
       "invalidFile": "tiene que ser JPG, PNG o WebP y de 5 MB como máximo.",
-      "uploadError": "no se ha podido subir. Vuelve a intentarlo."
+      "uploadError": "no se ha podido subir. Vuelve a intentarlo.",
+      "newsLead": "Las fotos salen en la página de la noticia, después de la portada. Antes de subirlas, comprueba que las personas que salen tienen permiso de fotos."
     },
     "image": {
       "hint": "JPG, PNG o WebP, hasta 5 MB. Sale arriba de la página y en las listas. Mejor horizontal y sin caras de personas sin permiso de fotos.",
@@ -806,6 +828,29 @@
       "usedBy": "{n} actividades",
       "deleteConfirm": "¿Seguro que quieres eliminar esta categoría?",
       "deleteConfirmUsed": "¿Seguro? Las {n} actividades que la tienen se quedarán sin categoría."
+    },
+    "slides": {
+      "title": "Fotos de la portada",
+      "lead": "Las fotos que van pasando arriba del todo del inicio. Cada foto puede llevar un texto corto y un enlace opcional.",
+      "empty": "Todavía no hay ninguna foto. Mientras no haya, el inicio muestra un dibujo.",
+      "caption": "Texto corto",
+      "link": "Enlace (opcional)",
+      "linkHint": "Una página de la web (/es/activitats/…) o una dirección que empiece por https://",
+      "order": "Orden",
+      "active": "Se ve en el inicio",
+      "image": "Foto",
+      "new": "Añadir una foto",
+      "add": "Añadir",
+      "saved": "Cambios guardados.",
+      "deleted": "Foto eliminada.",
+      "invalid": "Revisa los datos: hace falta una foto, el texto tiene como máximo 140 caracteres y el enlace debe empezar por / o https://.",
+      "deleteConfirm": "¿Seguro que quieres eliminar esta foto de la portada?"
+    },
+    "featured": {
+      "title": "Destacar en el inicio",
+      "hint": "Entre estas dos fechas (incluidas) sale en grande arriba del inicio. Déjalas vacías para que no salga.",
+      "from": "Desde el",
+      "until": "Hasta el"
     }
   },
   "volunteer": {

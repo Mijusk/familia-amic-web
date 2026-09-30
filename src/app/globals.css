@@ -1,37 +1,28 @@
 @import "tailwindcss";
 
-/* Paleta de Família Amic: verde corporativo #7EBA2E con beige y naranja suave de apoyo.
-   El verde corporativo no llega al contraste mínimo como texto sobre blanco (2,4:1), así que se usa
-   para detalles (bandas, bordes, iconos) y un verde oscuro del mismo tono para botones y enlaces. */
+/* Paleta de Família Amic: el verde de la asociación (#7EBA2E) sobre fondos muy claros, con menta, melocotón y cielo
+   suaves de apoyo. El verde corporativo no llega al contraste mínimo como texto sobre blanco (2,4:1), así que se usa
+   para detalles (bandas, bordes, iconos, fondos) y un verde más oscuro del mismo tono para botones y enlaces.
+   La web se ve siempre en claro, aunque el dispositivo esté en modo oscuro (decisión de la asociación). */
 :root {
-  --background: #fbf7f0;
+  color-scheme: light;
+  --background: #fbfdf8;
   --surface: #ffffff;
-  --foreground: #1d2a24;
-  --muted: #56655c;
-  --line: #e6e0d4;
+  --foreground: #22302a;
+  --muted: #5a6860;
+  --line: #e4ecdc;
   --brand: #7eba2e;
-  --accent: #3f6b12;
+  --accent: #467a14;
   --accent-contrast: #ffffff;
-  --accent-soft: #eef6e3;
+  --accent-soft: #f0f8e6;
+  --mint-soft: #e9f7ef;
+  --sky-soft: #eaf4fb;
   --warm: #b4531f;
-  --warm-soft: #fdebdd;
+  --warm-soft: #fff1e5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121a14;
-    --surface: #1a241c;
-    --foreground: #e8eee6;
-    --muted: #a3b0a6;
-    --line: #2d3a2f;
-    --brand: #7eba2e;
-    --accent: #9ed35a;
-    --accent-contrast: #121a14;
-    --accent-soft: #25361a;
-    --warm: #f4a46e;
-    --warm-soft: #3a2518;
-  }
-}
+/* Sin modo oscuro: las clases dark: de Tailwind solo se activarían con una clase .dark que no se usa. */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -45,6 +36,13 @@
   --color-brand: var(--brand);
   --color-warm: var(--warm);
   --color-warm-soft: var(--warm-soft);
+  --color-mint-soft: var(--mint-soft);
+  --color-sky-soft: var(--sky-soft);
+  /* Esquinas más redondeadas en toda la web. */
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
 }
@@ -64,4 +62,32 @@ h3 {
 :focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* Aparición suave al hacer scroll (la activa components/reveal.tsx). Sin animación si se ha pedido menos movimiento. */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Carruseles con desplazamiento horizontal: sin barra visible, se pasan con las flechas, el dedo o el teclado. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
