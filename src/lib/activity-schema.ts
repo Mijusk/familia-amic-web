@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { imageUrl } from "./content-schema";
 
 const uuid = /^[0-9a-f-]{36}$/i;
 
@@ -16,6 +17,7 @@ export const activitySchema = z
     lang_text: z.enum(["ca", "es"], "required"),
     summary: z.string().trim().min(2, "required").max(300, "tooLong"),
     description: text(5000),
+    image_url: imageUrl,
     category_id: blank(z.string()).refine((v) => v === "" || uuid.test(v), "required").transform((v) => v || null),
     kind: z.enum(["recurrent", "puntual"], "required"),
     weekday: blank(z.string()),

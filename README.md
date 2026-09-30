@@ -133,9 +133,14 @@ Rebuts, sin el IBAN completo.
   de la web antigua caducan). Se puede volver a ejecutar sin duplicar nada.
 - **Noticias y recursos** se escriben en Panell → Notícies / Recursos, en el idioma que se quiera. El texto admite
   un formato sencillo que se explica debajo del campo (subtítulos, listas, negrita y enlaces).
-- **Fotos de actividades:** Panell → Activitats → (actividad) → Fotos. Se guardan en Supabase Storage, en el bucket
-  público `fotos` que crea la migración. Antes de subir fotos, la lista de inscritos marca quién no tiene permiso
-  de imagen (cada familia lo marca en la ficha del participante).
+- **Imágenes de portada:** las noticias, las actividades y los proyectos tienen un botón "Pujar una imatge" en su
+  formulario del panel. La imagen se sube a Supabase Storage (bucket público `fotos`, carpeta `imatges/`) y se
+  guarda su dirección; también se puede pegar la dirección de una imagen ya publicada.
+- **Fotos de actividades:** Panell → Activitats → (actividad) → Fotos. Se guardan en el bucket `fotos` que crea la
+  migración. Antes de subir fotos, la lista de inscritos marca quién no tiene permiso de imagen (cada familia lo
+  marca en la ficha del participante).
+- **Projectes:** Panell → Projectes. Cada proyecto tiene título, subtítulo, portada, descripción (con el mismo
+  formato que las noticias), un número de orden y su galería de fotos. Se ven en `/ca/projectes`.
 - **Contacto:** los mensajes del formulario llegan a `ASSOCIATION_EMAIL` (o familiaamic@gmail.com) y quedan en
   Panell → Missatges para marcarlos como atendidos.
 - **Voluntariado:** las personas voluntarias se registran en `/ca/registre?tipus=voluntari` (hay un enlace en el

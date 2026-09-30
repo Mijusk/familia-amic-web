@@ -7,7 +7,7 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import { format } from "@/i18n/format";
 import { logAction } from "@/lib/admin";
 import { getCurrentUser } from "@/lib/auth";
-import { contactSchema, newsSchema, resourceSchema, volunteerSchema } from "@/lib/content-schema";
+import { contactSchema, newsSchema, projectSchema, resourceSchema, volunteerSchema } from "@/lib/content-schema";
 import { associationEmail, sendEmail } from "@/lib/email";
 import { formValues, type FormState } from "@/lib/forms";
 import { slugify } from "@/lib/slug";
@@ -130,32 +130,95 @@ export async function deleteResource(formData: FormData) {
   redirect(`/${lang}/admin/recursos?esborrat=1`);
 }
 
-// --- Fotos de actividades --------------------------------------------------------
+// --- Proyectos -----------------------------------------------------------------
+
+export async function saveProject(_prev: FormState, formData: FormData): Promise<FormState> {
+  const values = formValues(formData);
+  const lang = langOf(formData);
+  if (!(await isAdmin())) return { status: "error", error: "generic", values };
+  const id = String(formData.get("id") ?? "");
+  if (id && !uuid.test(id)) return { status: "error", error: "generic", values };
+  const parsed = projectSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return { status: "error", fieldErrors: fieldErrors(parsed.error), values };
+  const d = parsed.data;
+  const slug = slugify(d.slug || d.title);
+  if (slug.length < 2) return { status: "error", fieldErrors: { slug: "required" }, values };
+  const row = {
+    title: d.title,
+    slug,
+    lang: d.lang_text,
+    subtitle: d.subtitle,
+    body: d.body,
+    image_url: d.image_url,
+    position: d.position,
+    status: d.status,
+  };
+  const supabase = await createClient();
+  const { data, error } = id
+    ? await supabase.from("projects").update(row).eq("id", id).select("id").maybeSingle()
+    : await supabase.from("projects").insert(row).select("id").maybeSingle();
+  if (error || !data) {
+    if (error?.code === "23505") return { status: "error", fieldErrors: { slug: "slugTaken" }, values };
+    console.error("[saveProject]", error?.message);
+    return { status: "error", error: "generic", values };
+  }
+  await logAction(id ? "project_update" : "project_create", "project", data.id, { slug, status: d.status });
+  revalidatePath(`/${lang}`, "layout");
+  if (!id) redirect(`/${lang}/admin/projectes/${data.id}?creat=1`);
+  return { status: "success", values: { ...values, slug } };
+}
+
+export async function deleteProject(formData: FormData) {
+  const lang = langOf(formData);
+  const id = String(formData.get("id") ?? "");
+  if ((await isAdmin()) && uuid.test(id)) {
+    const supabase = await createClient();
+    // Las fotos de la galería se borran con el proyecto; también sus ficheros.
+    const { data: photos } = await supabase.from("project_photos").select("path").eq("project_id", id).returns<{ path: string }[]>();
+    const { error } = await supabase.from("projects").delete().eq("id", id);
+    if (!error) {
+      if (photos?.length) await supabase.storage.from("fotos").remove(photos.map((p) => p.path));
+      await logAction("project_delete", "project", id);
+    }
+    revalidatePath(`/${lang}`, "layout");
+  }
+  redirect(`/${lang}/admin/projectes?esborrat=1`);
+}
+
+// --- Fotos de actividades y proyectos ----------------------------------------------
 // El navegador sube el fichero directamente a Storage (con la sesión del admin); aquí solo se registra.
 
-export async function addPhoto(input: { lang: string; activityId: string; path: string; caption: string }) {
+export type PhotoOwner = "activity" | "project";
+
+const photoTables = {
+  activity: { table: "activity_photos", column: "activity_id", folder: (id: string) => id, page: (lang: string, id: string) => `/${lang}/admin/activitats/${id}/fotos` },
+  project: { table: "project_photos", column: "project_id", folder: (id: string) => `projectes/${id}`, page: (lang: string, id: string) => `/${lang}/admin/projectes/${id}/fotos` },
+} as const;
+
+export async function addPhoto(input: { lang: string; owner: PhotoOwner; ownerId: string; path: string; caption: string }) {
   const lang: Locale = isLocale(input.lang) ? input.lang : defaultLocale;
-  if (!(await isAdmin()) || !uuid.test(input.activityId)) return { ok: false };
-  // La ruta la ha elegido el navegador: se exige que esté en la carpeta de la actividad.
-  if (!new RegExp(`^${input.activityId}/[0-9a-f-]{36}\\.(jpe?g|png|webp)$`).test(input.path)) return { ok: false };
+  const t = photoTables[input.owner];
+  if (!t || !(await isAdmin()) || !uuid.test(input.ownerId)) return { ok: false };
+  // La ruta la ha elegido el navegador: se exige que esté en la carpeta de la actividad o del proyecto.
+  if (!new RegExp(`^${t.folder(input.ownerId)}/[0-9a-f-]{36}\\.(jpe?g|png|webp)$`).test(input.path)) return { ok: false };
   const supabase = await createClient();
   const { data: last } = await supabase
-    .from("activity_photos")
+    .from(t.table)
     .select("position")
-    .eq("activity_id", input.activityId)
+    .eq(t.column, input.ownerId)
     .order("position", { ascending: false })
     .limit(1)
     .maybeSingle<{ position: number }>();
   const { data, error } = await supabase
-    .from("activity_photos")
-    .insert({ activity_id: input.activityId, path: input.path, caption: input.caption.trim().slice(0, 200), position: (last?.position ?? 0) + 1 })
+    .from(t.table)
+    .insert({ [t.column]: input.ownerId, path: input.path, caption: input.caption.trim().slice(0, 200), position: (last?.position ?? 0) + 1 })
     .select("id")
     .maybeSingle();
   if (error || !data) {
     console.error("[addPhoto]", error?.message);
     return { ok: false };
   }
-  await logAction("photo_add", "activity", input.activityId, { path: input.path });
+  await logAction("photo_add", input.owner, input.ownerId, { path: input.path });
   revalidatePath(`/${lang}`, "layout");
   return { ok: true };
 }
@@ -163,17 +226,19 @@ export async function addPhoto(input: { lang: string; activityId: string; path: 
 export async function deletePhoto(formData: FormData) {
   const lang = langOf(formData);
   const id = String(formData.get("id") ?? "");
-  const activityId = String(formData.get("activity") ?? "");
-  if ((await isAdmin()) && uuid.test(id) && uuid.test(activityId)) {
+  const owner: PhotoOwner = formData.get("owner") === "project" ? "project" : "activity";
+  const ownerId = String(formData.get("owner_id") ?? formData.get("activity") ?? "");
+  const t = photoTables[owner];
+  if ((await isAdmin()) && uuid.test(id) && uuid.test(ownerId)) {
     const supabase = await createClient();
-    const { data } = await supabase.from("activity_photos").delete().eq("id", id).select("path").maybeSingle<{ path: string }>();
+    const { data } = await supabase.from(t.table).delete().eq("id", id).eq(t.column, ownerId).select("path").maybeSingle<{ path: string }>();
     if (data) {
       await supabase.storage.from("fotos").remove([data.path]);
-      await logAction("photo_delete", "activity", activityId, { path: data.path });
+      await logAction("photo_delete", owner, ownerId, { path: data.path });
     }
     revalidatePath(`/${lang}`, "layout");
   }
-  redirect(`/${lang}/admin/activitats/${activityId}/fotos`);
+  redirect(t.page(lang, ownerId));
 }
 
 // --- Contacto --------------------------------------------------------------------

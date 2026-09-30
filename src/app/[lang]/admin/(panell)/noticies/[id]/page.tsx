@@ -45,6 +45,7 @@ export default async function EditNews({ params, searchParams }: PageProps<"/[la
         activities={activities.map((a) => ({ id: a.id, title: a.title }))}
         t={dict.admin.news}
         content={c}
+        image={dict.admin.image}
         errors={dict.errors}
         common={dict.common}
       />

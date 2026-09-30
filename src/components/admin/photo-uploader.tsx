@@ -3,17 +3,17 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { Dictionary } from "@/i18n/get-dictionary";
-import { addPhoto } from "@/lib/actions/content";
+import { addPhoto, type PhotoOwner } from "@/lib/actions/content";
 import { createClient } from "@/lib/supabase/client";
 import { Alert, Field } from "@/components/form";
 
 const types: Record<string, string> = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
 const maxBytes = 5 * 1024 * 1024;
 
-type Props = { lang: string; activityId: string; t: Dictionary["admin"]["photos"] };
+type Props = { lang: string; owner: PhotoOwner; ownerId: string; t: Dictionary["admin"]["photos"] };
 
-/** Sube las fotos directamente del navegador a Storage (con la sesión del admin) y después las registra. */
-export function PhotoUploader({ lang, activityId, t }: Props) {
+/** Sube las fotos de una actividad o un proyecto directamente del navegador a Storage (con la sesión del admin) y después las registra. */
+export function PhotoUploader({ lang, owner, ownerId, t }: Props) {
   const router = useRouter();
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<{ tone: "error" | "success"; text: string } | null>(null);
@@ -30,9 +30,10 @@ export function PhotoUploader({ lang, activityId, t }: Props) {
     const supabase = createClient();
     let done = 0;
     for (const file of files) {
-      const path = `${activityId}/${crypto.randomUUID()}.${types[file.type]}`;
+      const folder = owner === "project" ? `projectes/${ownerId}` : ownerId;
+      const path = `${folder}/${crypto.randomUUID()}.${types[file.type]}`;
       const { error } = await supabase.storage.from("fotos").upload(path, file, { contentType: file.type, cacheControl: "31536000" });
-      if (error || !(await addPhoto({ lang, activityId, path, caption })).ok) {
+      if (error || !(await addPhoto({ lang, owner, ownerId, path, caption })).ok) {
         if (!error) await supabase.storage.from("fotos").remove([path]);
         setMessage({ tone: "error", text: `${file.name}: ${t.uploadError}` });
         break;

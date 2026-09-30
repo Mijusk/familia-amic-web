@@ -33,10 +33,23 @@ export type Resource = {
   status: "esborrany" | "publicada";
 };
 
-export type Photo = { id: string; activity_id: string; path: string; caption: string; position: number };
+export type Photo = { id: string; path: string; caption: string; position: number };
+
+export type Project = {
+  id: string;
+  slug: string;
+  lang: "ca" | "es";
+  title: string;
+  subtitle: string;
+  body: string;
+  image_url: string | null;
+  position: number;
+  status: "esborrany" | "publicada";
+};
 
 const newsColumns = "id, slug, lang, title, summary, body, image_url, activity_id, published_on, status";
 const resourceColumns = "id, slug, lang, category, title, summary, body, external_url, position, status";
+const projectColumns = "id, slug, lang, title, subtitle, body, image_url, position, status";
 
 export async function listNews({ limit, activityId }: { limit?: number; activityId?: string } = {}) {
   if (!getSupabaseEnv()) return [];
@@ -76,8 +89,35 @@ export async function listPhotos(activityId: string) {
   const supabase = await createClient();
   const { data } = await supabase
     .from("activity_photos")
-    .select("id, activity_id, path, caption, position")
+    .select("id, path, caption, position")
     .eq("activity_id", activityId)
+    .order("position")
+    .order("created_at")
+    .returns<Photo[]>();
+  return data ?? [];
+}
+
+export async function listProjects() {
+  if (!getSupabaseEnv()) return [];
+  const supabase = await createClient();
+  const { data } = await supabase.from("projects").select(projectColumns).eq("status", "publicada").order("position").order("title").returns<Project[]>();
+  return data ?? [];
+}
+
+export async function getProject(slug: string) {
+  if (!getSupabaseEnv() || !/^[a-z0-9-]{2,80}$/.test(slug)) return null;
+  const supabase = await createClient();
+  const { data } = await supabase.from("projects").select(projectColumns).eq("slug", slug).eq("status", "publicada").maybeSingle<Project>();
+  return data;
+}
+
+export async function listProjectPhotos(projectId: string) {
+  if (!getSupabaseEnv()) return [];
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("project_photos")
+    .select("id, path, caption, position")
+    .eq("project_id", projectId)
     .order("position")
     .order("created_at")
     .returns<Photo[]>();
@@ -115,6 +155,19 @@ export async function getResourceById(id: string) {
   if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
   const supabase = await createClient();
   const { data } = await supabase.from("resources").select(resourceColumns).eq("id", id).maybeSingle<Resource>();
+  return data;
+}
+
+export async function listAllProjects() {
+  const supabase = await createClient();
+  const { data } = await supabase.from("projects").select(projectColumns).order("position").order("title").returns<Project[]>();
+  return data ?? [];
+}
+
+export async function getProjectById(id: string) {
+  if (!/^[0-9a-f-]{36}$/i.test(id)) return null;
+  const supabase = await createClient();
+  const { data } = await supabase.from("projects").select(projectColumns).eq("id", id).maybeSingle<Project>();
   return data;
 }
 

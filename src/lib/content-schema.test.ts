@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { contactSchema, newsSchema, resourceSchema, volunteerSchema } from "./content-schema";
+import { contactSchema, newsSchema, projectSchema, resourceSchema, volunteerSchema } from "./content-schema";
 
 describe("content forms", () => {
   it("accepts a news item and treats hidden fields as empty", () => {
@@ -13,6 +13,14 @@ describe("content forms", () => {
     expect(bad.error?.issues[0].message).toBe("invalidUrl");
     const res = resourceSchema.safeParse({ title: "Targeta rosa", lang_text: "ca", category: "legals", status: "publicada", external_url: "http://x.org", position: "" });
     expect(res.error?.issues[0].message).toBe("invalidUrl");
+  });
+
+  it("accepts photos uploaded to the fotos bucket, also on a local http Supabase", () => {
+    const base = { title: "x x", lang_text: "ca", summary: "yy", published_on: "2026-09-29", status: "publicada" };
+    expect(newsSchema.safeParse({ ...base, image_url: "http://127.0.0.1:54321/storage/v1/object/public/fotos/imatges/a.jpg" }).success).toBe(true);
+    expect(newsSchema.safeParse({ ...base, image_url: "http://example.org/a.jpg" }).success).toBe(false);
+    const p = projectSchema.safeParse({ title: "Casal d'estiu", lang_text: "ca", status: "publicada", position: "2" });
+    expect(p.data).toMatchObject({ subtitle: "", body: "", image_url: null, position: 2 });
   });
 
   it("orders resources by position", () => {

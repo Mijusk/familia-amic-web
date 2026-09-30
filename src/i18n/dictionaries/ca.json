@@ -6,12 +6,14 @@
   "nav": {
     "home": "Inici",
     "association": "Associació",
+    "projects": "Projectes",
     "activities": "Activitats",
     "news": "Notícies",
     "resources": "Recursos",
     "collaborate": "Col·labora",
     "contact": "Contacte",
     "login": "Accedir",
+    "register": "Registra't",
     "menu": "Menú",
     "language": "Idioma",
     "account": "El meu compte",
@@ -411,6 +413,7 @@
       "receipts": "Rebuts",
       "messages": "Missatges",
       "volunteers": "Voluntaris",
+      "projects": "Projectes",
       "news": "Notícies",
       "resources": "Recursos"
     },
@@ -466,6 +469,7 @@
       "fSummary": "Resum",
       "fSummaryHint": "Una o dues frases per a la llista d'activitats.",
       "fDescription": "Descripció completa",
+      "fImage": "Imatge de portada",
       "fCategory": "Categoria",
       "noCategory": "Sense categoria",
       "fKind": "Tipus",
@@ -616,7 +620,10 @@
         "receipt_adjust_delete": "Ajust de rebut eliminat",
         "category_create": "Categoria creada",
         "category_update": "Categoria editada",
-        "category_delete": "Categoria eliminada"
+        "category_delete": "Categoria eliminada",
+        "project_create": "Projecte creat",
+        "project_update": "Projecte modificat",
+        "project_delete": "Projecte eliminat"
       }
     },
     "receipts": {
@@ -700,10 +707,27 @@
       "editTitle": "Editar notícia",
       "created": "Notícia creada.",
       "fDate": "Data",
-      "fImage": "Imatge (adreça)",
-      "fImageHint": "Adreça https d'una imatge ja publicada. Opcional.",
+      "fImage": "Imatge",
       "fActivity": "Activitat relacionada",
       "noActivity": "Cap"
+    },
+    "projects": {
+      "title": "Projectes",
+      "lead": "Pàgines informatives dels projectes de l'associació, amb portada i galeria de fotos.",
+      "new": "Nou projecte",
+      "empty": "Encara no hi ha cap projecte.",
+      "editTitle": "Editar projecte",
+      "created": "Projecte creat. Ara pots afegir-hi fotos a la galeria.",
+      "fSubtitle": "Subtítol",
+      "fSubtitleHint": "Una frase que resumeix el projecte. Surt sota el títol i a la llista.",
+      "fPosition": "Ordre",
+      "fPositionHint": "Els números més baixos surten primer.",
+      "positionShort": "Ordre",
+      "fImage": "Imatge de portada",
+      "fBody": "Descripció",
+      "gallery": "Galeria de fotos",
+      "galleryLead": "Les fotos surten a la pàgina del projecte. Abans de pujar-ne, comprova que les persones que hi surten tenen permís de fotos.",
+      "deleteConfirm": "Segur que vols eliminar aquest projecte i totes les seves fotos? No es pot desfer."
     },
     "resources": {
       "title": "Recursos",
@@ -733,6 +757,17 @@
       "chooseFiles": "Tria almenys una foto.",
       "invalidFile": "ha de ser JPG, PNG o WebP i de 5 MB com a màxim.",
       "uploadError": "no s'ha pogut pujar. Torna-ho a provar."
+    },
+    "image": {
+      "hint": "JPG, PNG o WebP, fins a 5 MB. Surt a dalt de la pàgina i a les llistes. Millor horitzontal i sense cares de persones sense permís de fotos.",
+      "preview": "Vista prèvia de la imatge",
+      "choose": "Pujar una imatge",
+      "change": "Canviar la imatge",
+      "remove": "Treure la imatge",
+      "uploading": "Pujant…",
+      "invalidFile": "ha de ser JPG, PNG o WebP i de 5 MB com a màxim.",
+      "uploadError": "no s'ha pogut pujar. Torna-ho a provar.",
+      "pasteUrl": "O enganxa l'adreça d'una imatge ja publicada"
     },
     "messages": {
       "title": "Missatges de contacte",
@@ -871,6 +906,20 @@
     "empty": "Encara no hi ha cap notícia.",
     "back": "Totes les notícies",
     "relatedActivity": "Aquesta notícia parla de l'activitat"
+  },
+  "projects": {
+    "title": "Projectes",
+    "lead": "Els projectes que fan créixer Família Amic: espais on les persones amb discapacitat i les seves famílies aprenen, gaudeixen i participen.",
+    "empty": "Aviat hi explicarem els nostres projectes.",
+    "discover": "Descobreix el projecte",
+    "back": "Tots els projectes",
+    "eyebrow": "Projecte",
+    "ctaTitle": "Vols participar-hi?",
+    "ctaBody": "Escriu-nos i t'expliquem com funciona i com pots formar-ne part.",
+    "ctaButton": "Contacta'ns",
+    "photos": "Fotos",
+    "photoAlt": "Foto del projecte",
+    "others": "Altres projectes"
   },
   "resources": {
     "title": "Recursos",

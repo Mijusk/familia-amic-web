@@ -59,36 +59,42 @@ export default async function ActivitiesPage({ params, searchParams }: PageProps
           {activities.map((a) => {
             const free = freeSpots(a, spots.get(a.id));
             return (
-              <li key={a.id} className="relative flex flex-col rounded-lg border border-line border-t-4 border-t-brand bg-surface p-5 hover:shadow-md">
-                {categoryName(a.category_id) && (
-                  <p className="text-sm font-semibold uppercase tracking-wider text-accent">{categoryName(a.category_id)}</p>
+              <li key={a.id} className="relative flex flex-col overflow-hidden rounded-lg border border-line border-t-4 border-t-brand bg-surface hover:shadow-md">
+                {a.image_url && (
+                  // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
+                  <img src={a.image_url} alt="" className="aspect-[16/9] w-full object-cover" loading="lazy" />
                 )}
-                <h2 className="mt-1 font-display text-2xl font-extrabold" lang={a.lang}>
-                  <Link href={`/${lang}/activitats/${a.slug}`} className="after:absolute after:inset-0">
-                    {a.title}
-                  </Link>
-                </h2>
-                <p className="mt-2 text-muted" lang={a.lang}>
-                  {a.summary}
-                </p>
-                <dl className="mt-4 space-y-1 text-[0.95rem]">
-                  <div>
-                    <dt className="sr-only">{t.when}</dt>
-                    <dd className="font-semibold">{scheduleText(lang, t, a)}</dd>
-                  </div>
-                  {a.location && (
-                    <div>
-                      <dt className="sr-only">{t.where}</dt>
-                      <dd>{a.location}</dd>
-                    </div>
+                <div className="flex flex-1 flex-col p-5">
+                  {categoryName(a.category_id) && (
+                    <p className="text-sm font-semibold uppercase tracking-wider text-accent">{categoryName(a.category_id)}</p>
                   )}
-                  <div className="flex flex-wrap gap-x-4">
-                    <dt className="sr-only">{t.price}</dt>
-                    <dd>{priceText(lang, t, a)}</dd>
-                    <dt className="sr-only">{t.spots}</dt>
-                    <dd className={free === 0 ? "font-semibold text-warm" : "text-muted"}>{spotsText(t, free)}</dd>
-                  </div>
-                </dl>
+                  <h2 className="mt-1 font-display text-2xl font-extrabold" lang={a.lang}>
+                    <Link href={`/${lang}/activitats/${a.slug}`} className="after:absolute after:inset-0">
+                      {a.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-2 text-muted" lang={a.lang}>
+                    {a.summary}
+                  </p>
+                  <dl className="mt-4 space-y-1 text-[0.95rem]">
+                    <div>
+                      <dt className="sr-only">{t.when}</dt>
+                      <dd className="font-semibold">{scheduleText(lang, t, a)}</dd>
+                    </div>
+                    {a.location && (
+                      <div>
+                        <dt className="sr-only">{t.where}</dt>
+                        <dd>{a.location}</dd>
+                      </div>
+                    )}
+                    <div className="flex flex-wrap gap-x-4">
+                      <dt className="sr-only">{t.price}</dt>
+                      <dd>{priceText(lang, t, a)}</dd>
+                      <dt className="sr-only">{t.spots}</dt>
+                      <dd className={free === 0 ? "font-semibold text-warm" : "text-muted"}>{spotsText(t, free)}</dd>
+                    </div>
+                  </dl>
+                </div>
               </li>
             );
           })}

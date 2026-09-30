@@ -41,6 +41,7 @@ export default async function EditActivity({ params, searchParams }: PageProps<"
           lang_text: a.lang,
           summary: a.summary,
           description: a.description,
+          image_url: a.image_url ?? "",
           category_id: a.category_id ?? "",
           kind: a.kind,
           weekday: a.weekday?.toString() ?? "",
@@ -59,6 +60,7 @@ export default async function EditActivity({ params, searchParams }: PageProps<"
         categories={categories.map((c) => ({ id: c.id, name: lang === "es" ? c.name_es : c.name_ca }))}
         t={t}
         status={dict.admin.status}
+        image={dict.admin.image}
         weekdays={dict.activities.weekdays}
         errors={dict.errors}
         common={dict.common}
