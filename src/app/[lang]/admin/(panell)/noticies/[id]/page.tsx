@@ -21,11 +21,16 @@ export default async function EditNews({ params, searchParams }: PageProps<"/[la
   return (
     <div className="space-y-8">
       <PageHeader title={dict.admin.news.editTitle} lead={n.title}>
-        {n.status === "publicada" && (
-          <Link href={`/${lang}/noticies/${n.slug}`} className="font-semibold text-accent underline underline-offset-4">
-            {c.view}
+        <div className="flex flex-wrap gap-4 font-semibold">
+          <Link href={`/${lang}/admin/noticies/${n.id}/fotos`} className="text-accent underline underline-offset-4">
+            {dict.admin.photos.title}
           </Link>
-        )}
+          {n.status === "publicada" && (
+            <Link href={`/${lang}/noticies/${n.slug}`} className="text-accent underline underline-offset-4">
+              {c.view}
+            </Link>
+          )}
+        </div>
       </PageHeader>
       <NewsForm
         lang={lang}
@@ -41,11 +46,14 @@ export default async function EditNews({ params, searchParams }: PageProps<"/[la
           activity_id: n.activity_id ?? "",
           published_on: n.published_on,
           status: n.status,
+          featured_from: n.featured_from ?? "",
+          featured_until: n.featured_until ?? "",
         }}
         activities={activities.map((a) => ({ id: a.id, title: a.title }))}
         t={dict.admin.news}
         content={c}
         image={dict.admin.image}
+        featured={dict.admin.featured}
         errors={dict.errors}
         common={dict.common}
       />

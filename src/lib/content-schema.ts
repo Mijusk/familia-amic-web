@@ -25,6 +25,38 @@ export const imageUrl = blank(
     .transform((v) => v || null),
 );
 
+const optionalDate = blank(z.union([z.literal(""), z.iso.date("invalidDate")]).transform((v) => v || null));
+
+/** "Destacar en el inicio" entre dos fechas (noticias y actividades): las dos o ninguna. */
+export const featuredFields = { featured_from: optionalDate, featured_until: optionalDate };
+
+export function checkFeatured(d: { featured_from: string | null; featured_until: string | null }, ctx: z.RefinementCtx) {
+  if (d.featured_from && !d.featured_until) ctx.addIssue({ code: "custom", message: "required", path: ["featured_until"] });
+  if (!d.featured_from && d.featured_until) ctx.addIssue({ code: "custom", message: "required", path: ["featured_from"] });
+  if (d.featured_from && d.featured_until && d.featured_until < d.featured_from) ctx.addIssue({ code: "custom", message: "invalidDate", path: ["featured_until"] });
+}
+
+/** Enlace de una foto del inicio: una página de la web (/ca/…) o una dirección https. */
+const optionalLink = blank(
+  z
+    .string()
+    .trim()
+    .max(500, "tooLong")
+    .refine((v) => v === "" || /^\/[a-z0-9\-/?=&#_%.]*$/i.test(v) || /^https:\/\/[^\s]+$/.test(v), "invalidUrl")
+    .transform((v) => v || null),
+);
+
+/** Foto del inicio (panel). */
+export const slideSchema = z.object({
+  image_url: imageUrl.refine((v) => v !== null, "required"),
+  caption: text(140),
+  link_url: optionalLink,
+  position: blank(z.string().trim())
+    .refine((v) => v === "" || /^-?\d{1,4}$/.test(v), "invalidNumber")
+    .transform((v) => (v === "" ? 0 : Number(v))),
+  active: blank(z.string()).transform((v) => v === "on"),
+});
+
 /** Formulario de noticias del panel. */
 export const newsSchema = z.object({
   title: z.string().trim().min(2, "required").max(160, "tooLong"),
@@ -36,7 +68,8 @@ export const newsSchema = z.object({
   activity_id: blank(z.string()).refine((v) => v === "" || uuid.test(v), "required").transform((v) => v || null),
   published_on: z.iso.date("invalidDate"),
   status: z.enum(["esborrany", "publicada"], "required"),
-});
+  ...featuredFields,
+}).superRefine(checkFeatured);
 
 /** Formulario de recursos (guías) del panel. */
 export const resourceSchema = z.object({

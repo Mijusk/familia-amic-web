@@ -65,6 +65,8 @@ export async function saveActivity(_prev: FormState, formData: FormData): Promis
     payment_notes: d.payment_notes,
     enrollment_open: formData.get("enrollment_open") === "on",
     status: d.status,
+    featured_from: d.featured_from,
+    featured_until: d.featured_until,
   };
 
   const supabase = await createClient();

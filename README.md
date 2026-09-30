@@ -136,9 +136,13 @@ Rebuts, sin el IBAN completo.
 - **Imágenes de portada:** las noticias, las actividades y los proyectos tienen un botón "Pujar una imatge" en su
   formulario del panel. La imagen se sube a Supabase Storage (bucket público `fotos`, carpeta `imatges/`) y se
   guarda su dirección; también se puede pegar la dirección de una imagen ya publicada.
-- **Fotos de actividades:** Panell → Activitats → (actividad) → Fotos. Se guardan en el bucket `fotos` que crea la
-  migración. Antes de subir fotos, la lista de inscritos marca quién no tiene permiso de imagen (cada familia lo
-  marca en la ficha del participante).
+- **Fotos de actividades y noticias:** Panell → Activitats / Notícies → (una) → Fotos. Se guardan en el bucket `fotos`
+  que crea la migración. En la página pública salen en un visor con flechas que empieza por la portada; al hacer clic
+  se abre en grande sobre fondo oscuro. Antes de subir fotos, la lista de inscritos marca quién no tiene permiso de
+  imagen (cada familia lo marca en la ficha del participante).
+- **Inicio:** las fotos que pasan arriba del todo se gestionan en Panell → Portada (foto, texto corto y enlace
+  opcional, orden y si se ve o no). Una noticia o una actividad sale en grande como destacada entre las fechas
+  "Destacar a l'inici" de su formulario (ambas incluidas).
 - **Projectes:** Panell → Projectes. Cada proyecto tiene título, subtítulo, portada, descripción (con el mismo
   formato que las noticias), un número de orden y su galería de fotos. Se ven en `/ca/projectes`.
 - **Contacto:** los mensajes del formulario llegan a `ASSOCIATION_EMAIL` (o familiaamic@gmail.com) y quedan en

@@ -19,6 +19,7 @@ export default async function NewNews({ params }: PageProps<"/[lang]/admin/notic
         t={dict.admin.news}
         content={dict.admin.content}
         image={dict.admin.image}
+        featured={dict.admin.featured}
         errors={dict.errors}
         common={dict.common}
       />

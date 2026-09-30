@@ -8,6 +8,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { listNews, listPhotos, photoUrl } from "@/lib/content";
 import { getMembership, listParticipants } from "@/lib/data";
 import { EnrollForm } from "@/components/activities/enroll-form";
+import { Gallery, type GalleryImage } from "@/components/content/gallery";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/activitats/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -101,51 +102,73 @@ export default async function ActivityPage({ params }: PageProps<"/[lang]/activi
     }
   }
 
+  // La portada es la primera foto del visor; después, las fotos de la galería.
+  const images: GalleryImage[] = [
+    ...(activity.image_url ? [{ src: activity.image_url, alt: activity.title }] : []),
+    ...photos.map((p) => ({ src: photoUrl(p.path), alt: p.caption || t.photoAlt, caption: p.caption || undefined })),
+  ];
+  const specs = (
+    <dl className="grid gap-4 rounded-2xl bg-surface p-6 shadow-sm ring-1 ring-line" lang={lang}>
+      <div>
+        <dt className="text-sm font-semibold uppercase tracking-wider text-muted">{t.when}</dt>
+        <dd className="mt-0.5 text-lg font-semibold">{scheduleText(lang, t, activity)}</dd>
+      </div>
+      {activity.location && (
+        <div>
+          <dt className="text-sm font-semibold uppercase tracking-wider text-muted">{t.where}</dt>
+          <dd className="mt-0.5 text-lg font-semibold">{activity.location}</dd>
+        </div>
+      )}
+      <div>
+        <dt className="text-sm font-semibold uppercase tracking-wider text-muted">{t.price}</dt>
+        <dd className="mt-0.5 text-lg font-semibold">{priceText(lang, t, activity)}</dd>
+        {activity.payment_method === "rebut" && activity.price_cents ? <dd className="text-sm text-muted">{t.paymentRebut}</dd> : null}
+        {activity.payment_method === "transferencia" && <dd className="text-sm text-muted">{activity.payment_notes || t.paymentTransferencia}</dd>}
+      </div>
+      <div>
+        <dt className="text-sm font-semibold uppercase tracking-wider text-muted">{t.spots}</dt>
+        <dd className={`mt-0.5 text-lg font-semibold ${free === 0 ? "text-warm" : ""}`}>{spotsText(t, free)}</dd>
+      </div>
+      {open && (
+        <div>
+          <a href="#apuntat" className="inline-flex min-h-11 items-center rounded-full bg-accent px-6 font-semibold text-accent-contrast shadow-sm hover:opacity-90">
+            {t.enrollTitle}
+          </a>
+        </div>
+      )}
+    </dl>
+  );
+
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <Link href={`/${lang}/activitats`} className="font-semibold text-accent underline underline-offset-4">
         ← {t.back}
       </Link>
-      <div className="mt-6 grid gap-10 lg:grid-cols-[1fr_22rem]">
-        <article lang={activity.lang}>
-          {activity.image_url && (
-            // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
-            <img src={activity.image_url} alt="" className="mb-6 aspect-[16/9] w-full rounded-lg object-cover" />
-          )}
-          {category && (
-            <p className="text-sm font-semibold uppercase tracking-wider text-accent" lang={lang}>
-              {lang === "es" ? category.name_es : category.name_ca}
-            </p>
-          )}
-          <h1 className="mt-1 font-display text-4xl font-extrabold">{activity.title}</h1>
-          {activity.status !== "publicada" && activity.status !== "esborrany" && (
-            <p className="mt-2 inline-block rounded-full bg-warm-soft px-3 py-1 font-semibold text-warm" lang={lang}>
-              {t.closedStatus[activity.status]}
-            </p>
-          )}
-          <p className="mt-4 text-lg">{activity.summary}</p>
-          {activity.description && <div className="mt-4 whitespace-pre-line text-muted">{activity.description}</div>}
+      <header className="mt-6" lang={activity.lang}>
+        {category && (
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent" lang={lang}>
+            {lang === "es" ? category.name_es : category.name_ca}
+          </p>
+        )}
+        <h1 className="mt-1 max-w-4xl font-display text-4xl font-extrabold leading-tight sm:text-5xl">{activity.title}</h1>
+        {activity.status !== "publicada" && activity.status !== "esborrany" && (
+          <p className="mt-3 inline-block rounded-full bg-warm-soft px-3 py-1 font-semibold text-warm" lang={lang}>
+            {t.closedStatus[activity.status]}
+          </p>
+        )}
+      </header>
 
-          {photos.length > 0 && (
-            <section className="mt-10" aria-labelledby="fotos" lang={lang}>
-              <h2 id="fotos" className="font-display text-2xl font-extrabold">
-                {t.photos}
-              </h2>
-              <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {photos.map((p) => (
-                  <li key={p.id}>
-                    <figure>
-                      <a href={photoUrl(p.path)} target="_blank" rel="noopener noreferrer">
-                        {/* eslint-disable-next-line @next/next/no-img-element -- fotos de Storage, sin optimizador de imágenes */}
-                        <img src={photoUrl(p.path)} alt={p.caption || t.photoAlt} className="aspect-[4/3] w-full rounded-md object-cover" loading="lazy" />
-                      </a>
-                      {p.caption && <figcaption className="mt-1 text-sm text-muted">{p.caption}</figcaption>}
-                    </figure>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+      {images.length > 0 && (
+        <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1.6fr_1fr]">
+          <Gallery images={images} labels={dict.gallery} />
+          {specs}
+        </div>
+      )}
+
+      <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_22rem]">
+        <article lang={activity.lang}>
+          <p className="max-w-3xl text-xl leading-relaxed">{activity.summary}</p>
+          {activity.description && <div className="mt-4 max-w-3xl whitespace-pre-line text-muted">{activity.description}</div>}
 
           {news.length > 0 && (
             <section className="mt-10" aria-labelledby="noticies" lang={lang}>
@@ -166,30 +189,8 @@ export default async function ActivityPage({ params }: PageProps<"/[lang]/activi
         </article>
 
         <aside className="space-y-6" lang={lang}>
-          <dl className="space-y-3 rounded-lg border border-line border-t-4 border-t-brand bg-surface p-5">
-            <div>
-              <dt className="text-sm text-muted">{t.when}</dt>
-              <dd className="font-semibold">{scheduleText(lang, t, activity)}</dd>
-            </div>
-            {activity.location && (
-              <div>
-                <dt className="text-sm text-muted">{t.where}</dt>
-                <dd className="font-semibold">{activity.location}</dd>
-              </div>
-            )}
-            <div>
-              <dt className="text-sm text-muted">{t.price}</dt>
-              <dd className="font-semibold">{priceText(lang, t, activity)}</dd>
-              {activity.payment_method === "rebut" && activity.price_cents ? <dd className="text-sm text-muted">{t.paymentRebut}</dd> : null}
-              {activity.payment_method === "transferencia" && <dd className="text-sm text-muted">{activity.payment_notes || t.paymentTransferencia}</dd>}
-            </div>
-            <div>
-              <dt className="text-sm text-muted">{t.spots}</dt>
-              <dd className={`font-semibold ${free === 0 ? "text-warm" : ""}`}>{spotsText(t, free)}</dd>
-            </div>
-          </dl>
-
-          <section className="rounded-lg border border-line bg-surface p-5" aria-labelledby="enroll-title">
+          {images.length === 0 && specs}
+          <section id="apuntat" className="scroll-mt-24 rounded-2xl bg-accent-soft p-6" aria-labelledby="enroll-title">
             <h2 id="enroll-title" className="font-display text-2xl font-extrabold">
               {t.enrollTitle}
             </h2>

@@ -14,7 +14,7 @@ export default async function NewsPage({ params }: PageProps<"/[lang]/noticies">
   const news = await listNews();
 
   return (
-    <div className="mx-auto max-w-5xl space-y-8 px-4 py-10 sm:px-6">
+    <div className="mx-auto max-w-6xl space-y-8 px-4 py-10 sm:px-6">
       <PageHeader title={dict.news.title} lead={dict.news.lead} />
       {news.length === 0 ? (
         <p className="rounded-lg border border-dashed border-line p-6 text-muted">{dict.news.empty}</p>
@@ -22,7 +22,7 @@ export default async function NewsPage({ params }: PageProps<"/[lang]/noticies">
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {news.map((n) => (
             <li key={n.id}>
-              <NewsCard lang={lang} news={n} />
+              <NewsCard lang={lang} news={n} titleFirst />
             </li>
           ))}
         </ul>

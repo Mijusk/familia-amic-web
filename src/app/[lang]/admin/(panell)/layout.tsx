@@ -15,6 +15,7 @@ export default async function AdminLayout({ children, params }: LayoutProps<"/[l
     { href: `/${lang}/admin/rebuts`, label: t.nav.receipts },
     { href: `/${lang}/admin/missatges`, label: t.nav.messages },
     { href: `/${lang}/admin/voluntaris`, label: t.nav.volunteers },
+    { href: `/${lang}/admin/portada`, label: t.nav.slides },
     { href: `/${lang}/admin/projectes`, label: t.nav.projects },
     { href: `/${lang}/admin/noticies`, label: t.nav.news },
     { href: `/${lang}/admin/recursos`, label: t.nav.resources },

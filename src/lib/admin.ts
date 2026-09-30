@@ -27,7 +27,7 @@ export async function listAllActivities() {
   const { data } = await supabase
     .from("activities")
     .select(
-      "id, slug, lang, title, summary, description, image_url, category_id, kind, weekday, start_time, end_time, starts_on, ends_on, location, capacity, price_cents, payment_method, payment_notes, enrollment_open, status",
+      "id, slug, lang, title, summary, description, image_url, category_id, kind, weekday, start_time, end_time, starts_on, ends_on, location, capacity, price_cents, payment_method, payment_notes, enrollment_open, status, featured_from, featured_until",
     )
     .order("status")
     .order("starts_on", { ascending: false })
@@ -41,7 +41,7 @@ export async function getActivityById(id: string) {
   const { data } = await supabase
     .from("activities")
     .select(
-      "id, slug, lang, title, summary, description, image_url, category_id, kind, weekday, start_time, end_time, starts_on, ends_on, location, capacity, price_cents, payment_method, payment_notes, enrollment_open, status",
+      "id, slug, lang, title, summary, description, image_url, category_id, kind, weekday, start_time, end_time, starts_on, ends_on, location, capacity, price_cents, payment_method, payment_notes, enrollment_open, status, featured_from, featured_until",
     )
     .eq("id", id)
     .maybeSingle<Activity>();
