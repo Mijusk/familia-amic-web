@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/get-dictionary";
@@ -25,9 +26,8 @@ export async function SiteHeader({ lang, dict }: { lang: Locale; dict: Dictionar
         {dict.nav.skip}
       </a>
       <div className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-3 sm:gap-4 sm:px-6">
-        <Link href={`/${lang}`} className="mr-auto font-display text-xl font-extrabold leading-tight tracking-tight">
-          Família <span className="text-accent">Amic</span>
-          <span className="hidden text-xs font-bold uppercase tracking-widest text-muted min-[400px]:block">{dict.nav.tagline}</span>
+        <Link href={`/${lang}`} className="mr-auto shrink-0 rounded-md">
+          <Image src="/logo-familia-amic.png" alt={dict.nav.homeLogo} width={532} height={168} loading="eager" fetchPriority="high" className="h-10 w-auto sm:h-12" />
         </Link>
 
         <Link href={`/${lang}/activitats`} className="hidden font-semibold hover:text-accent md:block">
