@@ -1,10 +1,16 @@
 import type { Project } from "@/lib/content";
+import { framed } from "@/lib/image-frame";
 
 /** Portada de un proyecto; sin imagen, un bloque de color con la inicial. */
 export function ProjectImage({ project, className = "" }: { project: Pick<Project, "title" | "image_url">; className?: string }) {
   if (project.image_url) {
-    // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
-    return <img src={project.image_url} alt="" className={`object-cover ${className}`} loading="lazy" />;
+    const image = framed(project.image_url);
+    return (
+      <div className={`overflow-hidden ${className}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador */}
+        <img src={image.src} alt="" className="size-full object-cover" style={image.style} loading="lazy" />
+      </div>
+    );
   }
   return (
     <div aria-hidden="true" className={`flex items-center justify-center bg-accent-soft ${className}`}>

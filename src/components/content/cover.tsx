@@ -1,10 +1,15 @@
-/** Imagen de portada de una tarjeta. Sin imagen, un fondo suave con el color de la asociación. */
+import { framed } from "@/lib/image-frame";
+
+/** Imagen de portada de una tarjeta, con su encuadre. Sin imagen, un fondo suave con el color de la asociación. */
 export function Cover({ src, tone = "mint", className = "aspect-[16/10]" }: { src: string | null; tone?: "mint" | "sky" | "warm"; className?: string }) {
   if (src) {
+    const image = framed(src);
     return (
       <div className={`overflow-hidden ${className}`}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage o externas, sin optimizador */}
-        <img src={src} alt="" loading="lazy" className="size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        <div className="size-full overflow-hidden transition-transform duration-500 group-hover:scale-105">
+          {/* eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage o externas, sin optimizador */}
+          <img src={image.src} alt="" loading="lazy" className="size-full object-cover" style={image.style} />
+        </div>
       </div>
     );
   }

@@ -10,6 +10,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { contactSchema, newsSchema, projectSchema, resourceSchema, slideSchema, volunteerSchema } from "@/lib/content-schema";
 import { associationEmail, sendEmail } from "@/lib/email";
 import { formValues, type FormState } from "@/lib/forms";
+import { parseFrame } from "@/lib/image-frame";
 import { slugify } from "@/lib/slug";
 import { createClient } from "@/lib/supabase/server";
 import { getSupabaseEnv } from "@/lib/supabase/env";
@@ -277,7 +278,7 @@ export async function deleteSlide(formData: FormData) {
     const { data } = await supabase.from("home_slides").delete().eq("id", id).select("image_url").maybeSingle<{ image_url: string }>();
     if (data) {
       // Si la foto se subió desde el panel, se borra también el fichero.
-      const path = data.image_url.split("/storage/v1/object/public/fotos/")[1];
+      const path = parseFrame(data.image_url).src.split("/storage/v1/object/public/fotos/")[1];
       if (path?.startsWith("imatges/")) await supabase.storage.from("fotos").remove([decodeURIComponent(path)]);
       await logAction("slide_delete", "slide", id);
     }

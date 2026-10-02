@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { framed } from "@/lib/image-frame";
 
 type Slide = { id: string; image_url: string; caption: string; link_url: string | null };
 type Labels = { prev: string; next: string; pause: string; play: string; slide: string; region: string };
@@ -46,19 +47,21 @@ export function HeroSlider({ slides, labels }: { slides: Slide[]; labels: Labels
       onBlur={() => setHovered(false)}
     >
       <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-mint-soft shadow-xl shadow-brand/10 ring-1 ring-line">
-        {slides.map((s, i) => (
-          // eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage, sin optimizador
-          <img
-            key={s.id}
-            src={s.image_url}
-            alt=""
-            aria-hidden={i !== index}
-            loading={i === 0 ? "eager" : "lazy"}
-            className={`absolute inset-0 size-full object-cover transition-[opacity,transform] duration-[1200ms] ease-out motion-reduce:transition-none ${
-              i === index ? "scale-100 opacity-100" : "scale-105 opacity-0"
-            }`}
-          />
-        ))}
+        {slides.map((s, i) => {
+          const image = framed(s.image_url);
+          return (
+            <div
+              key={s.id}
+              aria-hidden={i !== index}
+              className={`absolute inset-0 overflow-hidden transition-[opacity,transform] duration-[1200ms] ease-out motion-reduce:transition-none ${
+                i === index ? "scale-100 opacity-100" : "scale-105 opacity-0"
+              }`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage, sin optimizador */}
+              <img src={image.src} alt="" loading={i === 0 ? "eager" : "lazy"} className="size-full object-cover" style={image.style} />
+            </div>
+          );
+        })}
         {current?.caption && (
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-5 pt-16 sm:p-7 sm:pt-20" aria-live={playing ? "off" : "polite"}>
             {current.link_url ? (

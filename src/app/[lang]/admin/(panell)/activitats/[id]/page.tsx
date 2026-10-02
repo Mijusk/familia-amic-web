@@ -67,6 +67,7 @@ export default async function EditActivity({ params, searchParams }: PageProps<"
         weekdays={dict.activities.weekdays}
         errors={dict.errors}
         common={dict.common}
+        preview={{ t: dict.admin.preview, activities: dict.activities, badges: { event: dict.home.badgeEvent, weekly: dict.home.weekly } }}
       />
     </div>
   );

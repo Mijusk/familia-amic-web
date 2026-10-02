@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { framed, parseFrame } from "@/lib/image-frame";
 
 export type GalleryImage = { src: string; alt: string; caption?: string };
 type Labels = { region: string; prev: string; next: string; open: string; close: string; counter: string; thumb: string };
@@ -66,8 +67,10 @@ export function Gallery({ images, labels }: { images: GalleryImage[]; labels: La
     <section aria-label={labels.region} aria-roledescription="carousel" onKeyDown={onKey}>
       <div className="group relative overflow-hidden rounded-2xl bg-mint-soft shadow-lg shadow-brand/10 ring-1 ring-line" {...swipe}>
         <button type="button" onClick={open} className="block w-full cursor-zoom-in" aria-label={`${labels.open}: ${current.alt}`}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage o externas, sin optimizador */}
-          <img key={current.src} src={current.src} alt={current.alt} className="aspect-[4/3] w-full animate-[fade_.4s_ease] object-cover motion-reduce:animate-none" />
+          <span className="block aspect-[4/3] w-full overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage o externas, sin optimizador */}
+            <img key={current.src} src={framed(current.src).src} alt={current.alt} style={framed(current.src).style} className="size-full animate-[fade_.4s_ease] object-cover motion-reduce:animate-none" />
+          </span>
         </button>
         {many && (
           <>
@@ -94,7 +97,7 @@ export function Gallery({ images, labels }: { images: GalleryImage[]; labels: La
                 className={`block overflow-hidden rounded-md ring-2 transition ${i === index ? "ring-accent" : "opacity-70 ring-transparent hover:opacity-100"}`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element -- miniaturas de Storage */}
-                <img src={img.src} alt="" loading="lazy" className="h-16 w-20 object-cover sm:h-20 sm:w-24" />
+                <img src={framed(img.src).src} alt="" loading="lazy" style={framed(img.src).style} className="h-16 w-20 object-cover sm:h-20 sm:w-24" />
               </button>
             </li>
           ))}
@@ -109,8 +112,9 @@ export function Gallery({ images, labels }: { images: GalleryImage[]; labels: La
         className="m-0 h-dvh max-h-none w-screen max-w-none bg-transparent p-0 backdrop:bg-black/85 backdrop:backdrop-blur-sm"
       >
         <div className="flex h-full flex-col items-center justify-center gap-3 p-4 sm:p-8" onClick={(e) => e.target === e.currentTarget && dialog.current?.close()} {...swipe}>
+          {/* En grande se ve la foto entera, sin encuadre. */}
           {/* eslint-disable-next-line @next/next/no-img-element -- imágenes de Storage o externas, sin optimizador */}
-          <img key={current.src} src={current.src} alt={current.alt} className="max-h-[80dvh] max-w-full animate-[fade_.3s_ease] rounded-lg motion-reduce:animate-none object-contain shadow-2xl" />
+          <img key={current.src} src={parseFrame(current.src).src} alt={current.alt} className="max-h-[80dvh] max-w-full animate-[fade_.3s_ease] rounded-lg motion-reduce:animate-none object-contain shadow-2xl" />
           <p className="max-w-2xl text-center text-white">
             {many && <span className="font-semibold tabular-nums">{count(labels.counter, index + 1, total)}</span>}
             {current.caption && <span className="ml-3 text-white/80">{current.caption}</span>}

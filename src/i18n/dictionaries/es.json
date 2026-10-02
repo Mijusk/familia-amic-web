@@ -782,14 +782,23 @@
     },
     "image": {
       "hint": "JPG, PNG o WebP, hasta 5 MB. Sale arriba de la página y en las listas. Mejor horizontal y sin caras de personas sin permiso de fotos.",
-      "preview": "Vista previa de la imagen",
       "choose": "Subir una imagen",
       "change": "Cambiar la imagen",
       "remove": "Quitar la imagen",
       "uploading": "Subiendo…",
       "invalidFile": "debe ser JPG, PNG o WebP y de 5 MB como máximo.",
       "uploadError": "no se ha podido subir. Vuelve a intentarlo.",
-      "pasteUrl": "O pega la dirección de una imagen ya publicada"
+      "pasteUrl": "O pega la dirección de una imagen ya publicada",
+      "frame": "Encuadre",
+      "frameKeys": "Arrastra la foto o usa las flechas del teclado para moverla.",
+      "frameHint": "Arrastra la foto para elegir qué se ve. Las miniaturas muestran cómo queda en el resto de sitios.",
+      "zoom": "Zoom",
+      "center": "Centrar",
+      "shapes": {
+        "card": "Tarjeta",
+        "page": "Página",
+        "wide": "Destacado"
+      }
     },
     "messages": {
       "title": "Mensajes de contacto",
@@ -851,6 +860,14 @@
       "hint": "Entre estas dos fechas (incluidas) sale en grande arriba del inicio. Déjalas vacías para que no salga.",
       "from": "Desde el",
       "until": "Hasta el"
+    },
+    "preview": {
+      "title": "Vista previa",
+      "hint": "Se actualiza mientras escribes. Todavía no se ha guardado nada.",
+      "untitled": "Título",
+      "noSummary": "Aquí saldrá el resumen.",
+      "card": "En las listas y en el inicio",
+      "page": "En su página"
     }
   },
   "volunteer": {

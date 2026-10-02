@@ -22,6 +22,7 @@ export default async function NewNews({ params }: PageProps<"/[lang]/admin/notic
         featured={dict.admin.featured}
         errors={dict.errors}
         common={dict.common}
+        preview={{ t: dict.admin.preview }}
       />
     </div>
   );

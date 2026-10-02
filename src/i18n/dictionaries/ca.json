@@ -782,14 +782,23 @@
     },
     "image": {
       "hint": "JPG, PNG o WebP, fins a 5 MB. Surt a dalt de la pàgina i a les llistes. Millor horitzontal i sense cares de persones sense permís de fotos.",
-      "preview": "Vista prèvia de la imatge",
       "choose": "Pujar una imatge",
       "change": "Canviar la imatge",
       "remove": "Treure la imatge",
       "uploading": "Pujant…",
       "invalidFile": "ha de ser JPG, PNG o WebP i de 5 MB com a màxim.",
       "uploadError": "no s'ha pogut pujar. Torna-ho a provar.",
-      "pasteUrl": "O enganxa l'adreça d'una imatge ja publicada"
+      "pasteUrl": "O enganxa l'adreça d'una imatge ja publicada",
+      "frame": "Enquadrament",
+      "frameKeys": "Arrossega la foto o fes servir les fletxes del teclat per moure-la.",
+      "frameHint": "Arrossega la foto per triar què es veu. Les miniatures mostren com queda a la resta de llocs.",
+      "zoom": "Zoom",
+      "center": "Centrar",
+      "shapes": {
+        "card": "Targeta",
+        "page": "Pàgina",
+        "wide": "Destacat"
+      }
     },
     "messages": {
       "title": "Missatges de contacte",
@@ -851,6 +860,14 @@
       "hint": "Entre aquestes dues dates (incloses) surt en gran a dalt de l'inici. Deixa-les buides perquè no surti.",
       "from": "Des del",
       "until": "Fins al"
+    },
+    "preview": {
+      "title": "Vista prèvia",
+      "hint": "Es posa al dia mentre escrius. Encara no s'ha desat res.",
+      "untitled": "Títol",
+      "noSummary": "Aquí sortirà el resum.",
+      "card": "A les llistes i a l'inici",
+      "page": "A la seva pàgina"
     }
   },
   "volunteer": {

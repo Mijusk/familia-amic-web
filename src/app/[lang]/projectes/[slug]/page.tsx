@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { loadPage } from "@/i18n/page";
 import { getProject, listProjectPhotos, listProjects, photoUrl } from "@/lib/content";
+import { framed, parseFrame } from "@/lib/image-frame";
 import { ProjectImage } from "@/components/content/project-image";
 import { RichText } from "@/components/rich-text";
 
@@ -13,7 +14,7 @@ export async function generateMetadata({ params }: PageProps<"/[lang]/projectes/
   return {
     title: project.title,
     description: project.subtitle || undefined,
-    ...(project.image_url ? { openGraph: { images: [project.image_url] } } : {}),
+    ...(project.image_url ? { openGraph: { images: [parseFrame(project.image_url).src] } } : {}),
   };
 }
 
@@ -33,7 +34,7 @@ export default async function ProjectDetail({ params }: PageProps<"/[lang]/proje
         {cover && (
           <>
             {/* eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador */}
-            <img src={cover} alt="" className="absolute inset-0 -z-10 size-full object-cover" />
+            <img src={framed(cover).src} alt="" style={framed(cover).style} className="absolute inset-0 -z-10 size-full object-cover" />
             <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
           </>
         )}

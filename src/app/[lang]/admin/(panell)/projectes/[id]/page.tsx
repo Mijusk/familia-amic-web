@@ -51,6 +51,7 @@ export default async function EditProject({ params, searchParams }: PageProps<"/
         image={dict.admin.image}
         errors={dict.errors}
         common={dict.common}
+        preview={{ t: dict.admin.preview }}
       />
       <ConfirmForm action={deleteProject} lang={lang} id={p.id} label={c.delete} confirmText={t.deleteConfirm} confirmButton={c.delete} cancel={dict.common.cancel} />
     </div>
