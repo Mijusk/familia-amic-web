@@ -56,6 +56,7 @@ export default async function EditNews({ params, searchParams }: PageProps<"/[la
         featured={dict.admin.featured}
         errors={dict.errors}
         common={dict.common}
+        preview={{ t: dict.admin.preview }}
       />
       <ConfirmForm action={deleteNews} lang={lang} id={n.id} label={c.delete} confirmText={c.deleteConfirm} confirmButton={c.delete} cancel={dict.common.cancel} />
     </div>

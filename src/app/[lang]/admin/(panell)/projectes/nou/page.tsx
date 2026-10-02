@@ -17,6 +17,7 @@ export default async function NewProject({ params }: PageProps<"/[lang]/admin/pr
         image={dict.admin.image}
         errors={dict.errors}
         common={dict.common}
+        preview={{ t: dict.admin.preview }}
       />
     </div>
   );

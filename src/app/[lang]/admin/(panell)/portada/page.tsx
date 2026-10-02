@@ -52,14 +52,14 @@ export default async function AdminHomeSlides({ params, searchParams }: PageProp
       ) : (
         <ul className="grid gap-4">
           {slides.map((s) => (
-            <li key={s.id} id={`s-${s.id}`} className="grid gap-4 rounded-lg border border-line bg-surface p-4 md:grid-cols-[14rem_1fr]">
-              {/* eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador */}
-              <img src={s.image_url} alt="" className={`aspect-[4/3] w-full rounded-md object-cover ${s.active ? "" : "opacity-50"}`} />
+            <li key={s.id} id={`s-${s.id}`} className="rounded-lg border border-line bg-surface p-4">
               <div className="space-y-3">
-                <form action={saveSlide} className="flex flex-wrap items-end gap-3">
+                <form action={saveSlide} className="space-y-4">
                   <input type="hidden" name="lang" value={lang} />
                   <input type="hidden" name="id" value={s.id} />
-                  <input type="hidden" name="image_url" value={s.image_url} />
+                  <div className={`max-w-xl ${s.active ? "" : "opacity-60"}`}>
+                    <ImageInput name="image_url" id={`${s.id}-image`} label={t.image} defaultValue={s.image_url} use={["page"]} t={dict.admin.image} />
+                  </div>
                   <Fields id={s.id} slide={s} t={t} />
                   <button type="submit" className="min-h-11 rounded-md border border-accent px-4 font-semibold text-accent hover:bg-accent-soft">
                     {dict.common.save}
@@ -85,7 +85,9 @@ export default async function AdminHomeSlides({ params, searchParams }: PageProp
         <p className="text-sm text-muted">{t.linkHint}</p>
         <form action={saveSlide} className="space-y-5 rounded-lg border border-dashed border-line p-5">
           <input type="hidden" name="lang" value={lang} />
-          <ImageInput name="image_url" label={t.image} t={dict.admin.image} />
+          <div className="max-w-xl">
+            <ImageInput name="image_url" label={t.image} use={["page"]} t={dict.admin.image} />
+          </div>
           <Fields id="nova" slide={{ id: "", image_url: "", caption: "", link_url: null, position: slides.length + 1, active: true }} t={t} />
           <button type="submit" className="min-h-11 rounded-md bg-accent px-5 font-semibold text-accent-contrast hover:opacity-90">
             {t.add}

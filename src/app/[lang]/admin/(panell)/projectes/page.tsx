@@ -2,6 +2,7 @@ import Link from "next/link";
 import { loadPage } from "@/i18n/page";
 import { requireAdmin } from "@/lib/auth";
 import { listAllProjects } from "@/lib/content";
+import { framed } from "@/lib/image-frame";
 import { Alert } from "@/components/form";
 import { PageHeader } from "@/components/page-header";
 
@@ -29,7 +30,7 @@ export default async function AdminProjects({ params, searchParams }: PageProps<
             <li key={p.id} className="flex items-center gap-4 rounded-lg border border-line bg-surface p-3">
               {p.image_url ? (
                 // eslint-disable-next-line @next/next/no-img-element -- imagen de Storage, sin optimizador
-                <img src={p.image_url} alt="" className="size-16 shrink-0 rounded-md object-cover" />
+                <img src={framed(p.image_url).src} alt="" style={framed(p.image_url).style} className="size-16 shrink-0 rounded-md object-cover" />
               ) : (
                 <span aria-hidden="true" className="size-16 shrink-0 rounded-md bg-accent-soft" />
               )}
